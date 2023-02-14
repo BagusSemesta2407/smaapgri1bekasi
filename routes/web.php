@@ -5,6 +5,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,16 +21,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+    
 Route::group(['middleware' => 'prevent-back-history'],function(){
 	Route::get('/', function () {
-        return view('welcome');
+        return view('user.index');
     });
+    //User
+    Route::get('/about', [AboutController::class,'about'])->name('about');
+    Route::get('/contact',[AboutController::class,'contact'])->name('contact');
+    Route::get('/courses',[AboutController::class,'courses'])->name('courses');
+    Route::get('/team',[AboutController::class,'team'])->name('team');
+    Route::get('/testimonial',[AboutController::class,'testimonial'])->name('testimonial');
+    Route::get('/404',[AboutController::class,'notfound'])->name('404');
     
     Auth::routes();
     
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-});
  Route::middleware('auth')->group(function()
  {
     Route::group(
@@ -38,6 +45,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ],
 
         function(){
+            Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
             //route category artikel
             Route::resource('category-article', CategoryArticleController::class);
             //route article
@@ -53,3 +61,4 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         }
     );
  });
+});
