@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryArticleController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +28,25 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
+ Route::middleware('auth')->group(function()
+ {
+    Route::group(
+        [
+            'as'    =>  'admin.',
+            'prefix'    =>  'admin'
+        ],
 
+        function(){
+            //route category artikel
+            Route::resource('category-article', CategoryArticleController::class);
+            //route article
+            Route::resource('article', ArticleController::class);
+            //route pengumuman
+            Route::resource('announcement', AnnouncementController::class);
+            //route galeri
+            Route::resource('gallery', GalleryController::class);
+            //route banner
+            Route::resource('banner', BannerController::class);
+        }
+    );
+ });
