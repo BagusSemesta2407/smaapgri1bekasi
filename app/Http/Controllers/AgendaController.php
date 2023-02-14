@@ -14,8 +14,8 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        $agenda=Agenda::all();
-        return view('',[
+        $agenda = Agenda::all();
+        return view('admin.agenda.index',[
             'agenda'    =>  $agenda,
         ]);
     }
@@ -27,7 +27,10 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        return view('');
+        // $agenda = Agenda::all();
+        return view('admin.agenda.form',
+            // 'agenda'   =>  $agenda
+        );
     }
 
     /**
@@ -45,7 +48,7 @@ class AgendaController extends Controller
             'keterangan'  =>  $request->keterangan,
         ]);
 
-        return redirect()->route('')->with('success', 'Data berhasil ditambah');
+        return redirect()->route('admin.agenda.index')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -69,7 +72,7 @@ class AgendaController extends Controller
     {
         $agenda=Agenda::find($id);
 
-        return view('',[
+        return view('admin.agenda.form',[
             'agenda'    =>  $agenda
         ]);
     }
@@ -81,8 +84,9 @@ class AgendaController extends Controller
      * @param  \App\Models\Agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agenda $agenda)
+    public function update(Request $request, $id )
     {
+        
         $data=[
             'tanggal_awal'  =>  $request->tanggal_awal,
             'tanggal_akhir'  =>  $request->tanggal_akhir,
@@ -92,7 +96,7 @@ class AgendaController extends Controller
 
         Agenda::where('id', $id)->update($data);
 
-        return redirect()->route('')->with('success', 'Data berhasil diubah');
+        return redirect()->route('admin.agenda.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -101,12 +105,12 @@ class AgendaController extends Controller
      * @param  \App\Models\Agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agenda $agenda)
+    public function destroy($id)
     {
         $agenda = Agenda::find($id);
 
         $agenda->delete();
 
-        return redirect()->route('')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.delete.index')->with('success', 'Data berhasil dihapus');
     }
 }

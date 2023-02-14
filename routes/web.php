@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\GalleryController;
@@ -47,6 +48,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::resource('gallery', GalleryController::class);
             //route banner
             Route::resource('banner', BannerController::class);
+            //route agenda
+            Route::resource('agenda', AgendaController::class);
         }
     );
  });

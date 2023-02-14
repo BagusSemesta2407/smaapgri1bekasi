@@ -34,7 +34,7 @@
                 </ul>
             </li>
             <li>
-                <a href="">
+                <a class="nav-link" href="{{ route('admin.agenda.index') }}">
                     <i class="fas fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
