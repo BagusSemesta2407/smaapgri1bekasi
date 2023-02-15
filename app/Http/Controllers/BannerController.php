@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -14,7 +15,10 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
+        $banner = Banner::all();
+        return view('admin.banner.index',[
+            'banner'    =>  $banner,
+        ]);
     }
 
     /**
@@ -24,7 +28,8 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        $banner = Banner::all();
+        return view('admin.banner.form', );
     }
 
     /**
@@ -35,7 +40,11 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image=Banner::saveImage($request);
+        Banner::create([
+            'image' => $image
+        ]);
+        return redirect()->route('admin.banner.index')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -55,9 +64,13 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-        //
+        $banner=Banner::find($id);
+        return view('admin.banner.form',[
+            'banner'   =>  $banner,
+            
+        ]);
     }
 
     /**
@@ -67,9 +80,20 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
-        //
+        $data=[
+            'image'  =>  $request->image,
+        ];
+        $image = Banner::saveImage($request);
+
+        if ($image) {
+            $data['image']  =   $image;
+            Banner::deleteImage($id);
+        }
+        Banner::where('id', $id)->update($data);
+
+        return redirect()->route('admin.banner.index')->with('success', 'Data berhasil diubah');
     }
 
     /**

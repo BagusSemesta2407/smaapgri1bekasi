@@ -57,7 +57,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="{{ route('admin.banner.index') }}">
                     <i class="fas fa-scroll"></i>
                     <span>Banner</span>
                 </a>
