@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Artikel</h1>
+                <h1>Pengumuman</h1>
 
 
             </div>
@@ -23,7 +23,7 @@
                                 <div class="d-flex justify-content-between w-100">
                                     <h4>Basic DataTables</h4>
 
-                                    <a href="{{ route('admin.article.create') }}" class="btn btn-primary ">
+                                    <a href="{{ route('admin.announcement.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
                                         Tambah
                                     </a>
@@ -43,7 +43,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($article as $item)
+                                            {{-- @foreach ($article as $item)
                                                 <tr>
                                                     <td class="">
                                                         {{ $loop->iteration }}
@@ -74,7 +74,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
                                     </table>
                                 </div>

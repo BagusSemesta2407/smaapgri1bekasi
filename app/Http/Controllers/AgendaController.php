@@ -27,10 +27,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        // $agenda = Agenda::all();
-        return view('admin.agenda.form',
-            // 'agenda'   =>  $agenda
-        );
+        return view('admin.agenda.form');
     }
 
     /**

@@ -41,7 +41,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="{{ route('admin.announcement.index') }}">
                     <i class="fas fa-bullhorn"></i>
                     <span>Pengumuman</span>
                 </a>
