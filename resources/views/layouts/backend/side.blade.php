@@ -17,7 +17,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link has-dropdown" data-toggle="dropdown" href="">
                   <i class="fas fa-newspaper"></i>
-                    <span>Article</span>
+                    <span>Artikel</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
@@ -50,7 +50,7 @@
 
 
             <li>
-                <a href="">
+                <a href="{{ route('admin.gallery.index') }}">
                     <i class="fas fa-image"></i>
                     <span>Galeri</span>
                 </a>
