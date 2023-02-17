@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -14,10 +15,9 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $gallery=Gallery::all();
-
+        $gallery = Gallery::all();
         return view('admin.gallery.index',[
-            'galley'    =>  $gallery
+            'gallery'    =>  $gallery,
         ]);
     }
 
@@ -28,7 +28,8 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        $gallery = Gallery::all();
+        return view('admin.gallery.form', );
     }
 
     /**
@@ -39,7 +40,11 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image=Gallery::saveImage($request);
+        Gallery::create([
+            'image' => $image
+        ]);
+        return redirect()->route('admin.gallery.index')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -59,9 +64,13 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gallery $gallery)
+    public function edit( $id)
     {
-        //
+        $gallery=Gallery::find($id);
+        return view('admin.gallery.form',[
+            'gallery'   =>  $gallery,
+            
+        ]);
     }
 
     /**
@@ -71,9 +80,20 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gallery $gallery)
+    public function update(Request $request, $id)
     {
-        //
+        $data=[
+            'image'  =>  $request->image,
+        ];
+        $image = Gallery::saveImage($request);
+
+        if ($image) {
+            $data['image']  =   $image;
+            Gallery::deleteImage($id);
+        }
+        Gallery::where('id', $id)->update($data);
+
+        return redirect()->route('admin.gallery.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
