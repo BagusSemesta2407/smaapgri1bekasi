@@ -5,7 +5,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="" class="btn btn-icon">
+                    <a href="{{ route('admin.article.index') }}" class="btn btn-icon">
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>

@@ -14,6 +14,13 @@
                 </a>
             </li>
 
+            <li>
+                <a class="nav-link" href="{{ route('admin.user.index') }}">
+                    <i class="fas fa-calendar"></i>
+                    <span>User</span>
+                </a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link has-dropdown" data-toggle="dropdown" href="">
                   <i class="fas fa-newspaper"></i>

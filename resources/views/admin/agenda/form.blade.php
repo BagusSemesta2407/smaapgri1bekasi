@@ -84,9 +84,8 @@
                                         Uraian Kegiatan
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" name="uraian_kegiatan" >
-                                            {{ old('uraian_kegiatan', @$agenda->uraian_kegiatan) }}
-                                        </textarea>
+                                        <input class="form-control" name="uraian_kegiatan" 
+                                            value="{{ old('uraian_kegiatan', @$agenda->uraian_kegiatan) }}">
 
                                         @if ($errors->has('uraian_kegiatan'))
                                             <span class="text-danger">{{ $errors->first('uraian_kegiatan') }}</span>

@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Agenda</h1>
+                <h1>Kategori Artikel</h1>
 
 
             </div>
@@ -23,7 +23,7 @@
                                 <div class="d-flex justify-content-between w-100">
                                     <h4>Basic DataTables</h4>
 
-                                    <a href="{{ route('admin.agenda.create') }}" class="btn btn-primary ">
+                                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
                                         Tambah
                                     </a>
@@ -37,38 +37,31 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                <th>Tanggal</th>
-                                                <th>Uraian</th>
-                                                <th>Kegiatan</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($agenda as $item)
+                                            @foreach ($user as $item)
                                                 <tr>
                                                     <td class="">
                                                         {{ $loop->iteration }}
                                                     </td>
                                                     <td class="">
-                                                        {{ \Carbon\Carbon::parse($item->tanggal_awal)->translatedFormat('d F Y') }}
-                                                        -
-                                                        {{ \Carbon\Carbon::parse($item->tanggal_akhir)->translatedFormat('d F Y') }}
+                                                        {{ $item->name }}
                                                     </td>
                                                     <td class="">
-                                                        {{ $item->uraian_kegiatan }}
+                                                        {{ $item->email }}
                                                     </td>
-                                                    <td class="">
-                                                        {{ $item->keterangan }}
-                                                    </td>
-
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.agenda.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.user.edit', $item->id) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
                                                         <button class="btn btn-sm btn-outline-danger delete"
-                                                            value="{{ route('admin.agenda.destroy', $item->id) }}"
+                                                            value="{{ route('admin.user.destroy', $item->id) }}"
                                                             title="Hapus">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                 height="16" fill="none" viewBox="0 0 24 24"
@@ -96,6 +89,7 @@
 
 @section('script')
     <script>
+
         $(document).on('click', '.delete', function() {
             let url = $(this).val();
 

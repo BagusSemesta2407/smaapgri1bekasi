@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class GalleryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $gallery=Gallery::all();
-
-        return view('admin.gallery.index',[
-            'galley'    =>  $gallery
+        $user=User::all();
+        return view('admin.user.index',[
+            'user'  =>  $user
         ]);
     }
 
@@ -28,7 +27,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.form');
     }
 
     /**
@@ -39,16 +38,22 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name'  =>  $request->name,
+            'email' =>  $request->email,
+            'password'  =>  bcrypt('123456')
+        ]);
+
+        return redirect()->route('admin.user.index')->with('success', 'Data berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Gallery  $gallery
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $gallery)
+    public function show(User $user)
     {
         //
     }
@@ -56,33 +61,44 @@ class GalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Gallery  $gallery
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gallery $gallery)
+    public function edit($id)
     {
-        //
+        $user=User::find($id);
+
+        return view('admin.user.form',[
+            'user'  =>  $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Gallery  $gallery
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gallery $gallery)
+    public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'name'  => $request->name,
+            'email'     => $request->email,
+        ];
+
+        User::where('id', $id)->update($data);
+
+        return redirect()->route('admin.user.index')->with('success','Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Gallery  $gallery
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gallery $gallery)
+    public function destroy(User $user)
     {
         //
     }

@@ -28,7 +28,6 @@ class BannerController extends Controller
      */
     public function create()
     {
-        $banner = Banner::all();
         return view('admin.banner.form', );
     }
 
@@ -69,7 +68,6 @@ class BannerController extends Controller
         $banner=Banner::find($id);
         return view('admin.banner.form',[
             'banner'   =>  $banner,
-            
         ]);
     }
 
@@ -85,6 +83,7 @@ class BannerController extends Controller
         $data=[
             'image'  =>  $request->image,
         ];
+        
         $image = Banner::saveImage($request);
 
         if ($image) {

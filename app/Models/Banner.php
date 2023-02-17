@@ -13,6 +13,7 @@ class Banner extends Model
     protected $guarded = [
         'id'
     ];
+    
     /**
      * The accessors to append to the model's array form.
      *

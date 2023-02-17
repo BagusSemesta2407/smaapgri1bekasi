@@ -92,7 +92,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
         $data = [
             'title' =>  $request->title,
             'deskripsi' =>  $request->deskripsi
@@ -116,7 +115,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
         $article=Article::find($id);
 

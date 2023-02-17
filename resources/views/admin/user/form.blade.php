@@ -5,13 +5,13 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('admin.category-article.index') }}" class="btn btn-icon">
+                    <a href="{{ route('admin.user.index') }}" class="btn btn-icon">
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
 
                 <h1>
-                    @if (@$categoryArticle->exists)
+                    @if (@$user->exists)
                         Edit
                         @php
                             $aksi = 'Edit';
@@ -22,18 +22,18 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kategori Artikel
+                    Data User
                 </h1>
             </div>
 
 
-            @if (@$categoryArticle->exists)
+            @if (@$user->exists)
                 <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                    action="{{ route('admin.category-article.update', $categoryArticle) }}">
+                    action="{{ route('admin.user.update', $user) }}">
                     @method('put')
                 @else
                     <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                        action="{{ route('admin.category-article.store') }}">
+                        action="{{ route('admin.user.store') }}">
             @endif
             {{ csrf_field() }}
             <div class="section-body">
@@ -41,19 +41,19 @@
                     <div class="col-12 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Kategori Produk</h4>
+                                <h4>Form User</h4>
                             </div>
 
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">
-                                        Nama Kategori <sup class="text-danger">*</sup>
+                                        Nama  <sup class="text-danger">*</sup>
                                     </label>
 
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" placeholder="Masukan Nama Kategori"
-                                            value="{{ old('name', @$categoryArticle->name) }}">
+                                            id="name" name="name" placeholder="Masukan Nama"
+                                            value="{{ old('name', @$user->name) }}">
                                         @if ($errors->has('name'))
                                             <span class="text-danger">
                                                 {{ $errors->first('name') }}
@@ -62,6 +62,22 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-3 col-form-label">
+                                        Email  <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" name="email" placeholder="Masukan Email"
+                                            value="{{ old('email', @$user->email) }}">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('email') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
