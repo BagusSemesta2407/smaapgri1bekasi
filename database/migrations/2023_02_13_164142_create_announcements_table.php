@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_awal')->nullable();
-            $table->date('tanggal_akhir')->nullable();
             $table->string('uraian')->nullable();
-            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

@@ -14,7 +14,10 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return view('admin.pengumuman.index');
+        $announcement=Announcement::all();
+        return view('admin.pengumuman.index',[
+            'announcement'  =>  $announcement
+        ]);
     }
 
     /**
@@ -36,10 +39,7 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         Announcement::create([
-            'tanggal_awal'  =>  $request->tanggal_awal,
-            'tanggal_akhir'  =>  $request->tanggal_akhir,
             'uraian'  =>  $request->uraian,
-            'keterangan'  =>  $request->keterangan,
         ]);
 
         return redirect()->route('admin.announcement.index')->with('success', 'Data berhasil ditambah');
@@ -81,10 +81,7 @@ class AnnouncementController extends Controller
     public function update(Request $request, $id)
     {
         $data =[
-            'tanggal_awal'  =>  $request->tanggal_awal,
-            'tanggal_akhir'  =>  $request->tanggal_akhir,
             'uraian'  =>  $request->uraian,
-            'keterangan'  =>  $request->keterangan,
         ];
 
         Announcement::where('id', $id)->update($data);
@@ -98,8 +95,11 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy($id)
     {
-        //
+        $announcement=Announcement::find($id);
+        $announcement->delete();
+
+        return response()->json(['status' =>'Data Telah Dihapus']);
     }
 }

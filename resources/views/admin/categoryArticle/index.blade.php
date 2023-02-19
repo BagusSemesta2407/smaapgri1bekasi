@@ -44,6 +44,7 @@
                                         <tbody>
                                             @foreach ($categoryArticle as $item)
                                                 <tr>
+                                                    <input type="hidden" class="delete_id" value="{{ $item->id }}">
                                                     <td class="">
                                                         {{ $loop->iteration }}
                                                     </td>
@@ -56,16 +57,9 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button class="btn btn-sm btn-outline-danger delete"
+                                                        <button
                                                             value="{{ route('admin.category-article.destroy', $item->id) }}"
-                                                            title="Hapus">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="none" viewBox="0 0 24 24"
-                                                                stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
+                                                            class="btn btn-sm btn-outline-danger delete"> <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -85,11 +79,42 @@
 
 @section('script')
     <script>
+        $(document).ready(function() {
 
-        $(document).on('click', '.delete', function() {
-            let url = $(this).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            deleteSwal(url)
+            $(document).on('click', '.delete', function() {
+                let url = $(this).val();
+                console.log(url);
+                swal({
+                        title: "Apakah anda yakin?",
+                        text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: "DELETE",
+                                url: url,
+                                dataType:'json',
+                                success: function(response) {
+                                    swal(response.status, {
+                                            icon: "success",
+                                        })
+                                        .then((result) => {
+                                            location.reload();
+                                        });
+                                }
+                            });
+                        }
+                    })
+            });
         });
     </script>
 @endsection

@@ -67,7 +67,7 @@ class Gallery extends Model
         if ($gallery->image != null) {
             $path = 'public/image/gallery/' . $gallery->image;
             if (Storage::exists($path)) {
-                Storage::delete('image/gallery/' . $gallery->image);
+                Storage::delete('public/image/gallery/' . $gallery->image);
             }
         }
     }

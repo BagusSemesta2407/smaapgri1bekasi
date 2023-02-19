@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GalleryRequest;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,6 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $gallery = Gallery::all();
         return view('admin.gallery.form', );
     }
 
@@ -38,7 +38,7 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
         $image=Gallery::saveImage($request);
         Gallery::create([
@@ -102,8 +102,14 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gallery $gallery)
+    public function destroy($id)
     {
-        //
+        $gallery=Gallery::find($id);
+
+        Gallery::deleteImage($id);
+        
+        $gallery->delete();
+
+        return response()->json(['status' => 'Data Telah Dihapus']);
     }
 }

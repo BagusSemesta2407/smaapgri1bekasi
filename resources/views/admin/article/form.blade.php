@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kategori Artikel
+                    Data Artikel
                 </h1>
             </div>
 
@@ -93,14 +93,14 @@
                                     </label>
 
                                     <div class="col-sm-9">
-                                        <input type="file" class="dropify @error('image') is-invalid @enderror"
+                                        <input type="file" class="dropify @error('image_url') is-invalid @enderror"
                                             name='image' id="image" data-height='250'
                                             value="{{ @$article->image_url }}"
                                             data-default-file="{{ @$article->image_url }}"
-                                            data-allowed-file-extensions="jpeg jpg png" data-max-file-size="5M">
+                                             data-max-file-size="5M">
 
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        @if ($errors->has('image_url'))
+                                            <span class="text-danger">{{ $errors->first('image_url') }}</span>
                                         @endif
                                     </div>
 
@@ -110,7 +110,9 @@
                                         Deskripsi
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" name="deskripsi">
+                                        <textarea class="form-control @error('deskripsi')
+                                        is-invalid
+                                    @enderror" name="deskripsi" >
                                             {{ old('deskripsi', @$article->deskripsi) }}
                                         </textarea>
 
@@ -128,10 +130,6 @@
                                     <button type="submit" class="btn btn-primary btn-icon icon-left" id="btnSubmit">
                                         {{ $aksi }}
 
-                                        <span class="spinner-border ml-2 d-none" id="loader"
-                                            style="width: 1rem; height: 1rem;" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </span>
                                     </button>
                                 </div>
                             </div>

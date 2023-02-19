@@ -38,26 +38,27 @@
                                                     No
                                                 </th>
                                                 <th>Tanggal</th>
-                                                <th>Uraian</th>
-                                                <th>Kegiatan</th>
+                                                <th class="text-center">Uraian</th>
+                                                <th class="text-center">Keterangan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($agenda as $item)
                                                 <tr>
+                                                    <input type="hidden" class="delete_id" value="{{ $item->id }}">
                                                     <td class="">
                                                         {{ $loop->iteration }}
                                                     </td>
-                                                    <td class="">
+                                                    <td>
                                                         {{ \Carbon\Carbon::parse($item->tanggal_awal)->translatedFormat('d F Y') }}
                                                         -
                                                         {{ \Carbon\Carbon::parse($item->tanggal_akhir)->translatedFormat('d F Y') }}
                                                     </td>
-                                                    <td class="">
+                                                    <td class="text-center">
                                                         {{ $item->uraian_kegiatan }}
                                                     </td>
-                                                    <td class="">
+                                                    <td class="text-center">
                                                         {{ $item->keterangan }}
                                                     </td>
 
@@ -67,16 +68,9 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button class="btn btn-sm btn-outline-danger delete"
+                                                        <button
                                                             value="{{ route('admin.agenda.destroy', $item->id) }}"
-                                                            title="Hapus">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="none" viewBox="0 0 24 24"
-                                                                stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
+                                                            class="btn btn-sm btn-outline-danger delete"> <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -95,11 +89,43 @@
 @endsection
 
 @section('script')
-    <script>
+<script>
+    $(document).ready(function() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).on('click', '.delete', function() {
             let url = $(this).val();
-
-            deleteSwal(url)
+            console.log(url);
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            dataType:'json',
+                            success: function(response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    }
+                })
         });
-    </script>
+    });
+</script>
 @endsection

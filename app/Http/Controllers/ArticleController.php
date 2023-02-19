@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\CategoryArticle;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $image=Article::saveImage($request);
         Article::create([
@@ -48,8 +49,9 @@ class ArticleController extends Controller
             'category_article_id' => $request->category_article_id,
             'title' =>  $request->title,
             'deskripsi' =>  $request->deskripsi,
-            'image' => $image
+            'image' => $image,
         ]);
+
 
         return redirect()->route('admin.article.index')->with('success', 'Data berhasil ditambah');
     }
@@ -123,6 +125,6 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        return redirect()->route('')->with('success','Data berhasil dihapus');
+        return response()->json(['status' => 'Data Telah Dihapus']);
     }
 }

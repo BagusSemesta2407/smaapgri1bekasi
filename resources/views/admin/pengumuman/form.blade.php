@@ -46,42 +46,8 @@
 
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="tanggal_awal" class="col-sm-3 col-form-label">
-                                        Tanggal Awal <sup class="text-danger">*</sup>
-                                    </label>
-
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control @error('tanggal_awal') is-invalid @enderror"
-                                            id="tanggal_awal" name="tanggal_awal"
-                                            value="{{ old('tanggal_awal', @$announcement->tanggal_awal) }}">
-                                        @if ($errors->has('tanggal_awal'))
-                                            <span class="text-danger">
-                                                {{ $errors->first('tanggal_awal') }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="tanggal_akhir" class="col-sm-3 col-form-label">
-                                        Tanggal Akhir <sup class="text-danger">*</sup>
-                                    </label>
-
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror"
-                                            id="tanggal_akhir" name="tanggal_akhir" 
-                                            value="{{ old('tanggal_akhir', @$announcement->tanggal_akhir) }}">
-                                        @if ($errors->has('tanggal_akhir'))
-                                            <span class="text-danger">
-                                                {{ $errors->first('tanggal_akhir') }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-        
-                                <div class="form-group row">
                                     <label for="uraian_kegiatan" class="col-sm-3 col-form-label">
-                                        Uraian Kegiatan
+                                        Uraian
                                     </label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" name="uraian" >
@@ -90,21 +56,6 @@
 
                                         @if ($errors->has('uraian'))
                                             <span class="text-danger">{{ $errors->first('uraian') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="keterangan" class="col-sm-3 col-form-label">
-                                        Keterangan
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" name="keterangan">
-                                            {{ old('keterangan', @$announcement->keterangan) }}
-                                        </textarea>
-
-                                        @if ($errors->has('keterangan'))
-                                            <span class="text-danger">{{ $errors->first('keterangan') }}</span>
                                         @endif
                                     </div>
                                 </div>

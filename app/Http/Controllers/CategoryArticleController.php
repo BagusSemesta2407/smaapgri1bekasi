@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryArticleRequest;
 use App\Models\CategoryArticle;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class CategoryArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryArticleRequest $request)
     {
         CategoryArticle::create([
             'name'  =>  $request->name
@@ -100,6 +101,6 @@ class CategoryArticleController extends Controller
         
         $categoryArticle->delete();
 
-        return redirect()->route('admin.category-article.index')->with('success', 'Data berhasil dihapus');
+        return response()->json(['status' => 'Data Telah Dihapus']);
     }
 }

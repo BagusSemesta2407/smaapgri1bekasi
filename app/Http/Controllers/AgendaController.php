@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class AgendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgendaRequest $request)
     {
         Agenda::create([
             'tanggal_awal'  =>  $request->tanggal_awal,
@@ -108,6 +109,6 @@ class AgendaController extends Controller
 
         $agenda->delete();
 
-        return redirect()->route('admin.delete.index')->with('success', 'Data berhasil dihapus');
+        return response()->json(['status' => 'Data Telah Dihapus']);
     }
 }

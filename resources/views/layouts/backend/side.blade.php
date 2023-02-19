@@ -16,7 +16,7 @@
 
             <li>
                 <a class="nav-link" href="{{ route('admin.user.index') }}">
-                    <i class="fas fa-calendar"></i>
+                    <i class="fas fa-user"></i>
                     <span>User</span>
                 </a>
             </li>
