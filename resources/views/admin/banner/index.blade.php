@@ -49,7 +49,6 @@
                                                         {{ $loop->iteration }}
                                                     </td>
                                                     <td class="">
-                                                        {{-- {{ $item->image_url }} --}}
                                                         <img src="{{ $item->image_url }}" alt="img"  width="50px"
                                                             height="50px" />
                                                     </td>

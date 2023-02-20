@@ -49,10 +49,8 @@
                                                         {{ $loop->iteration }}
                                                     </td>
                                                     <td class="">
-                                                        {{-- {{ $item->image_url }} --}}
                                                         @if ($item->image)
-                                                            <img src="{{ $item->image_url }}" alt="img" width="50px"
-                                                                height="50px">
+                                                            <img src="{{ $item->image_url }}" alt="img" width="50px" height="50px">
                                                         @endif
                                                     </td>
                                                     <td class=" align-middle">

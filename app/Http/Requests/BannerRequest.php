@@ -24,7 +24,7 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         if ($this->_method != 'put') {
-            $rules['image_url'] =   'required';
+            $rules['image'] =   'required|image';
         }
 
         return $rules;
@@ -33,7 +33,7 @@ class BannerRequest extends FormRequest
     public function messages()
     {
         return [
-            'image_url.required'    =>  'Gambar Wajib Diisi'
+            'image.required'    =>  'Gambar Wajib Diisi',
         ];
     }
 }

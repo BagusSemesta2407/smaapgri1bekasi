@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Banner;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function indexUser()
+    {
+        $banner = Banner::get();
+        
+        return view('user.index',[
+            'banner'    =>  $banner,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -106,4 +122,5 @@ class UserController extends Controller
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }
+
 }

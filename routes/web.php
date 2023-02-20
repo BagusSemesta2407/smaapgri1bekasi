@@ -25,18 +25,18 @@ use Illuminate\Support\Facades\Route;
 
     
 Route::group(['middleware' => 'prevent-back-history'],function(){
-	Route::get('/', function () {
-        return view('user.index');
-    });
+    Route::get('/', [UserController::class,'indexUser']);
     //User
-    Route::get('/about', [AboutController::class,'about'])->name('about');
+    Route::get('/About', [AboutController::class,'about'])->name('about');
     Route::get('/contact',[AboutController::class,'contact'])->name('contact');
-    Route::get('/courses',[AboutController::class,'courses'])->name('courses');
+    Route::get('/article',[ArticleController::class,'indexUser'])->name('article');
     Route::get('/team',[AboutController::class,'team'])->name('team');
     Route::get('/testimonial',[AboutController::class,'testimonial'])->name('testimonial');
     Route::get('/404',[AboutController::class,'notfound'])->name('404');
     
     Auth::routes();
+    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
     
  Route::middleware('auth')->group(function()
  {
@@ -47,7 +47,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ],
 
         function(){
-            Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
             //route category artikel
             Route::resource('category-article', CategoryArticleController::class);
             //route article

@@ -15,11 +15,6 @@ class AboutController extends Controller
     	return view('user.contact');
     }
 
-    public function courses()
-    {
-    	return view('user.courses');
-    }
-
     public function team()
     {
     	return view('user.team');

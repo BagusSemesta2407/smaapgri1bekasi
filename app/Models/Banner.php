@@ -52,7 +52,7 @@ class Banner extends Model
         if ($this->image) {
             return asset('storage/public/image/banner/' . $this->image);
         }
-
+        
         return null;
     }
 

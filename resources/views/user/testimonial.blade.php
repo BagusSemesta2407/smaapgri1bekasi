@@ -29,7 +29,7 @@
         </div>
         <div class="owl-carousel testimonial-carousel position-relative">
             <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;">
+                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('template/img/testimonial-1.jpg') }}" style="width: 80px; height: 80px;">
                 <h5 class="mb-0">Client Name</h5>
                 <p>Profession</p>
                 <div class="testimonial-text bg-light text-center p-4">

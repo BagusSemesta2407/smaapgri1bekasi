@@ -50,14 +50,13 @@
                                         Gambar
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="dropify @error('image_url') is-invalid @enderror"
+                                        <input type="file" class="dropify @error('image') is-invalid @enderror"
                                             name='image' id="image" data-height='250'
-                                            value="{{ @$gallery->image_url }}"
                                             data-default-file="{{ @$gallery->image_url }}"
                                             data-allowed-file-extensions="jpeg jpg png" data-max-file-size="5M">
 
-                                        @if ($errors->has('image_url'))
-                                            <span class="text-danger">{{ $errors->first('image_url') }}</span>
+                                        @if ($errors->has('image'))
+                                            <span class="text-danger">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>

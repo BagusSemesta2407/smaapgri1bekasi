@@ -8,8 +8,8 @@
         </div>
         <ul class="sidebar-menu">
 
-            <li class="{{ request()->is('admin.dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <span>Dahboard</span>
                 </a>
             </li>

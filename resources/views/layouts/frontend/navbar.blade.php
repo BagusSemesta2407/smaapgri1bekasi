@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
+    <a href="{{ '/' }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary">
+            <img src="{{ asset('logo.jpeg') }}" alt="" width="100px" height="75px">
+            SMA PGRI 1 BEKASI
+        </h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -15,9 +18,9 @@
                 {{ request()->is('about') ? 'active' : '' }}">
                 Tentang
             </a>
-            <a href="{{ route('courses')}}" class="nav-item nav-link 
-                {{ request()->is('courses') ? 'active' : '' }}">
-                Courses
+            <a href="{{ route('article')}}" class="nav-item nav-link 
+                {{ request()->is('article') ? 'active' : '' }}">
+                Artikel
             </a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -32,9 +35,5 @@
                 Kontak
             </a>
         </div>
-        {{-- <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a> --}}
-        {{-- <li class="{{ request()->is('/') ? 'active' : '' }}">
-            <a class="nav-item nav-link" href="{{ route('/') }}"></a>
-        </li> --}}
     </div>
 </nav>

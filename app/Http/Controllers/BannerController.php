@@ -41,9 +41,11 @@ class BannerController extends Controller
     public function store(BannerRequest $request)
     {
         $image=Banner::saveImage($request);
+
         Banner::create([
-            'image' => $image
+            'image' => $image,
         ]);
+        
         return redirect()->route('admin.banner.index')->with('success', 'Data berhasil ditambah');
     }
 

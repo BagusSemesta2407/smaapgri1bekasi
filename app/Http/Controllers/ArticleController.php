@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\CategoryArticle;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -126,5 +127,22 @@ class ArticleController extends Controller
         $article->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexUser()
+    {
+        $categoryArticle=CategoryArticle::get();
+        $article=Article::get();
+
+        return view('user.article',[
+            'article'   =>  $article,
+            'categoryArticle' => $categoryArticle,
+        ]);
+        
     }
 }
