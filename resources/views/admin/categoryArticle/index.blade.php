@@ -53,12 +53,12 @@
                                                         {{ $item->name }}
                                                     </td>
                                                     <td class="">
-                                                        @if ($item->image)
+                                                        {{-- @if ($item->image) --}}
                                                             <img src="{{ $item->image_url }}" alt="img" width="50px" height="50px">
-                                                        @endif
+                                                        {{-- @endif --}}
                                                     </td>
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.category-article.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.category-article.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>

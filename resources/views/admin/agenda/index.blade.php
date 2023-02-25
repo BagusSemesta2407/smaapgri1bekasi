@@ -63,7 +63,7 @@
                                                     </td>
 
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.agenda.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.agenda.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\CategoryArticle;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ArticleController extends Controller
 {
@@ -76,6 +78,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
         $article=Article::find($id);
         
         $categoryArticle=CategoryArticle::oldest('name')->get();

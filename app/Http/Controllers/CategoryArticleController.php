@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryArticleRequest;
 use App\Models\CategoryArticle;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class CategoryArticleController extends Controller
 {
@@ -17,6 +19,7 @@ class CategoryArticleController extends Controller
     public function index()
     {
         $categoryArticle = CategoryArticle::all();
+
         return view('admin.categoryArticle.index',[
             'categoryArticle'   =>  $categoryArticle
         ]);
@@ -69,6 +72,12 @@ class CategoryArticleController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+        
         $categoryArticle=CategoryArticle::find($id);
         return view('admin.categoryArticle.form',[
             'categoryArticle'   =>  $categoryArticle
@@ -108,6 +117,7 @@ class CategoryArticleController extends Controller
      */
     public function destroy($id)
     {
+        
         $categoryArticle=CategoryArticle::find($id);
         
         CategoryArticle::deleteImage($id);

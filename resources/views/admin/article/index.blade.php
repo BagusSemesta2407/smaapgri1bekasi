@@ -39,6 +39,7 @@
                                                 </th>
                                                 <th>Kategori Artikel</th>
                                                 <th>Judul</th>
+                                                <th>Gambar</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -55,9 +56,12 @@
                                                     <td class="">
                                                         {{ $item->title }}
                                                     </td>
+                                                    <td class="">
+                                                            <img src="{{ $item->image_url }}" alt="img" width="50px" height="50px">
+                                                    </td>
 
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.article.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.article.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>

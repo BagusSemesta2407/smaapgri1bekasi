@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class AgendaController extends Controller
 {
@@ -68,6 +70,12 @@ class AgendaController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+        
         $agenda=Agenda::find($id);
 
         return view('admin.agenda.form',[

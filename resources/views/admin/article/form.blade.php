@@ -95,7 +95,7 @@
                                     <div class="col-sm-9">
                                         <input type="file" class="dropify @error('image') is-invalid @enderror"
                                             name='image' id="image" data-height='250'
-                                            data-default-file="{{ @$categoryarticle->image_url }}"
+                                            data-default-file="{{ @$article->image_url }}"
                                             data-max-file-size="5M">
 
                                         @if ($errors->has('image'))

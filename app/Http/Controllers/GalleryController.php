@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GalleryRequest;
 use App\Models\Gallery;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -66,6 +68,12 @@ class GalleryController extends Controller
      */
     public function edit( $id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+        
         $gallery=Gallery::find($id);
         return view('admin.gallery.form',[
             'gallery'   =>  $gallery,

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
@@ -68,6 +70,12 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+        
         $banner=Banner::find($id);
         return view('admin.banner.form',[
             'banner'   =>  $banner,

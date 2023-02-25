@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class AnnouncementController extends Controller
 {
@@ -64,6 +66,12 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+        
         $announcement=Announcement::find($id);
 
         return view('admin.pengumuman.form',[

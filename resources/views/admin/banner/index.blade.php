@@ -53,7 +53,7 @@
                                                             height="50px" />
                                                     </td>
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.banner.edit', $item->id) }}"
+                                                        <a href="{{ route('admin.banner.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
