@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Banner;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,10 @@ class UserController extends Controller
     public function indexUser()
     {
         $banner = Banner::get();
-        
+        $gallery = Gallery::get()->take(4);
         return view('user.index',[
             'banner'    =>  $banner,
+            'gallery'   =>  $gallery
         ]);
     }
 

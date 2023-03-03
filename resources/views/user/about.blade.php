@@ -7,11 +7,10 @@
                 <div class="col-lg-10 text-center">
                     <h1 class="display-3 text-white animated slideInDown">Tentang</h1>
                     <nav aria-label="breadcrumb">
-                        {{-- <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">About</li>
-                        </ol> --}}
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Beranda</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Tentang</li>
+                        </ol>
                     </nav>
                 </div>
             </div>
@@ -23,39 +22,21 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                            <h5 class="mb-3">Skilled Instructors</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <h5 class="mb-3">Siswa</h5>
+                            <p>Ada 500++ Siswa/i di SMA PGRI 1 BEKASI</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5 class="mb-3">Online Classes</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                            <h5 class="mb-3">Home Projects</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Book Library</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <h5 class="mb-3">Ekstrakulikuler</h5>
+                            <p>Ada 17 Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
                         </div>
                     </div>
                 </div>
@@ -69,16 +50,16 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('logo.jpeg') }}" alt="" style="object-fit: cover;">
+                        <img class="img-fluid position-absolute w-200 h-200" src="{{ asset('logo.jpeg') }}" alt="" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">Tentang</h6>
                     <h1 class="mb-4">Selamat Datang di SMA PGRI 1 BEKASI</h1>
-                    {{-- <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p> --}}
-                    <p class="mb-4">SMA PGRI 1 BEKASI merupakan instansi pendidikan tingkat atas yang memiliki </p>
-                    
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <p class="mb-4">SMA PGRI 1 Bekasi merupakan lembaga pendidikan menengah akhir yang berlokasi daerah
+                        bekasi</p>
+                    <p class="mb-4">SMA PGRI 1 BEKASI memiliki jurusan ipa dan ips yang dapat menunjang pemantapan minat
+                        dari siswa/i </p>
                 </div>
             </div>
         </div>
