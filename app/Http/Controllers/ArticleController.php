@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Models\Banner;
 use App\Models\CategoryArticle;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
@@ -143,10 +144,12 @@ class ArticleController extends Controller
      */
     public function indexUser()
     {
+        $banner = Banner::get();
         $categoryArticle=CategoryArticle::get();
         $article=Article::get();
 
         return view('user.article',[
+            'banner'    =>  $banner,
             'article'   =>  $article,
             'categoryArticle' => $categoryArticle,
         ]);

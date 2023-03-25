@@ -14,56 +14,55 @@
                 </a>
             </li>
 
-            <li>
+            <li class="{{ request()->is('admin/user*') || request()->is('admin/user/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.user.index') }}">
                     <i class="fas fa-user"></i>
                     <span>User</span>
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link has-dropdown" data-toggle="dropdown" href="">
+            <li class="nav-item dropdown {{ request()->is('admin/category-article*') || request()->is('admin/article*') ? 'active' : '' }}">
+                <a class="nav-link has-dropdown" data-toggle="dropdown">
                   <i class="fas fa-newspaper"></i>
                     <span>Artikel</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li>
+                    <li class="{{ request()->is('admin/category-article*')  ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.category-article.index') }}">
                             <span>Kategori Artikel</span>
                         </a>
                     </li>
 
-                    <li>
+                    <li class="{{ request()->is('admin/article*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.article.index') }}">
                             <span>Artikel</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li>
+
+            <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.agenda.index') }}">
                     <i class="fas fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
             </li>
 
-            <li>
+            <li class="{{ request()->is('admin/announcement*') ? 'active' : '' }}">
                 <a href="{{ route('admin.announcement.index') }}">
                     <i class="fas fa-bullhorn"></i>
                     <span>Pengumuman</span>
                 </a>
             </li>
 
-
-
-            <li>
+            <li class="{{ request()->is('admin/gallery*') ? 'active' : '' }}">
                 <a href="{{ route('admin.gallery.index') }}">
                     <i class="fas fa-image"></i>
                     <span>Galeri</span>
                 </a>
             </li>
 
-            <li>
+            <li class="{{ request()->is('admin/banner*') ? 'active' : '' }}">
                 <a href="{{ route('admin.banner.index') }}">
                     <i class="fas fa-scroll"></i>
                     <span>Banner</span>

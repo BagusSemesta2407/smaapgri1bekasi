@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/', [UserController::class,'indexUser']);
     //User
-    Route::get('/About', [AboutController::class,'about'])->name('about');
+    Route::get('/about', [AboutController::class,'about'])->name('about');
     Route::get('/contact',[AboutController::class,'contact'])->name('contact');
     Route::get('/article',[ArticleController::class,'indexUser'])->name('article');
     Route::get('/team',[AboutController::class,'team'])->name('team');
