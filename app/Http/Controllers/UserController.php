@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\User;
 use App\Models\Banner;
 use App\Models\Gallery;
@@ -19,9 +20,12 @@ class UserController extends Controller
     {
         $banner = Banner::get();
         $gallery = Gallery::get()->take(4);
+        $article = Article::get()->take(3);
+        
         return view('user.index',[
             'banner'    =>  $banner,
-            'gallery'   =>  $gallery
+            'gallery'   =>  $gallery,
+            'article'   =>  $article
         ]);
     }
 
