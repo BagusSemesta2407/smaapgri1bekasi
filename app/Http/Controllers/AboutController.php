@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Banner;
 
 class AboutController extends Controller
 {
     public function about()
     {
-    	return view('user.about');
+        $banner = Banner::get();
+    	return view('user.about',[
+            'banner' => $banner
+        ]);
     }
     public function contact()
     {
-    	return view('user.contact');
+        $banner = Banner::get();
+    	return view('user.contact',[
+            'banner' => $banner
+        ]);
     }
 
     public function team()

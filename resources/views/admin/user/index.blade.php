@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kategori Artikel</h1>
+                <h1>Data User</h1>
 
 
             </div>
