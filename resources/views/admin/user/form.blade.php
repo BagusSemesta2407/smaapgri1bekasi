@@ -63,6 +63,23 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="nip" class="col-sm-3 col-form-label">
+                                        NIP  <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                            id="nip" name="nip" placeholder="Masukan NIP"
+                                            value="{{ old('nip', @$user->nip) }}">
+                                        @if ($errors->has('nip'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('nip') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">
                                         Email  <sup class="text-danger">*</sup>
                                     </label>
@@ -74,6 +91,23 @@
                                         @if ($errors->has('email'))
                                             <span class="text-danger">
                                                 {{ $errors->first('email') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-3 col-form-label">
+                                        Password  <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" name="password" placeholder="Masukan Password"
+                                            >
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('password') }}
                                             </span>
                                         @endif
                                     </div>

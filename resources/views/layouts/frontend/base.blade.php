@@ -75,10 +75,10 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ $item->image_url }}" alt="">
-                        </div>
                         {{-- <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="{{ $item->image_url }}" alt="">
+                        </div> --}}
+                        <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="{{ asset('template/img/course-2.jpg') }}" alt="">
                         </div>
                         <div class="col-4">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="{{ asset('template/img/course-1.jpg') }}" alt="">
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
