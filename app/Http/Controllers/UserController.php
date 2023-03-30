@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Banner;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -62,8 +63,9 @@ class UserController extends Controller
     {
         User::create([
             'name'  =>  $request->name,
+            'nip'   => $request->nip,
             'email' =>  $request->email,
-            'password'  =>  bcrypt('123456')
+            'password' => Hash::make($request['password']),
         ]);
 
         return redirect()->route('admin.user.index')->with('success', 'Data berhasil ditambah');
@@ -106,7 +108,9 @@ class UserController extends Controller
     {
         $data = [
             'name'  => $request->name,
+            'nip'   => $request->nip,
             'email'     => $request->email,
+            'password' => Hash::make($request['password']),
         ];
 
         User::where('id', $id)->update($data);
