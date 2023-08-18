@@ -21,15 +21,7 @@
                 {{ request()->is('article') ? 'active' : '' }}">
                 Artikel
             </a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu fade-down m-0">
-                    <a href="{{ route('team')}}" class="dropdown-item">Our Team</a>
-                    <a href="{{ route('testimonial')}}" class="dropdown-item">Testimonial</a>
-                    <a href="{{ route('404')}}" class="dropdown-item">404 Page</a>
-                </div>
-            </div>
-            <a href="{{ route('contact') }}" class="nav-item nav-link
+            <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link
                 {{ request()->is('contact') ? 'active' : '' }}">
                 Kontak
             </a>

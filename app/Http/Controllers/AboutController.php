@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Models\Setting;
 
 class AboutController extends Controller
 {
     public function about()
     {
         $banner = Banner::get();
+        $setting=Setting::first();
+
     	return view('user.about',[
-            'banner' => $banner
+            'banner' => $banner,
+            'setting' => $setting
         ]);
     }
     public function contact()

@@ -69,6 +69,13 @@
                 </a>
             </li>
 
+            <li class="{{ request()->is('admin/setting*') ? 'active' : '' }}">
+                <a href="{{ route('admin.get-setting') }}">
+                    <i class="fas fa-scroll"></i>
+                    <span>Kontak</span>
+                </a>
+            </li>
+
         </ul>
     </aside>
 </div>

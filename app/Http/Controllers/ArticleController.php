@@ -6,6 +6,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\CategoryArticle;
+use App\Models\Setting;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -147,12 +148,23 @@ class ArticleController extends Controller
         $banner = Banner::get();
         $categoryArticle=CategoryArticle::get();
         $article=Article::get();
+        $setting=Setting::first();
 
         return view('user.article',[
             'banner'    =>  $banner,
             'article'   =>  $article,
             'categoryArticle' => $categoryArticle,
+            'setting' => $setting
         ]);
         
+    }
+
+    public function detailArticle($id)
+    {
+        $article=Article::find($id);
+
+        return view('user.detailArticle', [
+            'article'=> $article
+        ]);
     }
 }

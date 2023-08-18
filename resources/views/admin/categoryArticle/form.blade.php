@@ -61,24 +61,6 @@
                                         @endif
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label for="image" class="col-sm-3 col-form-label">
-                                        Gambar
-                                    </label>
-
-                                    <div class="col-sm-9">
-                                        <input type="file" class="dropify @error('image') is-invalid @enderror"
-                                            name='image' id="image" data-height='250'
-                                            data-default-file="{{ @$categoryArticle->image_url }}"
-                                            data-max-file-size="5M">
-
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                                        @endif
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>

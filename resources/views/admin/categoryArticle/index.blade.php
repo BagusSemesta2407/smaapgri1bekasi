@@ -33,7 +33,6 @@
                                                     No
                                                 </th>
                                                 <th>Name</th>
-                                                <th>Gambar</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -47,11 +46,7 @@
                                                     <td class="">
                                                         {{ $item->name }}
                                                     </td>
-                                                    <td class="">
-                                                        {{-- @if ($item->image) --}}
-                                                            <img src="{{ $item->image_url }}" alt="img" width="50px" height="50px">
-                                                        {{-- @endif --}}
-                                                    </td>
+                                                    
                                                     <td class=" align-middle">
                                                         <a href="{{ route('admin.category-article.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">

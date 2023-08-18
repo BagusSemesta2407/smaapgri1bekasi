@@ -43,11 +43,9 @@ class CategoryArticleController extends Controller
      */
     public function store(CategoryArticleRequest $request)
     {
-        $image=CategoryArticle::saveImage($request);
 
         CategoryArticle::create([
             'name'  =>  $request->name,
-            'image' => $image,
         ]);
 
         return redirect()->route('admin.category-article.index')->with('success','Data berhasil ditambah');
@@ -97,12 +95,12 @@ class CategoryArticleController extends Controller
             'name'  =>  $request->name
         ];
 
-        $image = CategoryArticle::saveImage($request);
+        // $image = CategoryArticle::saveImage($request);
 
-        if ($image) {
-            $data['image']  =   $image;
-            CategoryArticle::deleteImage($id);
-        }
+        // if ($image) {
+        //     $data['image']  =   $image;
+        //     CategoryArticle::deleteImage($id);
+        // }
 
         CategoryArticle::where('id', $id)->update($data);
         
@@ -120,7 +118,7 @@ class CategoryArticleController extends Controller
         
         $categoryArticle=CategoryArticle::find($id);
         
-        CategoryArticle::deleteImage($id);
+        // CategoryArticle::deleteImage($id);
 
         $categoryArticle->delete();
 
