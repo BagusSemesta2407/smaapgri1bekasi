@@ -111,7 +111,7 @@
                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                 aria-labelledby="home-tab" tabindex="0">
                                 <p class="mt-2">
-                                    {{ $visi->name }}
+                                    {{ @$visi->name }}
                                 </p>
                             </div>
                             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
