@@ -76,7 +76,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="text-primary">Alamat</h5>
-                            <p class="mb-0">{{ $setting->alamat }}</p>
+                            <p class="mb-0">{{ @$setting->alamat }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="text-primary">Telepon</h5>
-                            <p class="mb-0">{{ $setting->telepon }}</p>
+                            <p class="mb-0">{{ @$setting->telepon }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
@@ -94,10 +94,10 @@
                             style="width: 50px; height: 50px;">
                             <i class="fa fa-envelope-open text-white"></i>
                         </div>
-                        <a href="mailto:{{ $setting->email }}">
+                        <a href="mailto:{{ @$setting->email }}">
                             <div class="ms-3">
                                 <h5 class="text-primary">Email</h5>
-                                <p class="mb-0 text-dark" style="text-decoration: underline">{{ $setting->email }}</p>
+                                <p class="mb-0 text-dark" style="text-decoration: underline">{{ @$setting->email }}</p>
                             </div>
                         </a>
                     </div>
@@ -110,11 +110,11 @@
                     </div> --}}
 
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline btn-social" href="{{ $setting->ig }}" target="_blank"><i
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->ig }}" target="_blank"><i
                                 class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline btn-social" href="{{ $setting->fb }}" target="_blank"><i
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->fb }}" target="_blank"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline btn-social" href="{{ $setting->yt }}" target="_blank"><i
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->yt }}" target="_blank"><i
                                 class="fab fa-youtube"></i></a>
                     </div>
                 </div>

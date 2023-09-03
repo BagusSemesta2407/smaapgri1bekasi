@@ -147,7 +147,8 @@ class ArticleController extends Controller
     {
         $banner = Banner::get();
         $categoryArticle=CategoryArticle::get();
-        $article=Article::get();
+        $article=Article::latest()
+        ->paginate(5);
         $setting=Setting::first();
 
         return view('user.article',[

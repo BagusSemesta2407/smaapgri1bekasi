@@ -8,8 +8,12 @@ use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MisiController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StrategyController;
+use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +39,9 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/team',[AboutController::class,'team'])->name('team');
     Route::get('/testimonial',[AboutController::class,'testimonial'])->name('testimonial');
     Route::get('/404',[AboutController::class,'notfound'])->name('404');
+    Route::get('/gallery', [GalleryController::class, 'galleryLandingPage'])->name('landing-page-gallery');
+    Route::get('/agenda-pengumuman', [AnnouncementController::class, 'announcementLandingPage'])->name('pengumuman-landing-page');
+    Route::get('/agenda-pengumuman/{id}', [AnnouncementController::class, 'detailAnnouncementLandingPage'])->name('detail-pengumuman-landing-page');
     
     Auth::routes();
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
@@ -63,6 +70,15 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::resource('agenda', AgendaController::class);
             //route user
             Route::resource('user', UserController::class);
+            //route misi
+            Route::resource('misi', MisiController::class);
+            //route tujuan
+            Route::resource('tujuan', TujuanController::class);
+            //route strategy
+            Route::resource('strategy', StrategyController::class);
+            //route visi
+            Route::get('visi', [VisiController::class, 'index'])->name('get-visi');
+            Route::post('visi', [VisiController::class, 'store'])->name('post-visi');
 
             Route::get('setting', [SettingController::class, 'index'])->name('get-setting');
             Route::post('setting', [SettingController::class, 'store'])->name('post-setting');

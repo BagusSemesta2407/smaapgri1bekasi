@@ -21,6 +21,40 @@
                 </a>
             </li>
 
+            <li class="nav-item dropdown 
+                {{  request()->is('admin/misi*') ? 'active' : '' }} 
+                || {{ request()->is('admin/tujuan*') ? 'active' : '' }}
+                || {{ request()->is('admin/strategy*') ? 'active' : '' }}
+                || {{ request()->is('admin/visi*')  ? 'active' : '' }}">
+                <a class="nav-link has-dropdown" data-toggle="dropdown">
+                  <i class="fas fa-newspaper"></i>
+                    <span>Profil Sekolah</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/visi*')  ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.get-visi') }}">
+                            <span>Visi</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/misi*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.misi.index') }}">
+                            <span>Misi</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('admin/tujuan*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.tujuan.index') }}">
+                            <span>Tujuan</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('admin/strategy*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.strategy.index') }}">
+                            <span>Strategi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class="nav-item dropdown {{ request()->is('admin/category-article*') || request()->is('admin/article*') ? 'active' : '' }}">
                 <a class="nav-link has-dropdown" data-toggle="dropdown">
                   <i class="fas fa-newspaper"></i>

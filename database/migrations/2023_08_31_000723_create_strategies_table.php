@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('strategies', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('uraian')->nullable();
-            $table->string('file')->nullable();
+            $table->text('name')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('strategies');
     }
 };
