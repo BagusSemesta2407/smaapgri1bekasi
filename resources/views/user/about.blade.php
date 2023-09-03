@@ -1,7 +1,7 @@
 @extends('layouts.frontend.base')
 @section('content')
     <!-- Header Start -->
-    {{-- <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
@@ -15,8 +15,8 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-    <div class="container-fluid p-0 mb-5">
+    </div>
+    {{-- <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             @forelse ($banner as $item)
                 <div class="owl-carousel-item position-relative">
@@ -54,7 +54,7 @@
                 </div>
             @endforelse
         </div>
-    </div>
+    </div> --}}
     <!-- Header End -->
 
     <!-- Service Start -->

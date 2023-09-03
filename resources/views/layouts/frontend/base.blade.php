@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>SMK PGRI 1 BEKASI</title>
+    <title>SMA PGRI 1 BEKASI</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -53,15 +53,15 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
+                    {{-- <h4 class="text-white mb-3">Quick Link</h4>
                     <a class="btn btn-link" href="">About Us</a>
                     <a class="btn btn-link" href="">Contact Us</a>
                     <a class="btn btn-link" href="">Privacy Policy</a>
                     <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
+                    <a class="btn btn-link" href="">FAQs & Help</a> --}}
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
+                    <h4 class="text-white mb-3">Kontak</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
@@ -75,10 +75,16 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
+<<<<<<< HEAD
                         {{-- <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="{{ $item->image_url }}" alt="">
                         </div> --}}
+=======
+>>>>>>> 4fe53655c39d9e34aaf6d1792e2f40e132cce24f
                         {{-- <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="{{ $item->image_url }}" alt="">
+                        </div> --}}
+                        <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="{{ asset('template/img/course-2.jpg') }}" alt="">
                         </div>
                         <div class="col-4">
@@ -92,7 +98,7 @@
                         </div>
                         <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="{{ asset('template/img/course-1.jpg') }}" alt="">
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
