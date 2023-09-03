@@ -110,9 +110,7 @@
                                     <div class="col-sm-9">
                                         <textarea class="form-control @error('deskripsi')
                                         is-invalid
-                                    @enderror" name="deskripsi" >
-                                            {{ old('deskripsi', @$article->deskripsi) }}
-                                        </textarea>
+                                    @enderror" name="deskripsi" >{{ old('deskripsi', @$article->deskripsi) }}</textarea>
 
                                         @if ($errors->has('deskripsi'))
                                             <span class="text-danger">{{ $errors->first('deskripsi') }}</span>

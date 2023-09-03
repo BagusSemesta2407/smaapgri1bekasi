@@ -4,9 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kategori Artikel</h1>
-
-
+                <h1>Tujuan</h1>
             </div>
 
             <div class="section-body">
@@ -16,9 +14,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Basic DataTables</h4>
+                                    <h4>Data Tujuan</h4>
 
-                                    <a href="{{ route('admin.category-article.create') }}" class="btn btn-primary ">
+                                    <a href="{{ route('admin.tujuan.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
                                         Tambah
                                     </a>
@@ -32,12 +30,12 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                <th>Name</th>
+                                                <th>Tujuan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($categoryArticle as $item)
+                                            @foreach ($tujuan as $item)
                                                 <tr>
                                                     <input type="hidden" class="delete_id" value="{{ $item->id }}">
                                                     <td class="">
@@ -46,16 +44,15 @@
                                                     <td class="">
                                                         {{ $item->name }}
                                                     </td>
-                                                    
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.category-article.edit', Crypt::encryptString($item->id)) }}"
+                                                        <a href="{{ route('admin.tujuan.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button
-                                                            value="{{ route('admin.category-article.destroy', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-danger delete"> <i class="fas fa-trash"></i>
+                                                        <button value="{{ route('admin.tujuan.destroy', $item->id) }}"
+                                                            class="btn btn-sm btn-outline-danger delete"> <i
+                                                                class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -98,7 +95,7 @@
                             $.ajax({
                                 type: "DELETE",
                                 url: url,
-                                dataType:'json',
+                                dataType: 'json',
                                 success: function(response) {
                                     swal(response.status, {
                                             icon: "success",

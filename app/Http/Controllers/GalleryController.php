@@ -120,4 +120,12 @@ class GalleryController extends Controller
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }
+
+    public function galleryLandingPage()
+    {
+        $gallery =Gallery::all();
+        return view('user.gallery', [
+            'gallery' => $gallery
+        ]);
+    }
 }

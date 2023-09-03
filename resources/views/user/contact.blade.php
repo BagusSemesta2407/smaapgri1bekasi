@@ -1,7 +1,7 @@
 @extends('layouts.frontend.base')
 @section('content')
     <!-- Header Start -->
-    {{-- <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
@@ -15,8 +15,8 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-    <div class="container-fluid p-0 mb-5">
+    </div>
+    {{-- <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             @forelse ($banner as $item)
                 <div class="owl-carousel-item position-relative">
@@ -54,7 +54,7 @@
                 </div>
             @endforelse
         </div>
-    </div>
+    </div> --}}
     <!-- Header End -->
 
 
@@ -70,39 +70,60 @@
                     {{-- <h5>Get In Touch</h5> --}}
                     {{-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> --}}
                     <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
+                            style="width: 50px; height: 50px;">
                             <i class="fa fa-map-marker-alt text-white"></i>
                         </div>
                         <div class="ms-3">
                             <h5 class="text-primary">Alamat</h5>
-                            <p class="mb-0">Jl. Candi Penataran, Kec. Bekasi Timur., Kota Bekasi, Jawa Barat 17111</p>
+                            <p class="mb-0">{{ @$setting->alamat }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
+                            style="width: 50px; height: 50px;">
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
                         <div class="ms-3">
                             <h5 class="text-primary">Telepon</h5>
-                            <p class="mb-0">+012 345 67890</p>
+                            <p class="mb-0">{{ @$setting->telepon }}</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
+                            style="width: 50px; height: 50px;">
                             <i class="fa fa-envelope-open text-white"></i>
                         </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Email</h5>
-                            <p class="mb-0">info@example.com</p>
-                        </div>
+                        <a href="mailto:{{ @$setting->email }}">
+                            <div class="ms-3">
+                                <h5 class="text-primary">Email</h5>
+                                <p class="mb-0 text-dark" style="text-decoration: underline">{{ @$setting->email }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{-- <div class="d-flex align-items-center">
+                        <a href="{{ $setting->fb }}">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
+                                <i class="bi bi-facebook text-white"></i>
+                            </div>
+                        </a>
+                    </div> --}}
+
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->ig }}" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->fb }}" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline btn-social" href="{{ @$setting->yt }}" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed/v1/place?q=Jl.+Candi+Penataran,+RT.007/RW.011,+Duren+Jaya,+Kec.+Bekasi+Tim.,+Kota+Bks,+Jawa+Barat+17111&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                        src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=sma pgri 1 bekasi&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                         frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                    
+                        tabindex="0">
+                    </iframe>
                 </div>
                 {{-- <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <form>

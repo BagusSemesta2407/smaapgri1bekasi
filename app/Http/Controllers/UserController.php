@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Banner;
 use App\Models\Gallery;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -21,12 +23,16 @@ class UserController extends Controller
     {
         $banner = Banner::get();
         $gallery = Gallery::get()->take(4);
-        $article = Article::get()->take(3);
+        $article = Article::get();
+        $setting=Setting::first();
+        $announcement=Announcement::get()->take(5);
         
         return view('user.index',[
             'banner'    =>  $banner,
             'gallery'   =>  $gallery,
-            'article'   =>  $article
+            'article'   =>  $article,
+            'setting' => $setting,
+            'announcement' => $announcement
         ]);
     }
 

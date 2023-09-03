@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryArticleRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,22 +23,24 @@ class CategoryArticleRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'name'  =>  'required',
+        $rules =[
+            // 'alamat' => 'required',
+            'yt' => 'url',
+            'fb' => 'url',
+            'ig' => 'url',
+            // 'telepon' => 'required'
         ];
-
-        // if ($this->_method != 'put') {
-        //     $rules['image'] =   'required|image';
-        // }
 
         return $rules;
     }
 
     public function messages()
     {
+        // 'alamat.required' => 'Alamat Wajib Diisi',
         return [
-            'name.required'  => 'Nama Kategori Artikel Wajib Diisi',
-            // 'image.required' => 'Gambar Artikel Wajib Diisi',
+            'fb.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
+            'yt.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
+            'ig.url' => 'Wajib Menginputkan Dalam Bentuk LINK'
         ];
     }
 }
