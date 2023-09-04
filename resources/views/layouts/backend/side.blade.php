@@ -75,12 +75,12 @@
                 </ul>
             </li>
 
-            <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
+            {{-- <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.agenda.index') }}">
                     <i class="fas fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="{{ request()->is('admin/announcement*') ? 'active' : '' }}">
                 <a href="{{ route('admin.announcement.index') }}">

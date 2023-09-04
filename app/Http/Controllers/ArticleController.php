@@ -143,13 +143,23 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexUser()
+    public function indexUser(Request $request)
     {
         $banner = Banner::get();
-        $categoryArticle=CategoryArticle::get();
-        $article=Article::latest()
-        ->paginate(5);
+        
         $setting=Setting::first();
+
+        $filter = (object) [
+            'category_article_id' => $request->category_article_id,
+        ];
+
+        $article=Article::filter($filter)
+        ->latest()
+        ->paginate(5);
+
+        $categoryArticle=CategoryArticle::whereHas('article')
+        ->get();
+
 
         return view('user.article',[
             'banner'    =>  $banner,

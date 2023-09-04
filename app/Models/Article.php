@@ -83,4 +83,9 @@ class Article extends Model
         }
     }
 
+    public function scopeFilter($query, object $filter)
+    {
+        $query->when($filter->category_article_id ?? false, fn ($query, $category_article_id) => $query->where('category_article_id', $category_article_id));
+    }
+
 }

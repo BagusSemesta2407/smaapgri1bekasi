@@ -4,11 +4,11 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <h1 class="display-3 text-white animated slideInDown">Agenda & Pengumuman</h1>
+                <h1 class="display-3 text-white animated slideInDown">Pengumuman</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="#">Beranda</a></li>
-                        <li class="breadcrumb-item"><a class="text-white" href="#">Agenda & Pengumuman</a></li>
+                        <li class="breadcrumb-item"><a class="text-white" href="#">Pengumuman</a></li>
                     </ol>
                 </nav>
             </div>
@@ -24,24 +24,26 @@
         <form action="#" class="form-horizontal"
             style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
             <div class="row align-items-center">
-                <div class="col-md-11 col-sm-12">
+                <div class="col-md-12 col-sm-12">
                     <label for="" class="label-control">
                         Judul
                     </label>
 
-                    <select name="supplier_id" class="form-control select2">
-                        <option value=" " selected>Pilih Supplier</option>
-                        {{-- @foreach ($supplier as $item)
-                            <option value="{{ $item->id }}"
-                                {{ request()->supplier_id ? (request()->supplier_id == $item->id ? 'selected' : '') : '' }}>
-                                {{ $item->user->name }}
-                            </option>
-                        @endforeach --}}
-                    </select>
+                    <form action="{{ route('pengumuman-landing-page') }}" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Cari...">
+                            {{-- <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">Cari</button>
+                            </span> --}}
+                            <div class="col-md-1 col-sm-12 d-flex mt-auto">
+                                <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-md-1 col-sm-12 d-flex mt-auto">
+                {{-- <div class="col-md-1 col-sm-12 d-flex mt-auto">
                     <button type="submit" class="btn btn-outline-primary btn-block"><i class="bi bi-search"></i></button>
-                </div>
+                </div> --}}
 
             </div>
         </form>

@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MisiController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StrategyController;
 use App\Http\Controllers\TujuanController;
@@ -82,6 +83,9 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
             Route::get('setting', [SettingController::class, 'index'])->name('get-setting');
             Route::post('setting', [SettingController::class, 'store'])->name('post-setting');
+
+            Route::get('profil', [ProfilController::class, 'index'])->name('get-profil');
+            Route::post('profil/{update}', [ProfilController::class, 'update'])->name('post-profil');
         }
     );
  });
