@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('uraian')->nullable();
+            $table->text('uraian')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();
         });

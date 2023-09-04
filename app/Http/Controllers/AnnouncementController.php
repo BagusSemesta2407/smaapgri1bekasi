@@ -122,9 +122,13 @@ class AnnouncementController extends Controller
         return response()->json(['status' =>'Data Telah Dihapus']);
     }
 
-    public function announcementLandingPage()
+    public function announcementLandingPage(Request $request)
     {
-        $announcement=Announcement::paginate(5);
+        $search = $request->input('search'); 
+
+        $announcement=Announcement::query()
+        ->where('title', 'LIKE', "%$search%")
+        ->paginate(5);
 
         return view('user.announcement', [
             'announcement' => $announcement

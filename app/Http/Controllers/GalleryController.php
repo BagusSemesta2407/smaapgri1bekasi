@@ -99,6 +99,7 @@ class GalleryController extends Controller
             $data['image']  =   $image;
             Gallery::deleteImage($id);
         }
+        
         Gallery::where('id', $id)->update($data);
 
         return redirect()->route('admin.gallery.index')->with('success', 'Data berhasil diubah');

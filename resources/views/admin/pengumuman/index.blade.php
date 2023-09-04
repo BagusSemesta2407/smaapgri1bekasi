@@ -43,7 +43,7 @@
                                                         {{ $loop->iteration }}
                                                     </td>
                                                     <td class="">
-                                                        {{ $item->uraian }}
+                                                        {{ $item->title }}
                                                     </td>
 
                                                     <td class=" align-middle">

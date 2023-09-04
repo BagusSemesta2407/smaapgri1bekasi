@@ -31,36 +31,20 @@
                             Kategori Artikel
                         </label>
 
-                        <select name="supplier_id" class="form-control select2">
-                            <option value=" " selected>Pilih Supplier</option>
-                            {{-- @foreach ($supplier as $item)
+                        <select name="category_article_id" class="form-control select2">
+                            <option value=" " selected>Pilih Kategori Artikel</option>
+                            @foreach ($categoryArticle as $item)
                                 <option value="{{ $item->id }}"
-                                    {{ request()->supplier_id ? (request()->supplier_id == $item->id ? 'selected' : '') : '' }}>
-                                    {{ $item->user->name }}
+                                    {{ request()->category_article_id ? (request()->category_article_id == $item->id ? 'selected' : '') : '' }}>
+                                    {{ $item->name }}
                                 </option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
-
-                    <div class="col-md-9 col-sm-12">
-                        <label for="" class="label-control">
-                            Judul
-                        </label>
-
-                        <select name="supplier_id" class="form-control select2">
-                            <option value=" " selected>Pilih Supplier</option>
-                            {{-- @foreach ($supplier as $item)
-                                <option value="{{ $item->id }}"
-                                    {{ request()->supplier_id ? (request()->supplier_id == $item->id ? 'selected' : '') : '' }}>
-                                    {{ $item->user->name }}
-                                </option>
-                            @endforeach --}}
-                        </select>
-                    </div>
+                    
                     <div class="col-md-1 col-sm-12 d-flex mt-auto">
-                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="bi bi-search"></i></button>
+                        <button type="submit" class="btn btn-outline-primary btn-block">FILTER</button>
                     </div>
-
                 </div>
             </form>
             @forelse ($article as $item)
