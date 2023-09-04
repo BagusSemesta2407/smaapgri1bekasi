@@ -52,7 +52,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text"
                                                     class="form-control @error('nip') is-invalid @enderror" id="name"
-                                                    name="nip" placeholder="Masukan Nama"
+                                                    name="nip" placeholder="Masukan NIP"
                                                     value="{{ old('nip', @$user->nip) }}">
                                                 @if ($errors->has('nip'))
                                                     <span class="text-danger">

@@ -41,8 +41,13 @@ class CategoryArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryArticleRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Kategori Artikel Wajib Diisi',
+        ]);
 
         CategoryArticle::create([
             'name'  =>  $request->name,
@@ -91,6 +96,12 @@ class CategoryArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Kategori Artikel Wajib Diisi',
+        ]);
+
         $data=[
             'name'  =>  $request->name
         ];

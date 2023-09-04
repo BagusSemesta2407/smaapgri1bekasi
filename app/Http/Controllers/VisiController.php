@@ -39,6 +39,12 @@ class VisiController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Visi Wajib Diisi',
+        ]);
+
         $visi = Visi::first();
 
         if ($visi) {

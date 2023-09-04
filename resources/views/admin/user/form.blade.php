@@ -103,11 +103,7 @@
 
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('password') is-invalid @enderror"
-<<<<<<< HEAD
-                                            id="password" name="password" placeholder="Isi Jika Akan Mengganti Password"
-=======
                                             id="password" name="password" placeholder="Masukan Password"
->>>>>>> 4fe53655c39d9e34aaf6d1792e2f40e132cce24f
                                             >
                                         @if ($errors->has('password'))
                                             <span class="text-danger">

@@ -41,6 +41,12 @@ class TujuanController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Tujuan Wajib Diisi',
+        ]);
+
         Tujuan::create([
             'name' => $request->name,
         ]);

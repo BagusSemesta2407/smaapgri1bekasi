@@ -92,7 +92,7 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $data=[
-            'image'  =>  $request->image,
+            // 'image'  =>  $request->image,
         ];
         
         $image = Banner::saveImage($request);

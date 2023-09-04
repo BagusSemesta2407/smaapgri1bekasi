@@ -51,15 +51,22 @@
                                                         {{ $item->email }}
                                                     </td>
                                                     <td class=" align-middle">
-                                                        <a href="{{ route('admin.user.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-primary" title="edit">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                        </a>
+                                                        @if (Auth::user()->id == $item->id)
+                                                            <a href="{{ route('admin.user.edit', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-primary" title="edit">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ route('admin.user.edit', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-primary" title="edit">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </a>
 
-                                                        <button value="{{ route('admin.user.destroy', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-danger delete"> <i
-                                                                class="fas fa-trash"></i>
-                                                        </button>
+                                                            <button value="{{ route('admin.user.destroy', $item->id) }}"
+                                                                class="btn btn-sm btn-outline-danger delete"> <i
+                                                                    class="fas fa-trash"></i>
+                                                            </button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

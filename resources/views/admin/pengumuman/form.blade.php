@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Agenda
+                    Data Pengumuman
                 </h1>
             </div>
 

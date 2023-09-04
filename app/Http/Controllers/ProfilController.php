@@ -75,6 +75,17 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nip'              => 'required',
+            'name'             => 'required',
+            'email'            => 'required|email',
+        ], [
+            'nip.required'         => 'NIP Wajib Diisi',
+            'name.required'        => 'Nama Wajib Diisi',
+            'email.required'        => 'Email Wajib Diisi',
+            'email.email'        => 'Email Harus Sesuai Format',
+        ]);
+
         $data = [
             'nip' => $request->nip,
             'name' => $request->name,

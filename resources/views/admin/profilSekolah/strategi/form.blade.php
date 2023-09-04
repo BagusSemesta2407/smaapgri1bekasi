@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Artikel
+                    Data Strategi Sekolah
                 </h1>
             </div>
 

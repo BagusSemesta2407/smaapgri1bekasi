@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Basic DataTables</h4>
+                                    <h4>Data Artikel</h4>
 
                                     <a href="{{ route('admin.article.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>

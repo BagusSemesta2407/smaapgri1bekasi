@@ -91,8 +91,9 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $data=[
-            'image'  =>  $request->image,
+            // 'image'  =>  $request->image,
         ];
+
         $image = Gallery::saveImage($request);
 
         if ($image) {

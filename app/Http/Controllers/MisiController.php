@@ -40,6 +40,12 @@ class MisiController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Misi Wajib Diisi',
+        ]);
+
         Misi::create([
             'name' => $request->name,
         ]);
@@ -87,6 +93,12 @@ class MisiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Visi Wajib Diisi',
+        ]);
+
         $data = [
             'name' => $request->name,
         ];

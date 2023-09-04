@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Artikel
+                    Data Misi Sekolah
                 </h1>
             </div>
 
@@ -52,7 +52,7 @@
 
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" placeholder="Masukan name"
+                                            id="name" name="name" placeholder="Masukan Misi"
                                             value="{{ old('name', @$misi->name) }}">
                                         @if ($errors->has('name'))
                                             <span class="text-danger">

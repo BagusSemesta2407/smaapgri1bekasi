@@ -40,6 +40,14 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'              => 'required',
+            'uraian'             => 'required',
+        ], [
+            'title.required'         => 'Judul Wajib Diisi',
+            'uraian.required'        => 'Uraian Wajib Diisi',
+        ]);
+
         $file=Announcement::saveFile($request);
         Announcement::create([
             'title'  =>  $request->title,
@@ -91,6 +99,14 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title'              => 'required',
+            'uraian'             => 'required',
+        ], [
+            'title.required'         => 'Judul Wajib Diisi',
+            'uraian.required'        => 'Uraian Wajib Diisi',
+        ]);
+        
         $data =[
             'uraian'  =>  $request->uraian,
             'title'  =>  $request->title,
