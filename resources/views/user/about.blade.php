@@ -120,14 +120,20 @@
                                     Untuk mewujudkan Visi SMA PGRI 1 Bekasi, maka dibutuhkan Misi. Adapun Misi
                                     SMA PGRI 1 Bekasi adalah:
                                 </p>
-                                @forelse ($misi as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}.</td>
-                                        <td>{{ $item->name }}</td>
-                                    </tr>
-                                @empty
-                                    Data Misi Belum Ada
-                                @endforelse
+                                <table class="table">
+                                    <tbody>
+                                        @forelse ($misi as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}.</td>
+                                                <td>{{ $item->name }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="2">Data Misi Belum Ada</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                                 tabindex="0">
@@ -135,14 +141,20 @@
                                     Tujuan SMA PGRI 1 Bekasi adalah:
                                 </p>
 
-                                @forelse ($tujuan as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}.</td>
-                                        <td>{{ $item->name }}</td>
-                                    </tr>
-                                @empty
-                                    Data Tujuan Belum Ada
-                                @endforelse
+                                <table class="table">
+                                    <tbody>
+                                        @forelse ($tujuan as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}.</td>
+                                                <td>{{ $item->name }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="2">Data Tujuan Belum Ada</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel"
                                 aria-labelledby="disabled-tab" tabindex="0">
@@ -151,14 +163,20 @@
                                     Bekasi yang dilakukan adalah:
                                 </p>
 
-                                @forelse ($strategy as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}.</td>
-                                        <td>{{ $item->name }}</td>
-                                    </tr>
-                                @empty
-                                    Data Strategy Belum Ada
-                                @endforelse
+                                <table class="table">
+                                    <tbody>
+                                        @forelse ($strategy as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}.</td>
+                                                <td>{{ $item->name }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="2">Data Strategi Belum Ada</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
