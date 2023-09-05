@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ig')->nullable();
             $table->string('email')->nullable();
             $table->string('yt')->nullable();
+            $table->text('about')->nullable();
             $table->timestamps();
         });
     }
