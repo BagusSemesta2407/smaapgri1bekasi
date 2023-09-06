@@ -78,6 +78,17 @@
                                                 <span class="text-danger">{{ $errors->first('alamat') }}</span>
                                             @enderror
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="about">Tentang</label>
+                                            <input type="text" id="about"
+                                                class="form-control @error('about') is-invalid @enderror"
+                                                placeholder="Masukkan Tentang" name="about"
+                                                value="{{ old('about', @$setting->about) }}">
+                                            @error('about')
+                                                <span class="text-danger">{{ $errors->first('about') }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>

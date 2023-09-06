@@ -63,6 +63,7 @@ class SettingController extends Controller
                     'fb' => $request->fb,
                     'yt' => $request->yt,
                     'alamat' => $request->alamat,
+                    'about' => $request->about,
                     'email' => $request->email,
                 ]);
         } else {
@@ -72,6 +73,7 @@ class SettingController extends Controller
                 'fb' => $request->fb,
                 'yt' => $request->yt,
                 'alamat' => $request->alamat,
+                'about' => $request->about,
                 'email' => $request->email,
             ]);
         }

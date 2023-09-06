@@ -106,7 +106,7 @@
             <li class="{{ request()->is('admin/setting*') ? 'active' : '' }}">
                 <a href="{{ route('admin.get-setting') }}">
                     <i class="fas fa-scroll"></i>
-                    <span>Kontak</span>
+                    <span>Setting</span>
                 </a>
             </li>
         @endrole
