@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string('uraian')->nullable();
+            $table->string('title')->nullable();
+            $table->text('uraian')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

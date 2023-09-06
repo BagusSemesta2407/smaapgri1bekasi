@@ -91,14 +91,16 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $data=[
-            'image'  =>  $request->image,
+            // 'image'  =>  $request->image,
         ];
+
         $image = Gallery::saveImage($request);
 
         if ($image) {
             $data['image']  =   $image;
             Gallery::deleteImage($id);
         }
+        
         Gallery::where('id', $id)->update($data);
 
         return redirect()->route('admin.gallery.index')->with('success', 'Data berhasil diubah');
@@ -119,5 +121,13 @@ class GalleryController extends Controller
         $gallery->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
+    }
+
+    public function galleryLandingPage()
+    {
+        $gallery =Gallery::all();
+        return view('user.gallery', [
+            'gallery' => $gallery
+        ]);
     }
 }

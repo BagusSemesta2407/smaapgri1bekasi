@@ -27,9 +27,9 @@ class CategoryArticleRequest extends FormRequest
             'name'  =>  'required',
         ];
 
-        if ($this->_method != 'put') {
-            $rules['image'] =   'required|image';
-        }
+        // if ($this->_method != 'put') {
+        //     $rules['image'] =   'required|image';
+        // }
 
         return $rules;
     }
@@ -38,7 +38,7 @@ class CategoryArticleRequest extends FormRequest
     {
         return [
             'name.required'  => 'Nama Kategori Artikel Wajib Diisi',
-            'image.required' => 'Gambar Artikel Wajib Diisi',
+            // 'image.required' => 'Gambar Artikel Wajib Diisi',
         ];
     }
 }

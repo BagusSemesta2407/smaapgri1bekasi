@@ -7,7 +7,7 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-
+        @role('admin')
             <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <span>Dahboard</span>
@@ -21,6 +21,40 @@
                 </a>
             </li>
 
+            <li class="nav-item dropdown 
+                {{  request()->is('admin/misi*') ? 'active' : '' }} 
+                || {{ request()->is('admin/tujuan*') ? 'active' : '' }}
+                || {{ request()->is('admin/strategy*') ? 'active' : '' }}
+                || {{ request()->is('admin/visi*')  ? 'active' : '' }}">
+                <a class="nav-link has-dropdown" data-toggle="dropdown">
+                  <i class="fas fa-newspaper"></i>
+                    <span>Profil Sekolah</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/visi*')  ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.get-visi') }}">
+                            <span>Visi</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/misi*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.misi.index') }}">
+                            <span>Misi</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('admin/tujuan*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.tujuan.index') }}">
+                            <span>Tujuan</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('admin/strategy*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.strategy.index') }}">
+                            <span>Strategi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class="nav-item dropdown {{ request()->is('admin/category-article*') || request()->is('admin/article*') ? 'active' : '' }}">
                 <a class="nav-link has-dropdown" data-toggle="dropdown">
                   <i class="fas fa-newspaper"></i>
@@ -41,12 +75,12 @@
                 </ul>
             </li>
 
-            <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
+            {{-- <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.agenda.index') }}">
                     <i class="fas fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="{{ request()->is('admin/announcement*') ? 'active' : '' }}">
                 <a href="{{ route('admin.announcement.index') }}">
@@ -69,6 +103,31 @@
                 </a>
             </li>
 
+            <li class="{{ request()->is('admin/setting*') ? 'active' : '' }}">
+                <a href="{{ route('admin.get-setting') }}">
+                    <i class="fas fa-scroll"></i>
+                    <span>Setting</span>
+                </a>
+            </li>
+        @endrole
+
+        @role('guru')
+            <li class="#">
+                <a href="#">
+                    <i class="fas fa-scroll"></i>
+                    <span>Menu Guru</span>
+                </a>
+            </li>
+        @endrole
+
+        @role('pembina')
+            <li class="#">
+                <a href="#">
+                    <i class="fas fa-scroll"></i>
+                    <span>Menu Pembina</span>
+                </a>
+            </li>
+        @endrole
         </ul>
     </aside>
 </div>

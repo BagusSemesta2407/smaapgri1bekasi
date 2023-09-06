@@ -41,13 +41,16 @@ class CategoryArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryArticleRequest $request)
+    public function store(Request $request)
     {
-        $image=CategoryArticle::saveImage($request);
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Kategori Artikel Wajib Diisi',
+        ]);
 
         CategoryArticle::create([
             'name'  =>  $request->name,
-            'image' => $image,
         ]);
 
         return redirect()->route('admin.category-article.index')->with('success','Data berhasil ditambah');
@@ -93,16 +96,22 @@ class CategoryArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Kategori Artikel Wajib Diisi',
+        ]);
+
         $data=[
             'name'  =>  $request->name
         ];
 
-        $image = CategoryArticle::saveImage($request);
+        // $image = CategoryArticle::saveImage($request);
 
-        if ($image) {
-            $data['image']  =   $image;
-            CategoryArticle::deleteImage($id);
-        }
+        // if ($image) {
+        //     $data['image']  =   $image;
+        //     CategoryArticle::deleteImage($id);
+        // }
 
         CategoryArticle::where('id', $id)->update($data);
         
@@ -120,7 +129,7 @@ class CategoryArticleController extends Controller
         
         $categoryArticle=CategoryArticle::find($id);
         
-        CategoryArticle::deleteImage($id);
+        // CategoryArticle::deleteImage($id);
 
         $categoryArticle->delete();
 

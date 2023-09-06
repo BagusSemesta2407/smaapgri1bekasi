@@ -40,8 +40,19 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'              => 'required',
+            'uraian'             => 'required',
+        ], [
+            'title.required'         => 'Judul Wajib Diisi',
+            'uraian.required'        => 'Uraian Wajib Diisi',
+        ]);
+
+        $file=Announcement::saveFile($request);
         Announcement::create([
+            'title'  =>  $request->title,
             'uraian'  =>  $request->uraian,
+            'file' => $file
         ]);
 
         return redirect()->route('admin.announcement.index')->with('success', 'Data berhasil ditambah');
@@ -88,9 +99,23 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title'              => 'required',
+            'uraian'             => 'required',
+        ], [
+            'title.required'         => 'Judul Wajib Diisi',
+            'uraian.required'        => 'Uraian Wajib Diisi',
+        ]);
+        
         $data =[
             'uraian'  =>  $request->uraian,
+            'title'  =>  $request->title,
         ];
+        $file = Announcement::saveFile($request);
+        if ($file) {
+            $data['file']=$file;
+            Announcement::deleteFile($id);
+        }
 
         Announcement::where('id', $id)->update($data);
 
@@ -106,8 +131,31 @@ class AnnouncementController extends Controller
     public function destroy($id)
     {
         $announcement=Announcement::find($id);
+
+        Announcement::deleteFile($id);
         $announcement->delete();
 
         return response()->json(['status' =>'Data Telah Dihapus']);
+    }
+
+    public function announcementLandingPage(Request $request)
+    {
+        $search = $request->input('search'); 
+
+        $announcement=Announcement::query()
+        ->where('title', 'LIKE', "%$search%")
+        ->paginate(5);
+
+        return view('user.announcement', [
+            'announcement' => $announcement
+        ]);
+    }
+    public function detailAnnouncementLandingPage($id)
+    {
+        $announcement=Announcement::find($id);
+
+        return view('user.detailAnnouncement', [
+            'announcement' => $announcement
+        ]);
     }
 }

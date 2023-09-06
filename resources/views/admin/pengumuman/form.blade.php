@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Agenda
+                    Data Pengumuman
                 </h1>
             </div>
 
@@ -47,15 +47,40 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="uraian_kegiatan" class="col-sm-3 col-form-label">
+                                        Judul
+                                    </label>
+                                    <div class="col-sm-9">
+                                        {{-- <textarea class="form-control" name="title" >
+                                            {{ old('title', @$announcement->title) }}
+                                        </textarea> --}}
+                                        <input type="text" name="title" class="form-control" value="{{ old('title', @$announcement->title) }}">
+
+                                        @if ($errors->has('title'))
+                                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="uraian_kegiatan" class="col-sm-3 col-form-label">
                                         Uraian
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" name="uraian" >
-                                            {{ old('uraian', @$announcement->uraian) }}
-                                        </textarea>
+                                        <textarea class="form-control" name="uraian" >{{ old('uraian', @$announcement->uraian) }}</textarea>
 
                                         @if ($errors->has('uraian'))
                                             <span class="text-danger">{{ $errors->first('uraian') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="uraian_kegiatan" class="col-sm-3 col-form-label">
+                                        File
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="file" class="form-control" value="{{ old('file', @$announcement->file) }}">
+
+                                        @if ($errors->has('file'))
+                                            <span class="text-danger">{{ $errors->first('file') }}</span>
                                         @endif
                                     </div>
                                 </div>

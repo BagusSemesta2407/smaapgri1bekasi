@@ -1,5 +1,54 @@
 @extends('layouts.frontend.base')
 @section('content')
+
+    <head>
+        <style>
+            @media (max-width: 768px) {
+                .carousel-inner .carousel-item>div {
+                    display: none;
+                }
+
+                .carousel-inner .carousel-item>div:first-child {
+                    display: block;
+                }
+            }
+
+            .carousel-inner .carousel-item.active,
+            .carousel-inner .carousel-item-start,
+            .carousel-inner .carousel-item-next,
+            .carousel-inner .carousel-item-prev {
+                display: flex;
+                // transition-duration: 10s;
+            }
+
+            /* display 4 */
+            @media (min-width: 768px) {
+
+                .carousel-inner .carousel-item-right.active,
+                .carousel-inner .carousel-item-next,
+                .carousel-item-next:not(.carousel-item-start) {
+                    transform: translateX(25%) !important;
+                }
+
+                .carousel-inner .carousel-item-left.active,
+                .carousel-item-prev:not(.carousel-item-end),
+                .active.carousel-item-start,
+                .carousel-item-prev:not(.carousel-item-end) {
+                    transform: translateX(-25%) !important;
+                }
+
+                .carousel-item-next.carousel-item-start,
+                .active.carousel-item-end {
+                    transform: translateX(0) !important;
+                }
+
+                .carousel-inner .carousel-item-prev,
+                .carousel-item-prev:not(.carousel-item-end) {
+                    transform: translateX(-25%) !important;
+                }
+            }
+        </style>
+    </head>
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-1">
         <div class="owl-carousel header-carousel position-relative">
@@ -14,7 +63,7 @@
                                     <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang Di
                                         Website</h5>
                                     <h1 class="display-3 text-white animated slideInDown">SMA PGRI 1 BEKASI</h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Meraih Juara</p>
+                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi, Bertaqwa, dan Berbudaya</p>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +80,7 @@
                                     <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang Di
                                         Website</h5>
                                     <h1 class="display-3 text-white animated slideInDown">SMA PGRI 1 BEKASI</h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Meraih Juara</p>
+                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi, Bertaqwa, dan Berbudaya</p>
                                 </div>
                             </div>
                         </div>
@@ -54,6 +103,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- &nbsp; --}}
                 <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
@@ -80,13 +130,16 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">Tentang</h6>
-                    <h1 class="mb-4">Selamat Datang di SMA PGRI 1 BEKASI</h1>
-                    <p class="mb-4">SMA PGRI 1 Bekasi merupakan lembaga pendidikan menengah akhir yang berlokasi daerah
-                        bekasi</p>
-                    <p class="mb-4">SMA PGRI 1 BEKASI memiliki jurusan ipa dan ips yang dapat menunjang pemantapan minat
-                        dari siswa/i </p>
+                    <h4 class="mb-4">Selamat Datang di SMA PGRI 1 BEKASI</h4>
+                    <p class="mb-4">SMA PGRI 1 BEKASI didirikan pertama kali pada tahun 1980. Saat ini SMA PGRI 1 Bekasi
+                        menggunakan
+                        kurikulum SMA 2013 IPS.
+                        SMAS PGRI 1 Bekasi memiliki akreditasi grade A dengan nilai 94 (akreditasi tahun 2018) dari BAN-S/M
+                        (Badan Akreditasi Nasional) Sekolah/Madrasah.
+                    </p>
 
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('about') }}">Read More</a>
+                    <a class="btn btn-outline-primary" href="{{ route('about') }}">Selengkapnya .. <i
+                            class="bi bi-caret-right-fill"></i></a>
                 </div>
             </div>
         </div>
@@ -95,16 +148,16 @@
 
 
     <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
+    {{-- <div class="container-xxl py-5 category">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Gambar</h6>
                 <h1 class="mb-5">Album Kami</h1>
             </div>
             <div class="row g-3">
-                <div class="col-lg-7 col-md-6">
+                <div class="col-12">
                     <div class="row g-3">
-                        @foreach ($gallery->take(3) as $item)
+                        @forelse ($gallery->take(3) as $item)
                             @if ($loop->iteration == 1)
                                 <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
                                     <a class="position-relative d-block overflow-hidden" href="">
@@ -120,7 +173,14 @@
                                     </a>
                                 </div>
                             @endif
-                        @endforeach
+                        @empty
+                            <div class="text-center">
+                                <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
+                            </div>
+                            <div class="text-center">
+                                Belum Ada Data Album
+                            </div>
+                        @endforelse
                     </div>
                 </div>
 
@@ -133,286 +193,348 @@
                     </div>
                 @endif
             </div>
+
+        </div>
+    </div> --}}
+
+    <div class="container-fluid bg-dark text-light pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item">
+                        <h1 class="text-light">SMA PGRI 1 BEKASI</h1>
+                        <p>Bersama Kami, Kita Berprestasi, Berinovasi, Bertaqwa, dan Berbudaya</p>
+                        <a class="btn btn-outline-light py-3 px-5 mt-2"
+                            href="{{ route('landing-page-gallery') }}">Jelajahi</a>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Categories Start -->
 
 
     <!-- Courses Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
-                <h1 class="mb-5">Popular Courses</h1>
-            </div>
-            @foreach ($article as $item)
-                <div class="row g-4 justify-content-center">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="course-item">
-                            <a href="#">
-                                <div class="position-relative overflow-hidden">
-                                    <img class="img-fluid" src="{{ $item->image_url }}" alt="">
-                                </div>
-                                <div class="text-center p-4 pb-0">
-                                    <h5 class="mb-4">{{ $item->title }}</h5>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/course-2.jpg') }}" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                    style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                    style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                                Students</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/course-2.jpg') }}" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                    style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                    style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                                Students</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/course-3.jpg') }}" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                    style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                    style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                                Students</small>
-                        </div>
-                    </div>
-                </div> --}}
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    <!-- Courses End -->
-
-    <!-- Team Start -->
     {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Instructors</h6>
-                <h1 class="mb-5">Expert Instructors</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Artikel</h6>
+                <h1 class="mb-5">Artikel Terbaru</h1>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/team-1.jpg') }}" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @forelse ($article as $item)
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ $item->image_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->title }}</h5>
+                                <p class="card-text">
+                                    {{ Str::limit($item->deskripsi, 150) }}
+                                    <a href="{{ route('detail-article', $item) }}">
+                                        Lihat Selengkapnya ...
+                                    </a>
+                                </p>
+
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
+                                        | {{ $item->categoryArticle->name }}
+                                    </small>
+                                </p>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
-                            <small>Designation</small>
-                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/team-2.jpg') }}" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
-                            <small>Designation</small>
-                        </div>
+                @empty
+                    <div class="text-center">
+                        <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/team-3.jpg') }}" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
-                            <small>Designation</small>
-                        </div>
+                    <div class="text-center">
+                        Belum Ada Data Album
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('template/img/team-4.jpg') }}" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
-                            <small>Designation</small>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </div> --}}
-    <!-- Team End -->
 
-
-    <!-- Testimonial Start -->
-    {{-- <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center">
-                <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
-                <h1 class="mb-5">Our Students Say!</h1>
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Berita & Pengumuman</h6>
             </div>
-            <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3"
-                        src="{{ asset('template/img/testimonial-1.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
+            <div class="d-flex justify-content-between">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-3">Berita</h3>
+                            </div>
+                            <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+                                <div class="carousel-inner w-100">
+                                    @foreach ($article as $key => $item)
+                                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                            <div class="col-md-12">
+                                                <div class="card card-body">
+                                                    <img class="img-fluid" src="{{ $item['image_url'] }}">
+                                                    <h5 class="card-title mt-2">
+                                                        {{ $item['title'] }}
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        {{ Str::limit($item['deskripsi'], 150) }}
+                                                        <a href="{{ route('detail-article', $item) }}">
+                                                            Lihat Selengkapnya ...
+                                                        </a>
+                                                    </p>
+
+                                                    <p class="card-text">
+                                                        <small class="text-body-secondary">
+                                                            {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
+                                                            | {{ $item->categoryArticle->name }}
+                                                        </small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 float-end">
+                            <a class="btn btn-primary" href="{{ route('article') }}">Klik Untuk Lebih Lengkap ... </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-3">Pengumuman</h3>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @foreach ($announcement as $item)
+                                            <h6>
+                                                {{ $item->title }}
+                                            </h6>
+                                            <p>
+                                                {{ $item->uraian }}
+                                            </p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3"
-                        src="{{ asset('template/img/testimonial-2.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+        </div>
+    </div>
+    {{-- </div> --}}
+    {{-- <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Berita & Pengumuman</h6>
+            </div>
+            <div class="d-flex justify-content-beetween">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="mb-3">Berita</h3>
+                            </div>
+
+                            <div class="col-12">
+                                <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+                                    <div class="carousel-inner w-100">
+                                        @forelse ($article as $key => $item)
+                                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-3">
+                                                        <div class="card">
+                                                            <img src="{{ $item->image_url }}" alt=""
+                                                                class="img-fluid">
+
+                                                            <div class="card-body">
+                                                                <h4 class="card-title">
+                                                                    {{ $item->title }}
+                                                                </h4>
+
+                                                                <p class="card-text">
+                                                                    {{ Str::limit($item->deskripsi, 100) }}
+                                                                    <a href="{{ route('detail-article', $item) }}">
+                                                                        Lihat Selengkapnya ...
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="card card-body">
+                                                        <img src="{{ $item->image_url }}" alt="" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @empty
+                                        @endforelse
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+                                    <div class="carousel-inner w-100">
+                                        @foreach ($article as $key => $item)
+                                        @if ($key % 2 == 0)
+                                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                            .row
+                                        @endif
+                                                <div class="col-md-12">
+                                                    <div class="card card-body">
+                                                        <img class="img-fluid" src="{{ $item->image_url }}">
+                                                    </div>
+                                                </div>
+                                                @if (($key + 1) % 2 == 0 || $key === count($article))
+                                                    
+                                            </div>
+                                            @endif
+                                        @endforeach 
+                                    </div>
+
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3"
-                        src="{{ asset('template/img/testimonial-3.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3"
-                        src="{{ asset('template/img/testimonial-4.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-3">Pengumuman</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div> --}}
-    <!-- Testimonial End -->
+    {{-- <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+        <div class="carousel-inner w-100">
+            <div class="carousel-item active">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=1">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=2">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=3">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=4">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=5">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=6">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=7">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-3">
+                    <div class="card card-body">
+                        <img class="img-fluid" src="http://placehold.it/380?text=8">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div> --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> --}}
+@endsection
+
+@section('script')
+    <script>
+        // var myCarousel = document.querySelector('#myCarousel')
+        // var carousel = new bootstrap.Carousel(myCarousel, {
+        //   interval: 100000
+        // })
+
+        $('.carousel .carousel-item').each(function() {
+            var minPerSlide = 1;
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i = 0; i < minPerSlide; i++) {
+                next = next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+
+                next.children(':first-child').clone().appendTo($(this));
+            }
+        });
+    </script>
 @endsection
