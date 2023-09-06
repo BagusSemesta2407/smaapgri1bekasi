@@ -7,7 +7,7 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-
+        @role('admin')
             <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <span>Dahboard</span>
@@ -109,7 +109,25 @@
                     <span>Kontak</span>
                 </a>
             </li>
+        @endrole
 
+        @role('guru')
+            <li class="#">
+                <a href="#">
+                    <i class="fas fa-scroll"></i>
+                    <span>Menu Guru</span>
+                </a>
+            </li>
+        @endrole
+
+        @role('pembina')
+            <li class="#">
+                <a href="#">
+                    <i class="fas fa-scroll"></i>
+                    <span>Menu Pembina</span>
+                </a>
+            </li>
+        @endrole
         </ul>
     </aside>
 </div>
