@@ -7,6 +7,8 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryExtracurricularController;
+use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MisiController;
 use App\Http\Controllers\ProfilController;
@@ -53,6 +55,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::group(
         [
             'as'    =>  'admin.',
+            'middleware' => ['role:admin'],
             'prefix'    =>  'admin'
         ],
 
@@ -86,6 +89,25 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
             Route::get('profil', [ProfilController::class, 'index'])->name('get-profil');
             Route::post('profil/{update}', [ProfilController::class, 'update'])->name('post-profil');
+
+            //route category extracurricular
+            Route::resource('category-extracurricular', CategoryExtracurricularController::class);
+
+            //route extracurricular
+            Route::resource('extracurricular', ExtracurricularController::class);
+        }
+    );
+
+    Route::group(
+        [
+            'as' => 'pembina.',
+            'middleware' => ['role:pembina'],
+            'prefix' => 'pembina'
+        ],
+
+        function()
+        {
+            Route::resource('extracurricular', ExtracurricularController::class);
         }
     );
  });
