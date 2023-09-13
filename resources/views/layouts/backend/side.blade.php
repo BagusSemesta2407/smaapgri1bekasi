@@ -105,6 +105,13 @@
                 </a>
             </li> --}}
 
+                <li class="{{ request()->is('admin/scientificpaper*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.scientificpaper.index') }}">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Karya Ilmiah</span>
+                    </a>
+                </li>
+
                 <li class="{{ request()->is('admin/announcement*') ? 'active' : '' }}">
                     <a href="{{ route('admin.announcement.index') }}">
                         <i class="fas fa-bullhorn"></i>
