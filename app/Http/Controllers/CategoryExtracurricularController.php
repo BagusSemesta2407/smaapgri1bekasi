@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryExtracurricular;
+use App\Http\Requests\CategoryExtracurricularRequest;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -39,7 +40,7 @@ class CategoryExtracurricularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryExtracurricularRequest $request)
     {
         $image=CategoryExtracurricular::saveImage($request);
         CategoryExtracurricular::create([
@@ -88,7 +89,7 @@ class CategoryExtracurricularController extends Controller
      * @param  \App\Models\CategoryExtracurricular  $categoryExtracurricular
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryExtracurricularRequest $request, $id)
     {
         $data = [
             'name' => $request->name,

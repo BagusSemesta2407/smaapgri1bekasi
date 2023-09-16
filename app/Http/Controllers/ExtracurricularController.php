@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CategoryExtracurricular;
 use App\Models\Extracurricular;
 use App\Models\User;
+use App\Http\Requests\ExtracurricularRequest;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,8 @@ class ExtracurricularController extends Controller
     public function index()
     {
         $extracurricular = Extracurricular::all();
-        $user=Auth::user()->roles;
-        dd($user);
+        // $user=Auth::user()->roles;
+        // dd($user);
         return view('admin.extracurricular.index', [
             'extracurricular' => $extracurricular
         ]);
@@ -46,7 +47,7 @@ class ExtracurricularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExtracurricularRequest $request)
     {
         $image=Extracurricular::saveImage($request);
         Extracurricular::create([
@@ -103,7 +104,7 @@ class ExtracurricularController extends Controller
      * @param  \App\Models\Extracurricular  $extracurricular
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExtracurricularRequest $request, $id)
     {
         $data = [
             'category_extracurricular_id' => $request->category_extracurricular_id,

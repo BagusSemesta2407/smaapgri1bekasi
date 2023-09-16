@@ -70,11 +70,14 @@ class UserController extends Controller
         $request->validate([
             'nip'              => 'required',
             'name'             => 'required',
+            'username'         => 'required|unique',
             'email'            => 'required|email',
             'password'         => 'required|min:3',
         ], [
             'nip.required'       => 'NIP Wajib Diisi',
             'name.required'      => 'Nama Wajib Diisi',
+            'username.required'  => 'Username Wajib Diisi',
+            'username.unique'    => 'Username Sudah Digunakan!',
             'email.required'     => 'Email Wajib Diisi',
             'email.email'        => 'Email Harus Sesuai Format',
             'password.required'  => 'Password Wajib Diisi',
@@ -82,9 +85,10 @@ class UserController extends Controller
         ]);
 
         User::create([
-            'name'  =>  $request->name,
-            'email' =>  $request->email,
-            'nip'   =>  $request->nip,
+            'name'    =>  $request->name,
+            'username'=>  $request->username,
+            'email'   =>  $request->email,
+            'nip'     =>  $request->nip,
             'password' => Hash::make($request['password']),
         ]);
 
@@ -129,11 +133,14 @@ class UserController extends Controller
         $request->validate([
             'nip'              => 'required',
             'name'             => 'required',
+            'username'         => 'required|unique',
             'email'            => 'required|email',
             // 'password'         => 'required|min:3',
         ], [
             'nip.required'       => 'NIP Wajib Diisi',
             'name.required'      => 'Nama Wajib Diisi',
+            'username.required'  => 'Username Wajib Diisi',
+            'username.unique'    => 'Username Sudah Digunakan!',
             'email.required'     => 'Email Wajib Diisi',
             'email.email'        => 'Email Harus Sesuai Format',
             // 'password.required'  => 'Password Wajib Diisi',
@@ -141,9 +148,10 @@ class UserController extends Controller
         ]);
 
         $data = [
-            'name'  => $request->name,
-            'nip'   => $request->nip,
-            'email'     => $request->email,
+            'name'     => $request->name,
+            'username' => $request->username,
+            'nip'      => $request->nip,
+            'email'    => $request->email,
             // 'password' => Hash::make($request['password']),
         ];
 

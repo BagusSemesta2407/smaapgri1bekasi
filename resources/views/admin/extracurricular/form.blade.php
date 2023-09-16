@@ -5,9 +5,17 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('admin.extracurricular.index') }}" class="btn btn-icon">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
+                    @role('admin')
+                        <a href="{{ route('admin.extracurricular.index') }}" class="btn btn-icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    @endrole
+
+                    @role('pembina')
+                        <a href="{{ route('pembina.extracurricular.index') }}" class="btn btn-icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    @endrole
                 </div>
 
                 <h1>
@@ -26,15 +34,27 @@
                 </h1>
             </div>
 
-
-            @if (@$extracurricular->exists)
-                <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                    action="{{ route('admin.extracurricular.update', $extracurricular) }}">
-                    @method('put')
-                @else
+            @role('admin')
+                @if (@$extracurricular->exists)
                     <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                        action="{{ route('admin.extracurricular.store') }}">
-            @endif
+                        action="{{ route('admin.extracurricular.update', $extracurricular) }}">
+                        @method('put')
+                    @else
+                        <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                            action="{{ route('admin.extracurricular.store') }}">
+                @endif
+            @endrole
+
+            @role('pembina')
+                @if (@$extracurricular->exists)
+                    <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                        action="{{ route('pembina.extracurricular.update', $extracurricular) }}">
+                        @method('put')
+                    @else
+                        <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                            action="{{ route('pembina.extracurricular.store') }}">
+                @endif
+            @endrole
             {{ csrf_field() }}
             <div class="section-body">
                 <div class="row">

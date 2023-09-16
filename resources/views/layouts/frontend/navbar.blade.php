@@ -28,6 +28,10 @@
                         class="dropdown-item {{ request()->is('agenda-pengumuman') ? 'active' : '' }}">Pengumuman</a>
                     <a href="{{ route('article') }}"
                         class="dropdown-item {{ request()->is('article') ? 'active' : '' }}">Artikel</a>
+                    <a href=""
+                        class="dropdown-item ">Extrakulikuler</a>
+                    <a href=""
+                        class="dropdown-item ">Karya Ilmiah</a>
                     {{-- <a href="{{ route('404')}}" class="dropdown-item">404 Page</a> --}}
                 </div>
             </div>
