@@ -16,11 +16,19 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
                                     <h4>Data Karya Ilmiah</h4>
+                                    @role('guru')
+                                    <a href="{{ route('guru.scientificpaper.create') }}" class="btn btn-primary ">
+                                        <i class="fa fa-plus"></i>
+                                        Tambah
+                                    </a>
+                                    @endrole
 
+                                    @role('admin')
                                     <a href="{{ route('admin.scientificpaper.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
                                         Tambah
                                     </a>
+                                    @endrole
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,6 +56,7 @@
                                                     </td>
 
                                                     <td class=" align-middle">
+                                                        @role('admin')
                                                         <a href="{{ route('admin.scientificpaper.edit', Crypt::encryptString($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary" title="edit">
                                                             <i class="fas fa-pencil-alt"></i>
@@ -57,6 +66,19 @@
                                                             class="btn btn-sm btn-outline-danger delete"> <i
                                                                 class="fas fa-trash"></i>
                                                         </button>
+                                                        @endrole
+
+                                                        @role('guru')
+                                                        <a href="{{ route('guru.scientificpaper.edit', Crypt::encryptString($item->id)) }}"
+                                                            class="btn btn-sm btn-outline-primary" title="edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+
+                                                        <button value="{{ route('guru.scientificpaper.destroy', $item->id) }}"
+                                                            class="btn btn-sm btn-outline-danger delete"> <i
+                                                                class="fas fa-trash"></i>
+                                                        </button>
+                                                        @endrole
                                                     </td>
                                                 </tr>
                                             @endforeach

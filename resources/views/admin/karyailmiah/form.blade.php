@@ -5,9 +5,17 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
+                    @role('admin')
                     <a href="{{ route('admin.scientificpaper.index') }}" class="btn btn-icon">
                         <i class="fas fa-arrow-left"></i>
                     </a>
+                    @endrole
+
+                    @role('guru')
+                    <a href="{{ route('guru.scientificpaper.index') }}" class="btn btn-icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    @endrole
                 </div>
 
                 <h1>
@@ -27,6 +35,7 @@
             </div>
 
 
+            @role('admin')
             @if (@$scientific->exists)
                 <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
                     action="{{ route('admin.scientificpaper.update', $scientific) }}">
@@ -35,6 +44,18 @@
                     <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
                         action="{{ route('admin.scientificpaper.store') }}">
             @endif
+            @endrole
+
+            @role('guru')
+            @if (@$scientific->exists)
+                <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                    action="{{ route('guru.scientificpaper.update', $scientific) }}">
+                    @method('put')
+                @else
+                    <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                        action="{{ route('guru.scientificpaper.store') }}">
+            @endif
+            @endrole
             {{ csrf_field() }}
             <div class="section-body">
                 <div class="row">
@@ -50,7 +71,7 @@
                                         File
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file" class="form-control" value="{{ old('file', @$scientific->file) }}">
+                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$scientific->file_url }}">
 
                                         @if ($errors->has('file'))
                                             <span class="text-danger">{{ $errors->first('file') }}</span>
@@ -92,4 +113,13 @@
                 </form>
         </section>
     </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        // Inisialisasi Dropify
+        $('.dropify').dropify();
+    });
+</script>
 @endsection

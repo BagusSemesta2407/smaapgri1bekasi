@@ -70,7 +70,7 @@ class ScientificPaper extends Model
         if ($scientific->file != null) {
             $path = 'public/file/scientificpaper/' . $scientific->file;
             if (Storage::exists($path)) {
-                Storage::delete('public/file/scientificpaper/' . $scientific->scientific);
+                Storage::delete('public/file/scientificpaper/' . $scientific->file);
             }
         }
     }

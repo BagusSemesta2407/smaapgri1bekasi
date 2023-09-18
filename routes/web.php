@@ -112,5 +112,18 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
                 Route::resource('extracurricular', ExtracurricularController::class);
             }
         );
+
+        Route::group(
+            [
+                'as' => 'guru.',
+                'middleware' => ['role:guru'],
+                'prefix' => 'guru'
+            ],
+
+            function () {
+                //route karya ilmiah
+                Route::resource('scientificpaper', ScientificpaperController::class);
+            }
+        );
     });
 });
