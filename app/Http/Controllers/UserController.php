@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Banner;
 use App\Models\Gallery;
 use App\Models\Setting;
+use App\Models\Extracurricular;
+use App\Models\ScientificPaper;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -24,6 +26,8 @@ class UserController extends Controller
         $banner = Banner::get();
         $gallery = Gallery::get()->take(4);
         $article = Article::get();
+        $extracurricular = Extracurricular::get();
+        $scientificPaper = ScientificPaper::get();
         $setting=Setting::first();
         $announcement=Announcement::get()->take(5);
         
@@ -31,6 +35,8 @@ class UserController extends Controller
             'banner'    =>  $banner,
             'gallery'   =>  $gallery,
             'article'   =>  $article,
+            'extracurricular'   =>  $extracurricular,
+            'scientificPaper'   =>  $scientificPaper,
             'setting' => $setting,
             'announcement' => $announcement
         ]);

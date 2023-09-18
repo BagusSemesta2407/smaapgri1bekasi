@@ -338,6 +338,88 @@
             </div>
         </div>
     </div>
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Extrakulikuler & Karya Ilmiah</h6>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-3">Extrakulikuler</h3>
+                            </div>
+                            <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+                                <div class="carousel-inner w-100">
+                                    @foreach ($extracurricular as $key => $item)
+                                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                            <div class="col-md-12">
+                                                <div class="card card-body">
+                                                    <img class="img-fluid" src="{{ $item['image_url'] }}">
+                                                    <h5 class="card-title mt-2">
+                                                        {{ $item['title'] }}
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        {{ Str::limit($item['deskripsi'], 150) }}
+                                                        <a href="{{ route('detail-extracurricular', $item) }}">
+                                                            Lihat Selengkapnya ...
+                                                        </a>
+                                                    </p>
+
+                                                    <p class="card-text">
+                                                        <small class="text-body-secondary">
+                                                            {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
+                                                            | {{ $item->categoryExtracurricular->name }}
+                                                        </small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 float-end">
+                            <a class="btn btn-primary" href="{{ route('extracurricular') }}">Klik Untuk Lebih Lengkap ... </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-3">Karya Ilmiah</h3>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @foreach ($scientificPaper as $item)
+                                            <h6>
+                                                {{ $item->file }}
+                                            </h6>
+                                            <p>
+                                                {{ $item->year }}
+                                            </p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- </div> --}}
     {{-- <div class="container-xxl py-5">
         <div class="container">

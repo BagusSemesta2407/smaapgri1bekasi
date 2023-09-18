@@ -144,4 +144,17 @@ class ScientificpaperController extends Controller
 
         return response()->json(['status' =>'Data Telah Dihapus']);
     }
+
+    public function scientificpaperLandingPage(Request $request)
+    {
+        $search = $request->input('search'); 
+
+        $scientificpaper=Scientificpaper::query()
+        ->where('year', 'LIKE', "%$search%")
+        ->paginate(5);
+
+        return view('user.Scientificpaper', [
+            'scientificpaper' => $scientificpaper
+        ]);
+    }
 }

@@ -47,6 +47,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/gallery', [GalleryController::class, 'galleryLandingPage'])->name('landing-page-gallery');
     Route::get('/agenda-pengumuman', [AnnouncementController::class, 'announcementLandingPage'])->name('pengumuman-landing-page');
     Route::get('/agenda-pengumuman/{id}', [AnnouncementController::class, 'detailAnnouncementLandingPage'])->name('detail-pengumuman-landing-page');
+    Route::get('/extrakulikuler', [ExtracurricularController::class, 'indexUser'])->name('extracurricular');
+    Route::get('/extrakulikuler/{id}', [ExtracurricularController::class, 'detailExtracurricular'])->name('detail-extracurricular');
+    Route::get('/karya-ilmiah', [ScientificpaperController::class, 'scientificpaperLandingPage'])->name('karya-ilmiah-landing-page');
 
     Auth::routes();
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
@@ -110,6 +113,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
             function () {
                 Route::resource('extracurricular', ExtracurricularController::class);
+                Route::get('profil', [ProfilController::class, 'index'])->name('get-profil');
+                Route::post('profil/{update}', [ProfilController::class, 'update'])->name('post-profil');
             }
         );
 
@@ -123,6 +128,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             function () {
                 //route karya ilmiah
                 Route::resource('scientificpaper', ScientificpaperController::class);
+                Route::get('profil', [ProfilController::class, 'index'])->name('get-profil');
+                Route::post('profil/{update}', [ProfilController::class, 'update'])->name('post-profil');
             }
         );
     });

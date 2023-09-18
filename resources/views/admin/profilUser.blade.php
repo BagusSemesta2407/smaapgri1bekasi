@@ -21,8 +21,21 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
+                            @role('admin')
                             <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
                                 action="{{ route('admin.post-profil', $user) }}">
+                            @endrole
+
+                            @role('guru')
+                            <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                                action="{{ route('guru.post-profil', $user) }}">
+                            @endrole
+
+                            @role('pembina')
+                            <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                                action="{{ route('pembina.post-profil', $user) }}">
+                            @endrole
+                            
                                 {{ csrf_field() }}
 
                                 <div class="card-header">
