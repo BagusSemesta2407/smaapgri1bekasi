@@ -13,7 +13,6 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MisiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ScientificpaperController;
-use App\Http\Controllers\ScietificpaperController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StrategyController;
 use App\Http\Controllers\TujuanController;

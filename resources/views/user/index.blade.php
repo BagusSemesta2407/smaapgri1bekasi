@@ -63,7 +63,8 @@
                                     <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang Di
                                         Website</h5>
                                     <h1 class="display-3 text-white animated slideInDown">SMA PGRI 1 BEKASI</h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi, Bertaqwa, dan Berbudaya</p>
+                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi,
+                                        Bertaqwa, dan Berbudaya</p>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +81,8 @@
                                     <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang Di
                                         Website</h5>
                                     <h1 class="display-3 text-white animated slideInDown">SMA PGRI 1 BEKASI</h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi, Bertaqwa, dan Berbudaya</p>
+                                    <p class="fs-5 text-white mb-4 pb-2">Bersama Kami, Kita Berprestasi, Berinovasi,
+                                        Bertaqwa, dan Berbudaya</p>
                                 </div>
                             </div>
                         </div>
@@ -131,11 +133,13 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">Tentang</h6>
                     <h4 class="mb-4">Selamat Datang di SMA PGRI 1 BEKASI</h4>
-                    <p class="mb-4">SMA PGRI 1 BEKASI didirikan pertama kali pada tahun 1980. Saat ini SMA PGRI 1 Bekasi
+                    {{-- <p class="mb-4">SMA PGRI 1 BEKASI didirikan pertama kali pada tahun 1980. Saat ini SMA PGRI 1 Bekasi
                         menggunakan
                         kurikulum SMA 2013 IPS.
                         SMAS PGRI 1 Bekasi memiliki akreditasi grade A dengan nilai 94 (akreditasi tahun 2018) dari BAN-S/M
                         (Badan Akreditasi Nasional) Sekolah/Madrasah.
+                    </p> --}}
+                    <p class="mb-4">{{ @$setting->about }}
                     </p>
 
                     <a class="btn btn-outline-primary" href="{{ route('about') }}">Selengkapnya .. <i
@@ -392,7 +396,8 @@
                             </div>
                         </div>
                         <div class="mt-2 float-end">
-                            <a class="btn btn-primary" href="{{ route('extracurricular') }}">Klik Untuk Lebih Lengkap ... </a>
+                            <a class="btn btn-primary" href="{{ route('extracurricular') }}">Klik Untuk Lebih Lengkap ...
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">

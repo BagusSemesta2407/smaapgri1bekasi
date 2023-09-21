@@ -14,10 +14,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Admin</h4>
+                <h4>Total User</h4>
               </div>
               <div class="card-body">
-                
+                {{ @$user }}
               </div>
             </div>
           </div>
@@ -29,10 +29,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>News</h4>
+                <h4>Total Artikel</h4>
               </div>
               <div class="card-body">
-                42
+                {{ @$article }}
               </div>
             </div>
           </div>
@@ -44,10 +44,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Reports</h4>
+                <h4>Total Ekstrakulikuler</h4>
               </div>
               <div class="card-body">
-                1,201
+                {{ @$ekstrakulikuler }}
               </div>
             </div>
           </div>
@@ -59,10 +59,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Online Users</h4>
+                <h4>Total Karya Ilmiah</h4>
               </div>
               <div class="card-body">
-                47
+                {{ @$karyailmiah }}
               </div>
             </div>
           </div>

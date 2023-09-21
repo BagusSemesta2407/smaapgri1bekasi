@@ -28,17 +28,17 @@ class UserController extends Controller
         $article = Article::get();
         $extracurricular = Extracurricular::get();
         $scientificPaper = ScientificPaper::get();
-        $setting=Setting::first();
-        $announcement=Announcement::get()->take(5);
-        
-        return view('user.index',[
-            'banner'    =>  $banner,
-            'gallery'   =>  $gallery,
-            'article'   =>  $article,
+        $setting = Setting::first();
+        $announcement = Announcement::get()->take(5);
+
+        return view('user.index', [
+            'banner'            =>  $banner,
+            'gallery'           =>  $gallery,
+            'article'           =>  $article,
             'extracurricular'   =>  $extracurricular,
             'scientificPaper'   =>  $scientificPaper,
-            'setting' => $setting,
-            'announcement' => $announcement
+            'setting'           => $setting,
+            'announcement'      => $announcement
         ]);
     }
 
@@ -49,8 +49,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user=User::all();
-        return view('admin.user.index',[
+        $user = User::all();
+        return view('admin.user.index', [
             'user'  =>  $user
         ]);
     }
@@ -92,7 +92,7 @@ class UserController extends Controller
 
         User::create([
             'name'    =>  $request->name,
-            'username'=>  $request->username,
+            'username' =>  $request->username,
             'email'   =>  $request->email,
             'nip'     =>  $request->nip,
             'password' => Hash::make($request['password']),
@@ -120,9 +120,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
 
-        return view('admin.user.form',[
+        return view('admin.user.form', [
             'user'  =>  $user
         ]);
     }
@@ -167,7 +167,7 @@ class UserController extends Controller
 
         User::where('id', $id)->update($data);
 
-        return redirect()->route('admin.user.index')->with('success','Data berhasil diubah');
+        return redirect()->route('admin.user.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -178,11 +178,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
 
         $user->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }
-
 }

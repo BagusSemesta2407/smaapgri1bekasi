@@ -83,7 +83,7 @@
                                         Tahun
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="year" class="form-control" value="{{ old('year', @$scientific->year) }}">
+                                        <input type="text" name="year" class="form-control" value="{{ old('year', @$scientific->year) }}" placeholder="Masukkan Tahun">
 
                                         @if ($errors->has('year'))
                                             <span class="text-danger">{{ $errors->first('year') }}</span>
