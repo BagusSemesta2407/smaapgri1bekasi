@@ -142,10 +142,15 @@
             @endrole
 
             @role('guru')
-                <li class="#">
-                    <a href="#">
+                <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+                        <span>Dahboard</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('guru/scientificpaper*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guru.scientificpaper.index') }}">
                         <i class="fas fa-scroll"></i>
-                        <span>Menu Guru</span>
+                        <span>Karya Ilmiah</span>
                     </a>
                 </li>
             @endrole

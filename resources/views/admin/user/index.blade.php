@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Basic DataTables</h4>
+                                    <h4>Data User</h4>
 
                                     <a href="{{ route('admin.user.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="mytable">
+                                    <table class="table table-striped" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>

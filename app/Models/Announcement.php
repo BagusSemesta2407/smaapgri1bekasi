@@ -68,7 +68,7 @@ class Announcement extends Model
         if ($announcement->file != null) {
             $path = 'public/file/announcement/' . $announcement->file;
             if (Storage::exists($path)) {
-                Storage::delete('public/file/announcement/' . $announcement->announcement);
+                Storage::delete('public/file/announcement/' . $announcement->file);
             }
         }
     }

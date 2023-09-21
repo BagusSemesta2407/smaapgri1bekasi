@@ -90,10 +90,10 @@
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="nip">NIP</label>
-                                <input id="nip" type="text" class="form-control" name="nip" tabindex="1"
-                                    required autofocus placeholder="Masukkan NIP">
-                                @error('nip')
+                                <label for="username">Username</label>
+                                <input id="username" type="text" class="form-control" name="username" tabindex="1"
+                                    required autofocus placeholder="Masukkan Username">
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

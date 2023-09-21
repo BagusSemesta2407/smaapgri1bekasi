@@ -77,7 +77,7 @@
                                         File
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file" class="form-control" value="{{ old('file', @$announcement->file) }}">
+                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$announcement->file_url }}">
 
                                         @if ($errors->has('file'))
                                             <span class="text-danger">{{ $errors->first('file') }}</span>
@@ -106,4 +106,13 @@
                 </form>
         </section>
     </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        // Inisialisasi Dropify
+        $('.dropify').dropify();
+    });
+</script>
 @endsection

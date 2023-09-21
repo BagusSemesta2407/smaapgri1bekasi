@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ScientificPaper;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class ScientificpaperController extends Controller
@@ -54,6 +55,9 @@ class ScientificpaperController extends Controller
             'year'  => $request->year
         ]);
 
+        if (Auth::check() && Auth::user()->hasRole('guru')) {
+            return redirect()->route('guru.scientificpaper.index')->with('success', 'Data Berhasil ditambah');
+        }
         return redirect()->route('admin.scientificpaper.index')->with('success', 'Data Berhasil ditambah');
     }
 
@@ -83,7 +87,7 @@ class ScientificpaperController extends Controller
         }
 
         $scientific=ScientificPaper::find($id);
-
+        // dd($scientific);
         return view('admin.karyailmiah.form', [
             'scientific'    => $scientific
         ]);
@@ -99,10 +103,10 @@ class ScientificpaperController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'file'      => 'required' ,
+            // 'file'      => 'required' ,
             'year'      => 'required',
         ], [
-            'file.required' =>  'File Wajib Diisi',
+            // 'file.required' =>  'File Wajib Diisi',
             'year.required' =>  'Tahun Wajib Diisi'
         ]);
         
@@ -119,6 +123,9 @@ class ScientificpaperController extends Controller
 
         ScientificPaper::where('id', $id)->update($data);
 
+        if (Auth::check() && Auth::user()->hasRole('guru')) {
+            return redirect()->route('guru.scientificpaper.index')->with('success', 'Data berhasil diperbarui');
+        }
         return redirect()->route('admin.scientificpaper.index')->with('success', 'Data berhasil diperbarui');
     }
 
@@ -136,5 +143,18 @@ class ScientificpaperController extends Controller
         $scientific->delete();
 
         return response()->json(['status' =>'Data Telah Dihapus']);
+    }
+
+    public function scientificpaperLandingPage(Request $request)
+    {
+        $search = $request->input('search'); 
+
+        $scientificpaper=Scientificpaper::query()
+        ->where('year', 'LIKE', "%$search%")
+        ->paginate(5);
+
+        return view('user.Scientificpaper', [
+            'scientificpaper' => $scientificpaper
+        ]);
     }
 }

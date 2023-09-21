@@ -55,11 +55,7 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">Tentang</h6>
                     <h3 class="mb-4">Selamat Datang di SMA PGRI 1 BEKASI</h3>
-                    <p class="mb-4">SMA PGRI 1 BEKASI didirikan pertama kali pada tahun 1980. Saat ini SMA PGRI 1 Bekasi
-                        menggunakan
-                        kurikulum SMA 2013 IPS.
-                        SMAS PGRI 1 Bekasi memiliki akreditasi grade A dengan nilai 94 (akreditasi tahun 2018) dari BAN-S/M
-                        (Badan Akreditasi Nasional) Sekolah/Madrasah.
+                    <p class="mb-4">{{ @$setting->about }}
                     </p>
 
                 </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Extracurricular;
+use App\Models\ScientificPaper;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,7 +27,16 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('admin.dashboard.index');
+        $user               = User::all()->count();
+        $article            = Article::all()->count();
+        $ekstrakulikuler    = Extracurricular::all()->count();
+        $karyailmiah        = ScientificPaper::all()->count();
+        return view('admin.dashboard.index',[
+            'user'              => $user,
+            'article'           => $article,
+            'ekstrakulikuler'   => $ekstrakulikuler,
+            'karyailmiah'       => $karyailmiah
+        ]);
     }
 
     /**

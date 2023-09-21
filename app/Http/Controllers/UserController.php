@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Banner;
 use App\Models\Gallery;
 use App\Models\Setting;
+use App\Models\Extracurricular;
+use App\Models\ScientificPaper;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -24,15 +26,19 @@ class UserController extends Controller
         $banner = Banner::get();
         $gallery = Gallery::get()->take(4);
         $article = Article::get();
-        $setting=Setting::first();
-        $announcement=Announcement::get()->take(5);
-        
-        return view('user.index',[
-            'banner'    =>  $banner,
-            'gallery'   =>  $gallery,
-            'article'   =>  $article,
-            'setting' => $setting,
-            'announcement' => $announcement
+        $extracurricular = Extracurricular::get();
+        $scientificPaper = ScientificPaper::get();
+        $setting = Setting::first();
+        $announcement = Announcement::get()->take(5);
+
+        return view('user.index', [
+            'banner'            =>  $banner,
+            'gallery'           =>  $gallery,
+            'article'           =>  $article,
+            'extracurricular'   =>  $extracurricular,
+            'scientificPaper'   =>  $scientificPaper,
+            'setting'           => $setting,
+            'announcement'      => $announcement
         ]);
     }
 
@@ -43,8 +49,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user=User::all();
-        return view('admin.user.index',[
+        $user = User::all();
+        return view('admin.user.index', [
             'user'  =>  $user
         ]);
     }
@@ -70,11 +76,14 @@ class UserController extends Controller
         $request->validate([
             'nip'              => 'required',
             'name'             => 'required',
+            'username'         => 'required|unique',
             'email'            => 'required|email',
             'password'         => 'required|min:3',
         ], [
             'nip.required'       => 'NIP Wajib Diisi',
             'name.required'      => 'Nama Wajib Diisi',
+            'username.required'  => 'Username Wajib Diisi',
+            'username.unique'    => 'Username Sudah Digunakan!',
             'email.required'     => 'Email Wajib Diisi',
             'email.email'        => 'Email Harus Sesuai Format',
             'password.required'  => 'Password Wajib Diisi',
@@ -82,9 +91,10 @@ class UserController extends Controller
         ]);
 
         User::create([
-            'name'  =>  $request->name,
-            'email' =>  $request->email,
-            'nip'   =>  $request->nip,
+            'name'    =>  $request->name,
+            'username' =>  $request->username,
+            'email'   =>  $request->email,
+            'nip'     =>  $request->nip,
             'password' => Hash::make($request['password']),
         ]);
 
@@ -110,9 +120,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
 
-        return view('admin.user.form',[
+        return view('admin.user.form', [
             'user'  =>  $user
         ]);
     }
@@ -129,11 +139,14 @@ class UserController extends Controller
         $request->validate([
             'nip'              => 'required',
             'name'             => 'required',
+            'username'         => 'required|unique',
             'email'            => 'required|email',
             // 'password'         => 'required|min:3',
         ], [
             'nip.required'       => 'NIP Wajib Diisi',
             'name.required'      => 'Nama Wajib Diisi',
+            'username.required'  => 'Username Wajib Diisi',
+            'username.unique'    => 'Username Sudah Digunakan!',
             'email.required'     => 'Email Wajib Diisi',
             'email.email'        => 'Email Harus Sesuai Format',
             // 'password.required'  => 'Password Wajib Diisi',
@@ -141,9 +154,10 @@ class UserController extends Controller
         ]);
 
         $data = [
-            'name'  => $request->name,
-            'nip'   => $request->nip,
-            'email'     => $request->email,
+            'name'     => $request->name,
+            'username' => $request->username,
+            'nip'      => $request->nip,
+            'email'    => $request->email,
             // 'password' => Hash::make($request['password']),
         ];
 
@@ -153,7 +167,7 @@ class UserController extends Controller
 
         User::where('id', $id)->update($data);
 
-        return redirect()->route('admin.user.index')->with('success','Data berhasil diubah');
+        return redirect()->route('admin.user.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -164,11 +178,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
 
         $user->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }
-
 }

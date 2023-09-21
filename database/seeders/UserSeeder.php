@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name'      => 'Admin',
             'nip'       => '123456',
+            'username'  => 'admin',
             'email'     => 'admin@gmail.com',
             'password'  => bcrypt('123456')
         ]);
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
         $pembina = User::create([
             'name'      => 'Pembina',
             'nip'       => '12345',
+            'username'  => 'pembina',
             'email'     => 'pembina@gmail.com',
             'password'  => bcrypt('123456')
         ]);
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
         $guru = User::create([
             'name'      => 'Guru',
             'nip'       => '1234',
+            'username'  => 'guru',
             'email'     => 'guru@gmail.com',
             'password'  => bcrypt('123456')
         ]);

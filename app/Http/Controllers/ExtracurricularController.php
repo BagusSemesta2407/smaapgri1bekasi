@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CategoryExtracurricular;
 use App\Models\Extracurricular;
 use App\Models\User;
+use App\Models\Banner;
+use App\Models\Setting;
+use App\Http\Requests\ExtracurricularRequest;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +23,8 @@ class ExtracurricularController extends Controller
     public function index()
     {
         $extracurricular = Extracurricular::all();
-        $user=Auth::user()->roles;
-        dd($user);
+        // $user=Auth::user()->roles;
+        // dd($user);
         return view('admin.extracurricular.index', [
             'extracurricular' => $extracurricular
         ]);
@@ -46,7 +49,7 @@ class ExtracurricularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExtracurricularRequest $request)
     {
         $image=Extracurricular::saveImage($request);
         Extracurricular::create([
@@ -103,7 +106,7 @@ class ExtracurricularController extends Controller
      * @param  \App\Models\Extracurricular  $extracurricular
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExtracurricularRequest $request, $id)
     {
         $data = [
             'category_extracurricular_id' => $request->category_extracurricular_id,
@@ -138,5 +141,45 @@ class ExtracurricularController extends Controller
         $extracurricular->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexUser(Request $request)
+    {
+        $banner = Banner::get();
+        
+        $setting=Setting::first();
+
+        $filter = (object) [
+            'category_extracurricular_id' => $request->category_extracurricular_id,
+        ];
+
+        $extracurricular=Extracurricular::filter($filter)
+        ->latest()
+        ->paginate(5);
+
+        $categoryextracurricular=CategoryExtracurricular::whereHas('extracurricular')
+        ->get();
+
+
+        return view('user.extracurricular',[
+            'banner'    =>  $banner,
+            'extracurricular'   =>  $extracurricular,
+            'categoryextracurricular' => $categoryextracurricular,
+            'setting' => $setting
+        ]);
+    }
+
+    public function detailExtracurricular($id)
+    {
+        $extracurricular=Extracurricular::find($id);
+
+        return view('user.detailExtracurricular', [
+            'extracurricular'=> $extracurricular
+        ]);
     }
 }

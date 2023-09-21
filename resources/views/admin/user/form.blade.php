@@ -63,6 +63,23 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="username" class="col-sm-3 col-form-label">
+                                        Username  <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                            id="username" username="username" placeholder="Masukan Username"
+                                            value="{{ old('username', @$user->username) }}">
+                                        @if ($errors->has('username'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('username') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="nip" class="col-sm-3 col-form-label">
                                         NIP  <sup class="text-danger">*</sup>
                                     </label>

@@ -83,4 +83,9 @@ class Extracurricular extends Model
             }
         }
     }
+
+    public function scopeFilter($query, object $filter)
+    {
+        $query->when($filter->category_extracurricuar_id ?? false, fn ($query, $category_extracurricuar_id) => $query->where('category_extracurricuar_id', $category_extracurricuar_id));
+    }
 }
