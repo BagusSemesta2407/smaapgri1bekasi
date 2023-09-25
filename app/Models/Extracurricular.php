@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 class Extracurricular extends Model
@@ -26,63 +27,17 @@ class Extracurricular extends Model
     }
 
     /**
-     * The accessors to append to the model's array form.
+     * Get all of the imageExtracurricular for the Extracurricular
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected $appends = ['image_url'];
-
-    /**
-     * Save image Owner.
-     *
-     * @param  $request
-     * @return string
-     */
-    public static function saveImage($request)
+    public function imageExtracurricular(): HasMany
     {
-        $filename = null;
-
-        if ($request->image) {
-            $file = $request->image;
-
-            $ext = $file->getClientOriginalExtension();
-            $filename = date('YmdHis') . uniqid() . '.' . $ext;
-            $file->storeAs('public/image/extracurricular/', $filename);
-        }
-
-        return $filename;
+        return $this->hasMany(imageExtracurricular::class);
     }
+    
 
-    /**
-     * Get the image owner url.
-     *
-     * @return string
-     */
-    public function getImageUrlAttribute()
-    {
-        if ($this->image) {
-            return asset('storage/public/image/extracurricular/' . $this->image);
-        }
-
-        return null;
-    }
-
-    /**
-     * Delete image.
-     *
-     * @param  $id
-     * @return void
-     */
-    public static function deleteImage($id)
-    {
-        $extracurricular = Extracurricular::firstWhere('id', $id);
-        if ($extracurricular->image != null) {
-            $path = 'public/image/extracurricular/' . $extracurricular->image;
-            if (Storage::exists($path)) {
-                Storage::delete('public/image/extracurricular/' . $extracurricular->image);
-            }
-        }
-    }
+   
 
     public function scopeFilter($query, object $filter)
     {

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Banner;
 use App\Models\Setting;
 use App\Http\Requests\ExtracurricularRequest;
+use App\Models\ImageExtracurricular;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class ExtracurricularController extends Controller
      */
     public function create()
     {
-        $categoryExtracurricular=CategoryExtracurricular::all();
+        $categoryExtracurricular = CategoryExtracurricular::all();
         return view('admin.extracurricular.form', [
             'categoryExtracurricular' => $categoryExtracurricular
         ]);
@@ -51,15 +52,26 @@ class ExtracurricularController extends Controller
      */
     public function store(ExtracurricularRequest $request)
     {
-        $image=Extracurricular::saveImage($request);
-        Extracurricular::create([
+        // $image=Extracurricular::saveImage($request);
+        $extracurricular = Extracurricular::create([
             'category_extracurricular_id' => $request->category_extracurricular_id,
             'title' => $request->title,
-            'image' => $image,
             'deskripsi' => $request->deskripsi
         ]);
 
-        if (Auth::check() && Auth::user()->hasRole('admin')) {
+        if ($request->image) {
+            foreach ($request->image as $data) {
+                $filename = ImageExtracurricular::saveImage($data);
+                ImageExtracurricular::create([
+                    'extracurricular_id' => $extracurricular->id,
+                    'image' => $filename,
+                ]);
+            }
+        }
+
+        $auth = Auth::user()->getRoleNames()->first();
+
+        if ($auth == 'admin') {
             return redirect()->route('admin.extracurricular.index')->with('success', 'Data Berhasil Ditambahkan');
         }
         return redirect()->route('pembina.extracurricular.index')->with('success', 'Data Berhasil Ditambahkan');
@@ -90,12 +102,14 @@ class ExtracurricularController extends Controller
             abort(404);
         }
 
-        $extracurricular=Extracurricular::find($id);
-        $categoryExtracurricular=CategoryExtracurricular::all();
+        $extracurricular = Extracurricular::find($id);
+        $imageExtracurricular = $extracurricular->imageExtracurricular->pluck('image_url', 'id');
+        $categoryExtracurricular = CategoryExtracurricular::all();
 
         return view('admin.extracurricular.form', [
             'extracurricular' => $extracurricular,
-            'categoryExtracurricular' => $categoryExtracurricular
+            'categoryExtracurricular' => $categoryExtracurricular,
+            'imageExtracurricular' => $imageExtracurricular
         ]);
     }
 
@@ -106,7 +120,7 @@ class ExtracurricularController extends Controller
      * @param  \App\Models\Extracurricular  $extracurricular
      * @return \Illuminate\Http\Response
      */
-    public function update(ExtracurricularRequest $request, $id)
+    public function update(ExtracurricularRequest $request, Extracurricular  $extracurricular)
     {
         $data = [
             'category_extracurricular_id' => $request->category_extracurricular_id,
@@ -114,16 +128,29 @@ class ExtracurricularController extends Controller
             'deskripsi' => $request->deskripsi
         ];
 
-        $image=Extracurricular::saveImage($request);
+        $extracurricular->update($data);
 
-        if ($image) {
-            $data['image'] = $image;
-            Extracurricular::deleteImage($id);
+        if ($request->old) {
+            ImageExtracurricular::deleteImageArray($extracurricular->id, $request->old);
+            ImageExtracurricular::where('extracurricular_id', $extracurricular->id)
+                ->whereNotIn('id', $request->old)->delete();
+        }
+        if ($request->image) {
+            foreach ($request->image as $data) {
+                $filename = ImageExtracurricular::saveImage($data);
+                ImageExtracurricular::create([
+                    'extracurricular_id' => $extracurricular->id,
+                    'image' => $filename,
+                ]);
+            }
         }
 
-        Extracurricular::where('id', $id)->update($data);
+        $auth = Auth::user()->getRoleNames()->first();
 
-        return redirect()->route('admin.extracurricular.index')->with('success', 'Data Berhasil Ditambahkan');
+        if ($auth == 'admin') {
+            return redirect()->route('admin.extracurricular.index')->with('success', 'Data Berhasil Ditambahkan');
+        }
+        return redirect()->route('pembina.extracurricular.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -134,11 +161,12 @@ class ExtracurricularController extends Controller
      */
     public function destroy($id)
     {
-        $extracurricular=Extracurricular::find($id);
-
-        Extracurricular::deleteImage($id);
+        $extracurricular = Extracurricular::find($id);
+        $imageExtracurricular=[];
+        ImageExtracurricular::deleteImageArray($extracurricular->id, $imageExtracurricular);
 
         $extracurricular->delete();
+        ImageExtracurricular::where('extracurricular_id', $extracurricular->id)->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }
@@ -151,22 +179,22 @@ class ExtracurricularController extends Controller
     public function indexUser(Request $request)
     {
         $banner = Banner::get();
-        
-        $setting=Setting::first();
+
+        $setting = Setting::first();
 
         $filter = (object) [
             'category_extracurricular_id' => $request->category_extracurricular_id,
         ];
 
-        $extracurricular=Extracurricular::filter($filter)
-        ->latest()
-        ->paginate(5);
+        $extracurricular = Extracurricular::filter($filter)
+            ->latest()
+            ->paginate(5);
 
-        $categoryextracurricular=CategoryExtracurricular::whereHas('extracurricular')
-        ->get();
+        $categoryextracurricular = CategoryExtracurricular::whereHas('extracurricular')
+            ->get();
 
 
-        return view('user.extracurricular',[
+        return view('user.extracurricular', [
             'banner'    =>  $banner,
             'extracurricular'   =>  $extracurricular,
             'categoryextracurricular' => $categoryextracurricular,
@@ -176,10 +204,10 @@ class ExtracurricularController extends Controller
 
     public function detailExtracurricular($id)
     {
-        $extracurricular=Extracurricular::find($id);
+        $extracurricular = Extracurricular::find($id);
 
         return view('user.detailExtracurricular', [
-            'extracurricular'=> $extracurricular
+            'extracurricular' => $extracurricular
         ]);
     }
 }

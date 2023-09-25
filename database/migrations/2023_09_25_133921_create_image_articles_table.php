@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('extracurriculars', function (Blueprint $table) {
+        Schema::create('image_articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_extracurricular_id')
-            ->constrained()
-            ->cascadeOnDelete()
-            ->cascadeOnUpdate();
-            $table->string('title')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->foreignId('article_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extracurriculars');
+        Schema::dropIfExists('image_articles');
     }
 };

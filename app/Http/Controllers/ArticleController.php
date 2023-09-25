@@ -6,6 +6,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\CategoryArticle;
+use App\Models\ImageArticle;
 use App\Models\Setting;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
@@ -48,14 +49,24 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $image=Article::saveImage($request);
-        Article::create([
+        // $image=Article::saveImage($request);
+        $article=Article::create([
             'user_id' => auth()->user()->id,
             'category_article_id' => $request->category_article_id,
             'title' =>  $request->title,
             'deskripsi' =>  $request->deskripsi,
-            'image' => $image,
+            // 'image' => $image,
         ]);
+
+        if ($request->image) {
+            foreach ($request->image as $data) {
+                $filename=ImageArticle::saveImage($data);
+                ImageArticle::create([
+                    'article_id' => $article->id,
+                    'image' => $filename
+                ]);
+            }
+        }
 
 
         return redirect()->route('admin.article.index')->with('success', 'Data berhasil ditambah');
@@ -86,12 +97,14 @@ class ArticleController extends Controller
             abort(404);
         }
         $article=Article::find($id);
+        $imageArticle=$article->imageArticle->pluck('image_url','id');
         
         $categoryArticle=CategoryArticle::oldest('name')->get();
 
         return view('admin.article.form',[
             'article'   =>  $article,
-            'categoryArticle'   =>  $categoryArticle
+            'categoryArticle'   =>  $categoryArticle,
+            'imageArticle' => $imageArticle
         ]);
     }
 
@@ -102,21 +115,31 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
         $data = [
             'title' =>  $request->title,
             'deskripsi' =>  $request->deskripsi
         ];
+        $article->update($data);
 
-        $image = Article::saveImage($request);
+        if ($request->old) {
+            ImageArticle::deleteImageArray($article->id, $request->old);
 
-        if ($image) {
-            $data['image']  =   $image;
-            Article::deleteImage($id);
+            ImageArticle::where('article_id', $article->id)
+            ->whereNotIn('id', $request->old)->delete();
         }
 
-        Article::where('id', $id)->update($data);
+        if ($request->image) {
+            foreach ($request->image as $data) {
+                $filename=ImageArticle::saveImage($data);
+                ImageArticle::create([
+                    'article_id' => $article->id,
+                    'image' => $filename,
+                ]);
+            }
+        }
+
 
         return redirect()->route('admin.article.index')->with('success','Data berhasil diubah');
     }
@@ -131,9 +154,12 @@ class ArticleController extends Controller
     {
         $article=Article::find($id);
 
-        Article::deleteImage($id);
+        $imageArticle = [];
+        ImageArticle::deleteImageArray($article->id, $imageArticle);
 
         $article->delete();
+
+        ImageArticle::where('article_id',$article->id)->delete();
 
         return response()->json(['status' => 'Data Telah Dihapus']);
     }

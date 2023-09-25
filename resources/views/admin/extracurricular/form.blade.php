@@ -1,6 +1,13 @@
 @extends('layouts.backend.base')
 @section('content')
     <!-- Main Content -->
+
+    <head>
+        <link type="text/css" rel="stylesheet" href="/image-uploader/dist/image-uploader.min.css">
+        <style>
+
+        </style>
+    </head>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -87,7 +94,8 @@
                                             </select>
                                         </div>
                                         @if ($errors->has('category_extracurricular_id'))
-                                            <span class="text-danger">{{ $errors->first('category_extracurricular_id') }}</span>
+                                            <span
+                                                class="text-danger">{{ $errors->first('category_extracurricular_id') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -107,7 +115,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                {{-- <div class="form-group row">
                                     <label for="image" class="col-sm-3 col-form-label">
                                         Gambar
                                     </label>
@@ -115,27 +123,36 @@
                                     <div class="col-sm-9">
                                         <input type="file" class="dropify @error('image') is-invalid @enderror"
                                             name='image' id="image" data-height='250'
-                                            data-default-file="{{ @$extracurricular->image_url }}"
-                                            data-max-file-size="5M">
+                                            data-default-file="{{ @$extracurricular->image_url }}" data-max-file-size="5M">
 
                                         @if ($errors->has('image'))
                                             <span class="text-danger">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group row">
                                     <label for="deskripsi" class="col-sm-3 col-form-label">
                                         Deskripsi
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control @error('deskripsi')
+                                        <textarea
+                                            class="form-control @error('deskripsi')
                                         is-invalid
-                                    @enderror" name="deskripsi" >{{ old('deskripsi', @$extracurricular->deskripsi) }}</textarea>
+                                    @enderror"
+                                            name="deskripsi">{{ old('deskripsi', @$extracurricular->deskripsi) }}</textarea>
 
                                         @if ($errors->has('deskripsi'))
                                             <span class="text-danger">{{ $errors->first('deskripsi') }}</span>
                                         @endif
                                     </div>
+                                </div>
+
+                                <div class="input-field">
+                                    <label class="active">Dokumentasi Ekstrakulikuler</label>
+                                    <div class="input-images-2" style="padding-top: .5rem;">
+
+                                    </div>
+                                    <small>*) Klik kolom yang sudah disediakan untuk menambahkan gambar.</small>
                                 </div>
                             </div>
                         </div>
@@ -155,4 +172,28 @@
                 </form>
         </section>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="/image-uploader/dist/image-uploader.min.js"></script>
+
+    <script>
+        let images = @json(@$imageExtracurricular);
+        let imageArray = [];
+
+        for (image in images) {
+            imageArray.push({
+                id: image,
+                src: images[image]
+            })
+        }
+
+        $('.input-images-2').imageUploader({
+            imagesInputName: 'image',
+            preloadedInputName: 'old',
+            maxSize: 2 * 1024 * 1024,
+            maxFiles: 10,
+            preloaded: imageArray
+        });
+    </script>
 @endsection

@@ -29,10 +29,6 @@ class ExtracurricularRequest extends FormRequest
             'deskripsi'                     =>  'required',
         ];
 
-        if ($this->_method != 'put') {
-            $rules['image'] =   'required|image';
-        }
-
         return $rules;
     }
 
@@ -42,7 +38,6 @@ class ExtracurricularRequest extends FormRequest
             'category_extracurricular_id.required' => 'Kategori Extrakulikuler Wajib Dipilih',
             'title.required'                       => 'Judul Wajib Diisi',
             'deskripsi.required'                   => 'Deskripsi Wajib Diisi',
-            'image.required'                       => 'Gambar Wajib Diisi',
         ];
     }
 }
