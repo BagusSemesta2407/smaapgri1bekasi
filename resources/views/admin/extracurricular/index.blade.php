@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Ekstrakulikuler</h1>
+                <h1>Kegiatan Ekstrakulikuler</h1>
             </div>
 
             <div class="section-body">
@@ -14,7 +14,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Data Ekstrakulikuler</h4>
+                                    <h4>Data Kegiatan Ekstrakulikuler</h4>
 
                                     @role('admin')
                                     <a href="{{ route('admin.extracurricular.create') }}" class="btn btn-primary ">
@@ -40,8 +40,8 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                <th>Kategori Ekstrakulikuler</th>
                                                 <th>Ekstrakulikuler</th>
+                                                <th>Kegiatan Ekstrakulikuler</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>

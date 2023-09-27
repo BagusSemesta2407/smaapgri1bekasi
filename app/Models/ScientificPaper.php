@@ -21,7 +21,7 @@ class ScientificPaper extends Model
      *
      * @var array
      */
-    protected $appends = ['file_url'];
+    protected $appends = ['file_url', 'image_url'];
 
     /**
      * Save image Owner.
@@ -71,6 +71,57 @@ class ScientificPaper extends Model
             $path = 'public/file/scientificpaper/' . $scientific->file;
             if (Storage::exists($path)) {
                 Storage::delete('public/file/scientificpaper/' . $scientific->file);
+            }
+        }
+    }
+    /**
+     * Save image Owner.
+     *
+     * @param  $request
+     * @return string
+     */
+    public static function saveImage($request)
+    {
+        $filename = null;
+
+        if ($request->image) {
+            $file = $request->image;
+
+            $ext = $file->getClientOriginalExtension();
+            $filename = date('YmdHis') . uniqid() . '.' . $ext;
+            $file->storeAs('public/image/scientificpaper/', $filename);
+        }
+
+        return $filename;
+    }
+
+    /**
+     * Get the image owner url.
+     *
+     * @return string
+     */
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('storage/public/image/scientificpaper/' . $this->image);
+        }
+        
+        return null;
+    }
+
+    /**
+     * Delete image.
+     *
+     * @param  $id
+     * @return void
+     */
+    public static function deleteImage($id)
+    {
+        $scientific = ScientificPaper::firstWhere('id', $id);
+        if ($scientific->image != null) {
+            $path = 'public/image/scientificpaper/' . $scientific->image;
+            if (Storage::exists($path)) {
+                Storage::delete('public/image/scientificpaper/' . $scientific->image);
             }
         }
     }

@@ -37,7 +37,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Ektrakulikuler
+                    Data Kegiatan Ektrakulikuler
                 </h1>
             </div>
 
@@ -82,7 +82,7 @@
                                             <select name="category_extracurricular_id"
                                                 class="form-control select2 @error('category_extracurricular_id') is-invalid @enderror">
                                                 <option value="" selected="" disabled="">
-                                                    Pilih Kategori Artikel
+                                                    Pilih Ekstrakulikuler
                                                 </option>
 
                                                 @foreach ($categoryExtracurricular as $item)
@@ -106,7 +106,8 @@
 
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                            id="title" name="title" placeholder="Masukan Judul Artikel"
+                                            id="title" name="title"
+                                            placeholder="Masukan Judul Kegiatan Eksrakulikuler"
                                             value="{{ old('title', @$extracurricular->title) }}">
                                         @if ($errors->has('title'))
                                             <span class="text-danger">

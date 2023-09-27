@@ -162,7 +162,7 @@ class ExtracurricularController extends Controller
     public function destroy($id)
     {
         $extracurricular = Extracurricular::find($id);
-        $imageExtracurricular=[];
+        $imageExtracurricular = [];
         ImageExtracurricular::deleteImageArray($extracurricular->id, $imageExtracurricular);
 
         $extracurricular->delete();

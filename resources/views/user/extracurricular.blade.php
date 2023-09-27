@@ -28,11 +28,11 @@
 
                     <div class="col-md-2 col-sm-12">
                         <label for="" class="label-control">
-                            Kategori Extrakulikuler
+                            Extrakulikuler
                         </label>
 
                         <select name="category_extracurricuar_id" class="form-control select2">
-                            <option value=" " selected>Pilih Kategori Extrakulikuler</option>
+                            <option value=" " selected>Pilih Extrakulikuler</option>
                             @foreach ($categoryextracurricular as $item)
                                 <option value="{{ $item->id }}"
                                     {{ request()->category_extracurricular_id ? (request()->category_extracurricular_id == $item->id ? 'selected' : '') : '' }}>

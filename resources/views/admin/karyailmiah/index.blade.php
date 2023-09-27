@@ -39,7 +39,7 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                {{-- <th>File</th> --}}
+                                                <th>Judul</th>
                                                 <th>Tahun</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -50,6 +50,9 @@
                                                     <input type="hidden" class="delete_id" value="{{ $item->id }}">
                                                     <td class="">
                                                         {{ $loop->iteration }}
+                                                    </td>
+                                                    <td class="">
+                                                        {{ $item->title }}
                                                     </td>
                                                     <td class="">
                                                         {{ $item->year }}

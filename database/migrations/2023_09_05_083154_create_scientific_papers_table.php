@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('scientific_papers', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
             $table->string('file')->nullable();
+            $table->string('image')->nullable();
             $table->year('year')->nullable();
             $table->timestamps();
         });
