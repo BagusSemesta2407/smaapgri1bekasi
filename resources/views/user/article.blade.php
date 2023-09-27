@@ -59,8 +59,8 @@
                                                 alt="...">
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body ms-2">
+                                    <div class="col-md-8 ms-3">
+                                        <div class="card-body">
                                             <a href="{{ route('detail-article', $item) }}">
                                                 <h5 class="card-title">{{ $item->title }}</h5>
                                             </a>

@@ -34,7 +34,6 @@
                                                 </th>
                                                 <th>Kategori Artikel</th>
                                                 <th>Judul</th>
-                                                <th>Gambar</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -50,9 +49,6 @@
                                                     </td>
                                                     <td class="">
                                                         {{ $item->title }}
-                                                    </td>
-                                                    <td class="">
-                                                            <img src="{{ $item->image_url }}" alt="img" width="50px" height="50px">
                                                     </td>
 
                                                     <td class=" align-middle">

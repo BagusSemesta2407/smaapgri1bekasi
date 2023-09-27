@@ -86,13 +86,13 @@
                     <ul class="dropdown-menu">
                         <li class="{{ request()->is('admin/category-extracurricular*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.category-extracurricular.index') }}">
-                                <span>Kategori Ekstrakulikuler</span>
+                                <span>Ekstrakulikuler</span>
                             </a>
                         </li>
 
                         <li class="{{ request()->is('admin/extracurricular*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.extracurricular.index') }}">
-                                <span>Ekstrakulikuler</span>
+                                <span>Kegiatan Ekstrakulikuler</span>
                             </a>
                         </li>
                     </ul>

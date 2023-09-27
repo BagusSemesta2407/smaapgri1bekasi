@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kategori Ekstrakulikuler</h1>
+                <h1>Ekstrakulikuler</h1>
             </div>
 
             <div class="section-body">
@@ -30,7 +30,7 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                <th>Kategori Ekstrakulikuler</th>
+                                                <th>Ekstrakulikuler</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>

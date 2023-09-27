@@ -6,15 +6,15 @@
             <div class="section-header">
                 <div class="section-header-back">
                     @role('admin')
-                    <a href="{{ route('admin.scientificpaper.index') }}" class="btn btn-icon">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
+                        <a href="{{ route('admin.scientificpaper.index') }}" class="btn btn-icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
                     @endrole
 
                     @role('guru')
-                    <a href="{{ route('guru.scientificpaper.index') }}" class="btn btn-icon">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
+                        <a href="{{ route('guru.scientificpaper.index') }}" class="btn btn-icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
                     @endrole
                 </div>
 
@@ -36,25 +36,25 @@
 
 
             @role('admin')
-            @if (@$scientific->exists)
-                <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                    action="{{ route('admin.scientificpaper.update', $scientific) }}">
-                    @method('put')
-                @else
+                @if (@$scientific->exists)
                     <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                        action="{{ route('admin.scientificpaper.store') }}">
-            @endif
+                        action="{{ route('admin.scientificpaper.update', $scientific) }}">
+                        @method('put')
+                    @else
+                        <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                            action="{{ route('admin.scientificpaper.store') }}">
+                @endif
             @endrole
 
             @role('guru')
-            @if (@$scientific->exists)
-                <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                    action="{{ route('guru.scientificpaper.update', $scientific) }}">
-                    @method('put')
-                @else
+                @if (@$scientific->exists)
                     <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
-                        action="{{ route('guru.scientificpaper.store') }}">
-            @endif
+                        action="{{ route('guru.scientificpaper.update', $scientific) }}">
+                        @method('put')
+                    @else
+                        <form id="myForm" class="forms-sample" enctype="multipart/form-data" method="POST"
+                            action="{{ route('guru.scientificpaper.store') }}">
+                @endif
             @endrole
             {{ csrf_field() }}
             <div class="section-body">
@@ -67,11 +67,39 @@
 
                             <div class="card-body">
                                 <div class="form-group row">
+                                    <label for="judul" class="col-sm-3 col-form-label">
+                                        Judul
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ old('title', @$scientific->title) }}" placeholder="Masukkan Judul">
+
+                                        @if ($errors->has('title'))
+                                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="file karya ilmiah" class="col-sm-3 col-form-label">
+                                        Gambar
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="image" class="dropify"
+                                            data-default-file="{{ @$scientific->image_url }}"data-allowed-file-extensions="png">
+
+                                        @if ($errors->has('file'))
+                                            <span class="text-danger">{{ $errors->first('file') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="file karya ilmiah" class="col-sm-3 col-form-label">
                                         File
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$scientific->file_url }}">
+                                        <input type="file" name="file" class="dropify"
+                                            data-default-file="{{ @$scientific->file_url }}"
+                                            data-allowed-file-extensions="pdf">
 
                                         @if ($errors->has('file'))
                                             <span class="text-danger">{{ $errors->first('file') }}</span>
@@ -83,14 +111,15 @@
                                         Tahun
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="year" class="form-control" value="{{ old('year', @$scientific->year) }}" placeholder="Masukkan Tahun">
+                                        <input type="text" name="year" class="form-control"
+                                            value="{{ old('year', @$scientific->year) }}" placeholder="Masukkan Tahun">
 
                                         @if ($errors->has('year'))
                                             <span class="text-danger">{{ $errors->first('year') }}</span>
                                         @endif
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -116,10 +145,10 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        // Inisialisasi Dropify
-        $('.dropify').dropify();
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi Dropify
+            $('.dropify').dropify();
+        });
+    </script>
 @endsection

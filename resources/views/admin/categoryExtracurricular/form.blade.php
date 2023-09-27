@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kategori Ekstrakuler
+                    Data Kategori Ekstrakulikuler
                 </h1>
             </div>
 
@@ -41,7 +41,7 @@
                     <div class="col-12 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Kategori Ekstrakuler</h4>
+                                <h4>Form Ekstrakulikuler</h4>
                             </div>
 
                             <div class="card-body">
@@ -49,10 +49,10 @@
                                     <label for="name" class="col-sm-3 col-form-label">
                                         Nama <sup class="text-danger">*</sup>
                                     </label>
-    
+
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" placeholder="Masukan Kategori Ekstrakuler"
+                                            id="name" name="name" placeholder="Masukan Ekstrakulikuler"
                                             value="{{ old('name', @$categoryExtracurricular->name) }}">
                                         @if ($errors->has('name'))
                                             <span class="text-danger">

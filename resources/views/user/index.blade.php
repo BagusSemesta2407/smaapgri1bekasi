@@ -98,21 +98,25 @@
             <div class="row g-8">
                 <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                            <h5 class="mb-3">Siswa</h5>
-                            <p>Ada 500++ Siswa/i di SMA PGRI 1 BEKASI</p>
-                        </div>
+                        <a href="{{ route('karya-ilmiah-landing-page') }}">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
+                                <h5 class="mb-3">Karya Ilmiah</h5>
+                                <p>Ada 500++ Siswa/i di SMA PGRI 1 BEKASI</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 {{-- &nbsp; --}}
                 <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Ekstrakulikuler</h5>
-                            <p>Ada 17 Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
-                        </div>
+                        <a href="{{ route('extracurricular') }}">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
+                                <h5 class="mb-3">Ekstrakulikuler</h5>
+                                <p>Ada 17 Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -343,7 +347,7 @@
         </div>
     </div>
 
-    <div class="container-xxl py-5">
+    {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Extrakulikuler & Karya Ilmiah</h6>
@@ -424,7 +428,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- </div> --}}
     {{-- <div class="container-xxl py-5">
         <div class="container">
