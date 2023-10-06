@@ -3,7 +3,7 @@
     <!-- Main Content -->
 
     <head>
-        <link type="text/css" rel="stylesheet" href="/image-uploader/dist/image-uploader.min.css">
+        <link type="text/css" rel="stylesheet" href="/multiple-image/dist/image-uploader.min.css">
         <style>
 
         </style>
@@ -116,6 +116,40 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-3 col-form-label">
+                                        Tanggal Awal Kegiatan <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control @error('startDate') is-invalid @enderror"
+                                            id="startDate" name="startDate"
+                                            value="{{ old('startDate', @$extracurricular->startDate) }}">
+                                        @if ($errors->has('startDate'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('startDate') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-3 col-form-label">
+                                        Tanggal Akhir Kegiatan <sup class="text-danger">*</sup>
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control @error('endDate') is-invalid @enderror"
+                                            id="endDate" name="endDate"
+                                            value="{{ old('endDate', @$extracurricular->endDate) }}">
+                                        @if ($errors->has('endDate'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('endDate') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                                 {{-- <div class="form-group row">
                                     <label for="image" class="col-sm-3 col-form-label">
                                         Gambar
@@ -176,7 +210,7 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="/image-uploader/dist/image-uploader.min.js"></script>
+    <script type="text/javascript" src="/multiple-image/dist/image-uploader.min.js"></script>
 
     <script>
         let images = @json(@$imageExtracurricular);

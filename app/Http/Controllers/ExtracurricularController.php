@@ -56,7 +56,9 @@ class ExtracurricularController extends Controller
         $extracurricular = Extracurricular::create([
             'category_extracurricular_id' => $request->category_extracurricular_id,
             'title' => $request->title,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
         ]);
 
         if ($request->image) {
@@ -125,7 +127,9 @@ class ExtracurricularController extends Controller
         $data = [
             'category_extracurricular_id' => $request->category_extracurricular_id,
             'title' => $request->title,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
         ];
 
         $extracurricular->update($data);
@@ -182,23 +186,23 @@ class ExtracurricularController extends Controller
 
         $setting = Setting::first();
 
-        $filter = (object) [
-            'category_extracurricular_id' => $request->category_extracurricular_id,
-        ];
-
-        $extracurricular = Extracurricular::filter($filter)
-            ->latest()
-            ->paginate(5);
-
-        $categoryextracurricular = CategoryExtracurricular::whereHas('extracurricular')
-            ->get();
-
+        $categoryExtracurricular=CategoryExtracurricular::all();
 
         return view('user.extracurricular', [
             'banner'    =>  $banner,
-            'extracurricular'   =>  $extracurricular,
-            'categoryextracurricular' => $categoryextracurricular,
+            'categoryExtracurricular' => $categoryExtracurricular,
             'setting' => $setting
+        ]);
+    }
+
+    public function getCategoryExtracurricular($id)
+    {
+        $categoryExtracurricular=CategoryExtracurricular::find($id);
+
+        $extracurricular=Extracurricular::where('category_extracurricular_id', $categoryExtracurricular->id)->get();
+
+        return view('user.listKegiatanExtracurricular', [
+            'extracurricular' => $extracurricular
         ]);
     }
 

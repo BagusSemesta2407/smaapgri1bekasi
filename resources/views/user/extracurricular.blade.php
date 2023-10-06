@@ -22,81 +22,26 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Extrakulikuler</h6>
             </div>
-            <form action="#" class="form-horizontal"
-                style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
-                <div class="row align-items-center">
-
-                    <div class="col-md-2 col-sm-12">
-                        <label for="" class="label-control">
-                            Extrakulikuler
-                        </label>
-
-                        <select name="category_extracurricuar_id" class="form-control select2">
-                            <option value=" " selected>Pilih Extrakulikuler</option>
-                            @foreach ($categoryextracurricular as $item)
-                                <option value="{{ $item->id }}"
-                                    {{ request()->category_extracurricular_id ? (request()->category_extracurricular_id == $item->id ? 'selected' : '') : '' }}>
-                                    {{ $item->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
-                    <div class="col-md-1 col-sm-12 d-flex mt-auto">
-                        <button type="submit" class="btn btn-outline-primary btn-block">FILTER</button>
-                    </div>
-                </div>
-            </form>
-            @forelse ($extracurricular as $item)
-                <div class="row g-4 ">
-                    <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="course-item">
-                            <div class="mb-3">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <div class="card">
-                                            <img src="{{ $item->image_url }}" class="img-fluid rounded-start"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body ms-2">
-                                            <a href="{{ route('detail-extracurricular', $item) }}">
-                                                <h5 class="card-title">{{ $item->title }}</h5>
-                                            </a>
-                                            <p class="card-text text-justify">
-                                                {{ Str::limit($item->deskripsi, 150) }}
-                                                <a href="{{ route('detail-extracurricular', $item) }}">
-                                                    Lihat Selengkapnya ...
-                                                </a>
-                                            </p>
-                                            <p class="card-text">
-                                                <small class="text-body-secondary">
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
-                                                    | {{ $item->categoryExtracurricular->name }}
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
+            <div class="row">
+                <div class="row row-cols-1 row-cols-md-3 g-1">
+                    @forelse ($categoryExtracurricular as $item)
+                        <a href="{{ route('kegiatan-extrakulikuler', $item) }}">
+                            <div class="card m-5" style="width: 18rem;">
+                                <img src="{{ $item->image_url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-text">{{ $item->name }}</h5>
                                 </div>
                             </div>
+                        </a>
+                    @empty
+                        <div class="text-center">
+                            <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
                         </div>
-                    </div>
+                        <div class="text-center">
+                            Belum Ada Data Extrakulikuler
+                        </div>
+                    @endforelse
                 </div>
-            @empty
-                <div class="text-center">
-                    <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
-                </div>
-                <div class="text-center">
-                    Belum Ada Data Extrakulikuler
-                </div>
-            @endforelse
-            <div class="text-center">
-                <nav class="d-inline-block">
-                    <div class="p-2">
-                        {{ $extracurricular->onEachSide(5)->links() }}
-                    </div>
-                </nav>
             </div>
         </div>
     </div>

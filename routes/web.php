@@ -47,6 +47,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/agenda-pengumuman', [AnnouncementController::class, 'announcementLandingPage'])->name('pengumuman-landing-page');
     Route::get('/agenda-pengumuman/{id}', [AnnouncementController::class, 'detailAnnouncementLandingPage'])->name('detail-pengumuman-landing-page');
     Route::get('/extrakulikuler', [ExtracurricularController::class, 'indexUser'])->name('extracurricular');
+    Route::get('/kegiatan-extrkulikuler/{categoryExtracurricular}', [ExtracurricularController::class, 'getCategoryExtracurricular'])->name('kegiatan-extrakulikuler');
     Route::get('/extrakulikuler/{id}', [ExtracurricularController::class, 'detailExtracurricular'])->name('detail-extracurricular');
     Route::get('/karya-ilmiah', [ScientificpaperController::class, 'scientificpaperLandingPage'])->name('karya-ilmiah-landing-page');
 

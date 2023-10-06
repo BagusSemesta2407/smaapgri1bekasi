@@ -130,7 +130,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-200 h-200" src="{{ asset('logo.jpeg') }}" alt=""
+                        <img class="img-fluid position-absolute w-200 h-200" src="{{ asset('logo-sma.png') }}" alt=""
                             style="object-fit: cover;">
                     </div>
                 </div>
@@ -279,7 +279,7 @@
                             </div>
                             <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
                                 <div class="carousel-inner w-100">
-                                    @foreach ($article as $key => $item)
+                                    @forelse ($article as $key => $item)
                                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                             <div class="col-md-12">
                                                 <div class="card card-body">
@@ -303,7 +303,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="text-center">
+                                            <img src="{{ asset('empty.jpg') }}" alt="" width="280"
+                                                height="280">
+                                        </div>
+                                        <div class="text-center">
+                                            Belum Ada Data Artikel
+                                        </div>
+                                    @endforelse
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
                                     data-bs-slide="prev">
@@ -329,14 +337,16 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        @foreach ($announcement as $item)
+                                        @forelse ($announcement as $item)
                                             <h6>
                                                 {{ $item->title }}
                                             </h6>
                                             <p>
                                                 {{ $item->uraian }}
                                             </p>
-                                        @endforeach
+                                        @empty
+                                            <p>Belum Ada Pengumuman</p>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
