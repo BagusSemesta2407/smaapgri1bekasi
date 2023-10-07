@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

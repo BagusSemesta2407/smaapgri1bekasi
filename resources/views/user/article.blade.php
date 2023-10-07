@@ -55,7 +55,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         <div class="card">
-                                            <img src="{{ $item->image_url }}" class="img-fluid rounded-start"
+                                            <img src="{{ $item->imageArticle->first()->image_url }}" class="img-fluid rounded-start"
                                                 alt="...">
                                         </div>
                                     </div>

@@ -199,9 +199,12 @@ class ArticleController extends Controller
     public function detailArticle($id)
     {
         $article=Article::find($id);
+        $imageArticle=ImageArticle::where('article_id', $id)
+        ->get();
 
         return view('user.detailArticle', [
-            'article'=> $article
+            'article'=> $article,
+            'imageArticle'=> $imageArticle
         ]);
     }
 }

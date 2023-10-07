@@ -1,13 +1,6 @@
 @extends('layouts.backend.base')
 @section('content')
     <!-- Main Content -->
-
-    <head>
-        <link type="text/css" rel="stylesheet" href="/multiple-image/dist/image-uploader.min.css">
-        <style>
-
-        </style>
-    </head>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -210,8 +203,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="/multiple-image/dist/image-uploader.min.js"></script>
-
     <script>
         let images = @json(@$imageExtracurricular);
         let imageArray = [];

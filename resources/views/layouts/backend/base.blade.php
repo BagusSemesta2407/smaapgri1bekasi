@@ -31,6 +31,8 @@
     {{-- gijgo datepicker --}}
     <link rel="stylesheet" href="{{ asset('assets/plugins/gijgo/css/gijgo.min.css') }}">
 
+    <link type="text/css" rel="stylesheet" href="{{ asset('multiple-image/dist/image-uploader.min.css') }}">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -169,7 +171,7 @@
     {{-- Block UI --}}
     <script src="{{ asset('assets/plugins/block-ui/block-ui.js') }}"></script>
     {{-- Block UI --}}
-
+    <script type="text/javascript" src="{{ asset('multiple-image/dist/image-uploader.min.js') }}"></script>
     {{-- Laravel Share Button --}}
     {{-- <script src="{{ asset('js/share.js') }}"></script> --}}
     {{-- Laravel Share Button --}}

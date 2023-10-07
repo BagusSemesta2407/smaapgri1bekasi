@@ -209,9 +209,12 @@ class ExtracurricularController extends Controller
     public function detailExtracurricular($id)
     {
         $extracurricular = Extracurricular::find($id);
+        $imageExtracurricular = ImageExtracurricular::where('extracurricular_id',$id)
+        ->get();
 
         return view('user.detailExtracurricular', [
-            'extracurricular' => $extracurricular
+            'extracurricular' => $extracurricular,
+            'imageExtracurricular' => $imageExtracurricular
         ]);
     }
 }
