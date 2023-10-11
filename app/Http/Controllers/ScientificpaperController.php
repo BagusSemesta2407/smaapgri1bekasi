@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ScientificPaper;
+use App\Models\Setting;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -163,14 +164,16 @@ class ScientificpaperController extends Controller
 
     public function scientificpaperLandingPage(Request $request)
     {
+        $setting=Setting::first();
         $search = $request->input('search'); 
 
         $scientificpaper=Scientificpaper::query()
-        ->where('year', 'LIKE', "%$search%")
+        ->where('title', 'LIKE', "%$search%")
         ->paginate(5);
 
         return view('user.Scientificpaper', [
-            'scientificpaper' => $scientificpaper
+            'scientificpaper' => $scientificpaper,
+            'setting' => $setting
         ]);
     }
 }

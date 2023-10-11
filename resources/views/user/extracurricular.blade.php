@@ -34,11 +34,14 @@
                             </div>
                         </a>
                     @empty
+                    <div>
+                        
+                    </div>
                         <div class="text-center">
                             <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
-                        </div>
-                        <div class="text-center">
-                            Belum Ada Data Extrakulikuler
+                            <p>
+                                Belum Ada Data Extrakulikuler
+                            </p>
                         </div>
                     @endforelse
                 </div>

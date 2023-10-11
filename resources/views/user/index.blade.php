@@ -279,11 +279,12 @@
                             </div>
                             <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
                                 <div class="carousel-inner w-100">
+
                                     @forelse ($article as $key => $item)
                                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                             <div class="col-md-12">
                                                 <div class="card card-body">
-                                                    <img class="img-fluid" src="{{ $item['image_url'] }}">
+                                                    <img class="img-fluid" src="{{ $item->imageArticle->first()->image_url }}">
                                                     <h5 class="card-title mt-2">
                                                         {{ $item['title'] }}
                                                     </h5>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\Setting;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -16,8 +17,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcement=Announcement::all();
-        return view('admin.pengumuman.index',[
+        $announcement = Announcement::all();
+        return view('admin.pengumuman.index', [
             'announcement'  =>  $announcement
         ]);
     }
@@ -48,7 +49,7 @@ class AnnouncementController extends Controller
             'uraian.required'        => 'Uraian Wajib Diisi',
         ]);
 
-        $file=Announcement::saveFile($request);
+        $file = Announcement::saveFile($request);
         Announcement::create([
             'title'  =>  $request->title,
             'uraian'  =>  $request->uraian,
@@ -82,10 +83,10 @@ class AnnouncementController extends Controller
         } catch (DecryptException $e) {
             abort(404);
         }
-        
-        $announcement=Announcement::find($id);
 
-        return view('admin.pengumuman.form',[
+        $announcement = Announcement::find($id);
+
+        return view('admin.pengumuman.form', [
             'announcement'  => $announcement
         ]);
     }
@@ -106,14 +107,14 @@ class AnnouncementController extends Controller
             'title.required'         => 'Judul Wajib Diisi',
             'uraian.required'        => 'Uraian Wajib Diisi',
         ]);
-        
-        $data =[
+
+        $data = [
             'uraian'  =>  $request->uraian,
             'title'  =>  $request->title,
         ];
         $file = Announcement::saveFile($request);
         if ($file) {
-            $data['file']=$file;
+            $data['file'] = $file;
             Announcement::deleteFile($id);
         }
 
@@ -130,29 +131,31 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        $announcement=Announcement::find($id);
+        $announcement = Announcement::find($id);
 
         Announcement::deleteFile($id);
         $announcement->delete();
 
-        return response()->json(['status' =>'Data Telah Dihapus']);
+        return response()->json(['status' => 'Data Telah Dihapus']);
     }
 
     public function announcementLandingPage(Request $request)
     {
-        $search = $request->input('search'); 
+        $setting = Setting::first();
+        $search = $request->input('search');
 
-        $announcement=Announcement::query()
-        ->where('title', 'LIKE', "%$search%")
-        ->paginate(5);
+        $announcement = Announcement::query()
+            ->where('title', 'LIKE', "%$search%")
+            ->paginate(5);
 
         return view('user.announcement', [
-            'announcement' => $announcement
+            'announcement' => $announcement,
+            'setting' => $setting
         ]);
     }
     public function detailAnnouncementLandingPage($id)
     {
-        $announcement=Announcement::find($id);
+        $announcement = Announcement::find($id);
 
         return view('user.detailAnnouncement', [
             'announcement' => $announcement
