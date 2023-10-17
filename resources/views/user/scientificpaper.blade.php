@@ -47,6 +47,7 @@
 
             </div>
         </form>
+        <div id="pdfViewer"></div>
         @forelse ($scientificpaper as $item)
             <div class="row g-4 ">
                 <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -62,8 +63,8 @@
                                             Tahun {{ ($item->year) }}
                                         </p>
                                         <p class="card-text text-justify">
-                                            <a href="{{ asset('/storage/public/file/scientificpaper/' . $item->file) }}" download>
-                                                <i class="bi bi-file-earmark-arrow-down"><small>klik untuk unduh</small></i>
+                                            <a href="{{ asset('/storage/public/file/scientificpaper/' . $item->file) }}" onclick="displayPDF('{{ asset('/storage/public/file/scientificpaper/' . $item->file) }}'); return false;">
+                                                {{ $item->title }}
                                             </a>
                                         </p>
                                         <p class="card-text">
@@ -95,4 +96,32 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+// Fungsi untuk menampilkan PDF
+function displayPDF(pdfUrl) {
+    const pdfViewer = document.getElementById('pdfViewer');
+
+    // Tentukan URL untuk file PDF
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.368/pdf.worker.min.js';
+
+    // Muat PDF
+    pdfjsLib.getDocument(pdfUrl).promise
+        .then(pdfDoc => {
+            // Mulai dari halaman pertama
+            return pdfDoc.getPage(1);
+        })
+        .then(page => {
+            // Setel skala halaman
+            const viewport = page.getViewport({ scale: 1 });
+            pdfViewer.innerHTML = ''; // Hapus konten sebelumnya
+            pdfViewer.appendChild(page.getViewport({ scale: 1 }).canvas);
+        })
+        .catch(error => {
+            console.error('Error displaying PDF:', error);
+        });
+}
+
 @endsection

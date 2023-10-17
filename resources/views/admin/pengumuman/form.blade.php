@@ -65,7 +65,7 @@
                                         Uraian
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" name="uraian" >{{ old('uraian', @$announcement->uraian) }}</textarea>
+                                        <textarea class="summernote-simple" name="uraian" >{{ old('uraian', @$announcement->uraian) }}</textarea>
 
                                         @if ($errors->has('uraian'))
                                             <span class="text-danger">{{ $errors->first('uraian') }}</span>

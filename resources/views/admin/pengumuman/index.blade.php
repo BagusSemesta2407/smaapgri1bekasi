@@ -31,7 +31,7 @@
                                                 <th>
                                                     No
                                                 </th>
-                                                <th>Uraian</th>
+                                                <th>Judul</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>

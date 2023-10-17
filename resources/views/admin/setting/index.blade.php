@@ -81,10 +81,9 @@
 
                                         <div class="form-group">
                                             <label for="about">Tentang</label>
-                                            <input type="text" id="about"
-                                                class="form-control @error('about') is-invalid @enderror"
-                                                placeholder="Masukkan Tentang" name="about"
-                                                value="{{ old('about', @$setting->about) }}">
+                                            <textarea type="text" id="about"
+                                                class="summernote-simple @error('about') is-invalid @enderror"
+                                                placeholder="Masukkan Tentang" name="about">{{ old('about', @$setting->about) }}</textarea>
                                             @error('about')
                                                 <span class="text-danger">{{ $errors->first('about') }}</span>
                                             @enderror
