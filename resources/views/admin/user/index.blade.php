@@ -34,6 +34,7 @@
                                                 </th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -50,7 +51,18 @@
                                                     <td class="">
                                                         {{ $item->email }}
                                                     </td>
-                                                    <td class=" align-middle">
+                                                    <td class="">
+                                                        @if ($item->getRoleNames()[0] == 'admin')
+                                                            Admin
+                                                        @elseif ($item->getRoleNames()[0] == 'guru')
+                                                            Guru
+                                                        @elseif ($item->getRoleNames()[0] == 'pembina')
+                                                            Pembina Ekstrakulikuler
+                                                        @else
+                                                            Tidak Memiliki Role
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-middle">
                                                         @if (Auth::user()->id == $item->id)
                                                             <a href="{{ route('admin.user.edit', $item->id) }}"
                                                                 class="btn btn-sm btn-outline-primary" title="edit">
@@ -84,43 +96,43 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-        $(document).on('click', '.delete', function() {
-            let url = $(this).val();
-            console.log(url);
-            swal({
-                    title: "Apakah anda yakin?",
-                    text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: url,
-                            dataType: 'json',
-                            success: function(response) {
-                                swal(response.status, {
-                                        icon: "success",
-                                    })
-                                    .then((result) => {
-                                        location.reload();
-                                    });
-                            }
-                        });
-                    }
-                })
+            $(document).on('click', '.delete', function() {
+                let url = $(this).val();
+                console.log(url);
+                swal({
+                        title: "Apakah anda yakin?",
+                        text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: "DELETE",
+                                url: url,
+                                dataType: 'json',
+                                success: function(response) {
+                                    swal(response.status, {
+                                            icon: "success",
+                                        })
+                                        .then((result) => {
+                                            location.reload();
+                                        });
+                                }
+                            });
+                        }
+                    })
+            });
         });
-    });
-</script>   
+    </script>
 @endsection

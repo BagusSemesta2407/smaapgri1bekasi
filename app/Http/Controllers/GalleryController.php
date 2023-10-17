@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GalleryRequest;
 use App\Models\Gallery;
+use App\Models\Setting;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -44,7 +45,8 @@ class GalleryController extends Controller
     {
         $image=Gallery::saveImage($request);
         Gallery::create([
-            'image' => $image
+            'image' => $image,
+            'title' => $request->title,
         ]);
         return redirect()->route('admin.gallery.index')->with('success', 'Data berhasil ditambah');
     }
@@ -91,7 +93,7 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $data=[
-            // 'image'  =>  $request->image,
+            'title' => $request->title,
         ];
 
         $image = Gallery::saveImage($request);
@@ -125,9 +127,11 @@ class GalleryController extends Controller
 
     public function galleryLandingPage()
     {
+        $setting=Setting::first();
         $gallery =Gallery::all();
         return view('user.gallery', [
-            'gallery' => $gallery
+            'gallery' => $gallery,
+            'setting' => $setting
         ]);
     }
 }

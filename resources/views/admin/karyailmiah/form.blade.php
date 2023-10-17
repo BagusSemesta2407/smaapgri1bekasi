@@ -79,19 +79,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="file karya ilmiah" class="col-sm-3 col-form-label">
-                                        Gambar
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <input type="file" name="image" class="dropify"
-                                            data-default-file="{{ @$scientific->image_url }}"data-allowed-file-extensions="png">
-
-                                        @if ($errors->has('file'))
-                                            <span class="text-danger">{{ $errors->first('file') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row">
                                     <label for="file karya ilmiah" class="col-sm-3 col-form-label">
                                         File

@@ -44,22 +44,18 @@ class ScientificpaperController extends Controller
     {
         $request->validate([
             'title'      => 'required',
-            'image'      => 'required',
             'file'       => 'required',
             'year'       => 'required',
 
         ], [
             'title.required'=>  'Judul Wajib Diisi',
-            'image.required'=>  'Gambar Wajib Diisi',
             'file.required' =>  'File Wajib Diisi',
             'year.required' =>  'Tahun Wajib Diisi'
         ]);
 
         $file=ScientificPaper::saveFile($request);
-        $image=ScientificPaper::saveImage($request);
         ScientificPaper::create([
             'title' => $request->title,
-            'image' => $image,
             'file'  => $file,
             'year'  => $request->year
         ]);
@@ -133,11 +129,6 @@ class ScientificpaperController extends Controller
             ScientificPaper::deleteFile($id);
         }
 
-        $image = ScientificPaper::saveImage($request);
-        if($image) {
-            $data['image']=$image;
-            ScientificPaper::deleteImage($id);
-        }
         ScientificPaper::where('id', $id)->update($data);
 
         if (Auth::check() && Auth::user()->hasRole('guru')) {
@@ -155,7 +146,6 @@ class ScientificpaperController extends Controller
     public function destroy($id)
     {
         $scientific=ScientificPaper::find($id);
-        ScientificPaper::deleteImage($id);
         ScientificPaper::deleteFile($id);
         $scientific->delete();
 

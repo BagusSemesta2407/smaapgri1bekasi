@@ -46,6 +46,13 @@
 
                             <div class="card-body">
                                 <div class="form-group row">
+                                    <label for="description" class="col-sm-3 col-form-label">Judul</label>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" placeholder="Masukkan Judul" name="title" value="{{ old('title', @$gallery->title) }}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="image" class="col-sm-3 col-form-label">
                                         Gambar
                                     </label>

@@ -1,6 +1,22 @@
 @extends('layouts.frontend.base')
 @section('content')
     <!-- Header Start -->
+    <head>
+        <style>
+            .card-img-top {
+                width: 100%;
+                height: 15vw;
+                object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+                .card-img-top {
+                    height: 50vw;
+                    /* Sesuaikan tinggi untuk tampilan mobile */
+                }
+            }
+        </style>
+    </head>
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -27,9 +43,9 @@
                     @forelse ($categoryExtracurricular as $item)
                         <a href="{{ route('kegiatan-extrakulikuler', $item) }}">
                             <div class="card m-5" style="width: 18rem;">
-                                <img src="{{ $item->image_url }}" class="card-img-top" alt="...">
+                                <img src="{{ $item->image_url }}" class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-text">{{ $item->name }}</h5>
+                                    <p class="card-text">{{ $item->name }}</p>
                                 </div>
                             </div>
                         </a>

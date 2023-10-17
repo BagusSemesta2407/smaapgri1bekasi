@@ -1,6 +1,22 @@
 @extends('layouts.frontend.base')
 @section('content')
     <!-- Header Start -->
+    <head>
+        <style>
+            .card-img-top {
+                width: 100%;
+                height: 15vw;
+                object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+                .card-img-top {
+                    height: 50vw;
+                    /* Sesuaikan tinggi untuk tampilan mobile */
+                }
+            }
+        </style> 
+    </head>
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -55,7 +71,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         <div class="card">
-                                            <img src="{{ $item->imageArticle->first()->image_url }}" class="img-fluid rounded-start"
+                                            <img src="{{ $item->imageArticle->first()->image_url }}" class="card-img-top img-fluid rounded-start"
                                                 alt="...">
                                         </div>
                                     </div>
