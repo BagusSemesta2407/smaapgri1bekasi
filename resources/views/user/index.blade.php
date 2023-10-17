@@ -12,6 +12,16 @@
                     display: block;
                 }
             }
+            .card-img-top {
+                width: 100%;
+                height: 35vw;
+                object-fit: cover;
+            }
+            .img-top {
+                width: 50vw;
+                height: 15vw;
+                object-fit: cover;
+            }
 
             .carousel-inner .carousel-item.active,
             .carousel-inner .carousel-item-start,
@@ -54,7 +64,7 @@
         <div class="owl-carousel header-carousel position-relative">
             @forelse ($banner as $item)
                 <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ $item->image_url }}" alt="">
+                    <img class="img-fluid card-img-top" src="{{ $item->image_url }}" alt="">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                         style="background: rgba(24, 29, 56, .7);">
                         <div class="container">
@@ -279,11 +289,12 @@
                             </div>
                             <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
                                 <div class="carousel-inner w-100">
+
                                     @forelse ($article as $key => $item)
                                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                             <div class="col-md-12">
                                                 <div class="card card-body">
-                                                    <img class="img-fluid" src="{{ $item['image_url'] }}">
+                                                    <img class="img-fluid img-top" src="{{ $item->imageArticle->first()->image_url }}">
                                                     <h5 class="card-title mt-2">
                                                         {{ $item['title'] }}
                                                     </h5>

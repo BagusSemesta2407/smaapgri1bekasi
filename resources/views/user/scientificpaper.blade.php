@@ -56,14 +56,14 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <a href="">
-                                            <h5 class="card-title">Karya Ilmiah</h5>
+                                            <h5 class="card-title">{{ $item->title }}</h5>
                                         </a>
                                         <p class="card-text text-justify">
                                             Tahun {{ ($item->year) }}
                                         </p>
                                         <p class="card-text text-justify">
                                             <a href="{{ asset('/storage/public/file/scientificpaper/' . $item->file) }}" download>
-                                                Download {{ $item->file }}
+                                                <i class="bi bi-file-earmark-arrow-down"><small>klik untuk unduh</small></i>
                                             </a>
                                         </p>
                                         <p class="card-text">
