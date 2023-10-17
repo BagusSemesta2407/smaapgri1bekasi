@@ -10,9 +10,10 @@ use App\Models\Gallery;
 use App\Models\Setting;
 use App\Models\Extracurricular;
 use App\Models\ScientificPaper;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -45,7 +46,6 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -58,11 +58,13 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.user.form');
+        $role=Role::all();
+        return view('admin.user.form' , [
+            'role' => $role
+        ]);
     }
 
     /**
@@ -73,30 +75,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nip'              => 'required',
-            'name'             => 'required',
-            'username'         => 'required|unique',
-            'email'            => 'required|email',
-            'password'         => 'required|min:3',
-        ], [
-            'nip.required'       => 'NIP Wajib Diisi',
-            'name.required'      => 'Nama Wajib Diisi',
-            'username.required'  => 'Username Wajib Diisi',
-            'username.unique'    => 'Username Sudah Digunakan!',
-            'email.required'     => 'Email Wajib Diisi',
-            'email.email'        => 'Email Harus Sesuai Format',
-            'password.required'  => 'Password Wajib Diisi',
-            'password.min'        => 'Password Minimal 3 karakter',
-        ]);
+        $role=Role::findOrFail($request->roles);
 
-        User::create([
+        $user=User::create([
             'name'    =>  $request->name,
             'username' =>  $request->username,
             'email'   =>  $request->email,
             'nip'     =>  $request->nip,
             'password' => Hash::make($request['password']),
         ]);
+
+        $user->assignRole($role);
 
         return redirect()->route('admin.user.index')->with('success', 'Data berhasil ditambah');
     }
@@ -121,9 +110,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-
-        return view('admin.user.form', [
-            'user'  =>  $user
+        $role=Role::all();
+        return view('admin.user.form-edit', [
+            'user'  =>  $user,
+            'role' => $role,
         ]);
     }
 
@@ -134,39 +124,22 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $request->validate([
-            'nip'              => 'required',
-            'name'             => 'required',
-            'username'         => 'required|unique',
-            'email'            => 'required|email',
-            // 'password'         => 'required|min:3',
-        ], [
-            'nip.required'       => 'NIP Wajib Diisi',
-            'name.required'      => 'Nama Wajib Diisi',
-            'username.required'  => 'Username Wajib Diisi',
-            'username.unique'    => 'Username Sudah Digunakan!',
-            'email.required'     => 'Email Wajib Diisi',
-            'email.email'        => 'Email Harus Sesuai Format',
-            // 'password.required'  => 'Password Wajib Diisi',
-            // 'password.min'        => 'Password Minimal 3 karakter',
-        ]);
-
+        $roles=Role::findOrFail($request->roles);
         $data = [
             'name'     => $request->name,
             'username' => $request->username,
             'nip'      => $request->nip,
             'email'    => $request->email,
-            // 'password' => Hash::make($request['password']),
         ];
 
         if ($request->password) {
             $data['password'] = Hash::make($request->password);
         }
 
-        User::where('id', $id)->update($data);
-
+        User::where('id', $user->id)->update($data);
+        $user->syncRoles($roles);
         return redirect()->route('admin.user.index')->with('success', 'Data berhasil diubah');
     }
 

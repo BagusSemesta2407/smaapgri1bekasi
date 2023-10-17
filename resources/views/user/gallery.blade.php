@@ -36,7 +36,7 @@
                                             data-caption="{{ $item->caption }}">
                                             <img src="{{ $item->image_url }}" class="card-img-top"
                                                 alt="{{ $item->caption }}">
-                                                <p class="text-dark">{{ $item->title }}dvdv</p>
+                                                <p class="text-dark">{{ $item->title }}</p>
                                         </a>
                                     </div>
                                 </div>
