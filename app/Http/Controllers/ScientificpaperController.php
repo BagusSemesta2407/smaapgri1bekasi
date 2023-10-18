@@ -166,4 +166,15 @@ class ScientificpaperController extends Controller
             'setting' => $setting
         ]);
     }
+
+    public function previewPdf($id)
+    {
+        $setting=Setting::first();
+        $scientificpaper=ScientificPaper::find($id);
+
+        return view('user.previewPdf', [
+            'scientificpaper' => $scientificpaper,
+            'setting' => $setting
+        ]);
+    }
 }

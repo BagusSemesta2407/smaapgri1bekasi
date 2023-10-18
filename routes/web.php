@@ -50,6 +50,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/kegiatan-extrkulikuler/{categoryExtracurricular}', [ExtracurricularController::class, 'getCategoryExtracurricular'])->name('kegiatan-extrakulikuler');
     Route::get('/extrakulikuler/{id}', [ExtracurricularController::class, 'detailExtracurricular'])->name('detail-extracurricular');
     Route::get('/karya-ilmiah', [ScientificpaperController::class, 'scientificpaperLandingPage'])->name('karya-ilmiah-landing-page');
+    Route::get('/karya-ilmiah/{preview_pdf}', [ScientificpaperController::class, 'previewPdf'])->name('karya-ilmiah-preview-pdf');
 
     Auth::routes();
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
