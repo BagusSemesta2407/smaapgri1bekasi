@@ -27,7 +27,7 @@
                     <a href="{{ route('article') }}"
                         class="dropdown-item {{ request()->is('article') ? 'active' : '' }}">Artikel</a>
                     <a href="{{ route('extracurricular') }}"
-                        class="dropdown-item {{ request()->is('extracurricular') ? 'active' : '' }}">Extrakulikuler</a>
+                        class="dropdown-item {{ request()->is('extracurricular') ? 'active' : '' }}">Ekstrakulikuler</a>
                     <a href="{{ route('karya-ilmiah-landing-page') }}"
                         class="dropdown-item {{ request()->is('karya-ilmiah') ? 'active' : '' }}">Karya Ilmiah</a>
                     {{-- <a href="{{ route('404')}}" class="dropdown-item">404 Page</a> --}}

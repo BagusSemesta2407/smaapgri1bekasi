@@ -1,15 +1,31 @@
 @extends('layouts.frontend.base')
 @section('content')
     <!-- Header Start -->
+    <head>
+        <style>
+            .card-img-top {
+                width: 100%;
+                height: 15vw;
+                object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+                .card-img-top {
+                    height: 50vw;
+                    /* Sesuaikan tinggi untuk tampilan mobile */
+                }
+            }
+        </style>
+    </head>
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Extrakulikuler</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Ekstrakulikuler</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Beranda</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Extrakulikuler</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Ekstrakulikuler</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -20,7 +36,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Extrakulikuler</h6>
+                <h6 class="section-title bg-white text-center text-primary px-3">Ekstrakulikuler</h6>
             </div>
             
             @forelse ($extracurricular as $item)
@@ -31,7 +47,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         <div class="card">
-                                            <img src="{{ $item->imageExtracurricular->first()->image_url }}" class="img-fluid rounded-start"
+                                            <img src="{{ $item->imageExtracurricular->first()->image_url }}" class="img-fluid card-img-top rounded-start"
                                                 alt="...">
                                         </div>
                                     </div>
