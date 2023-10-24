@@ -133,6 +133,6 @@ class CategoryArticleController extends Controller
 
         $categoryArticle->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 }

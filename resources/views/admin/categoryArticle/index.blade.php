@@ -54,7 +54,7 @@
                                                         </a>
 
                                                         <button
-                                                            value="{{ route('admin.category-article.destroy', $item->id) }}"
+                                                            data-url="{{ route('admin.category-article.destroy', $item->id) }}"
                                                             class="btn btn-sm btn-outline-danger delete"> <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>

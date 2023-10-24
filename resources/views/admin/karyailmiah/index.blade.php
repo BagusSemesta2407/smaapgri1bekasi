@@ -77,7 +77,7 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button value="{{ route('guru.scientificpaper.destroy', $item->id) }}"
+                                                        <button data-url="{{ route('guru.scientificpaper.destroy', $item->id) }}"
                                                             class="btn btn-sm btn-outline-danger delete"> <i
                                                                 class="fas fa-trash"></i>
                                                         </button>

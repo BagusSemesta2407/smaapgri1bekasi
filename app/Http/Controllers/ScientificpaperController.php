@@ -149,7 +149,7 @@ class ScientificpaperController extends Controller
         ScientificPaper::deleteFile($id);
         $scientific->delete();
 
-        return response()->json(['status' =>'Data Telah Dihapus']);
+        return response()->json(['success' =>'Data Telah Dihapus']);
     }
 
     public function scientificpaperLandingPage(Request $request)

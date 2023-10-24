@@ -120,6 +120,6 @@ class BannerController extends Controller
 
         $banner->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 }
