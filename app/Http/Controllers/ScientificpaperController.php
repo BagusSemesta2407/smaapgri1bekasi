@@ -161,7 +161,7 @@ class ScientificpaperController extends Controller
         ->where('title', 'LIKE', "%$search%")
         ->paginate(5);
 
-        return view('user.Scientificpaper', [
+        return view('user.scientificpaper', [
             'scientificpaper' => $scientificpaper,
             'setting' => $setting
         ]);
