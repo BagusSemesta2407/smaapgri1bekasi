@@ -56,7 +56,7 @@
                             <div class="row g-0">
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <a href="">
+                                        <a href="{{ route('karya-ilmiah-preview-pdf', $item->id) }}">
                                             <h5 class="card-title">{{ $item->title }}</h5>
                                         </a>
                                         <p class="card-text text-justify">

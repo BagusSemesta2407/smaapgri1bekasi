@@ -14,7 +14,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Data Extracurricular</h4>
+                                    <h4>Data Ekstrakulikuler</h4>
 
                                     <a href="{{ route('admin.category-extracurricular.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>

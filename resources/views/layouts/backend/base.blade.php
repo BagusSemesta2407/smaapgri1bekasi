@@ -60,8 +60,8 @@
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="fas fa-bars"></i></a></li>
-                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                                    class="fas fa-search"></i></a></li>
+                        {{-- <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                                    class="fas fa-search"></i></a></li> --}}
                     </ul>
                 </form>
 
@@ -74,27 +74,27 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @role('admin')
-                            <a href="{{ route('admin.get-profil') }}" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profile
-                            </a>
+                                <a href="{{ route('admin.get-profil') }}" class="dropdown-item has-icon">
+                                    <i class="far fa-user"></i> Profile
+                                </a>
                             @endrole
 
                             @role('guru')
-                            <a href="{{ route('guru.get-profil') }}" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profile
-                            </a>
+                                <a href="{{ route('guru.get-profil') }}" class="dropdown-item has-icon">
+                                    <i class="far fa-user"></i> Profile
+                                </a>
                             @endrole
 
                             @role('pembina')
-                            <a href="{{ route('pembina.get-profil') }}" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profile
-                            </a>
+                                <a href="{{ route('pembina.get-profil') }}" class="dropdown-item has-icon">
+                                    <i class="far fa-user"></i> Profile
+                                </a>
                             @endrole
-                            
+
                             <a href="{{ url('/') }}" class="dropdown-item has-icon">
                                 <i class="fas fa-bolt"></i> Landing Page
                             </a>
-            
+
                             <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -123,8 +123,8 @@
 
     <!-- General JS Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-    <script src="{{ asset('assets/plugins/jquery/jquery-3.3.1.min.js') }}"></script>
-
+    {{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.3.1.min.js') }}"></script> --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -181,7 +181,7 @@
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
+
 
     <script>
         $(document).ready(function() {
@@ -208,6 +208,84 @@
                 format: 'yyyy-mm-dd'
             });
         });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).on('click', '.delete', function() {
+            var url = $(this).data('url');
+            var icon = 'question';
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            Swal.fire({
+                title: 'Apakah Anda Yakin Ingin Menghapus?',
+                text: 'Data akan terhapus secara permanen',
+                icon: icon,
+                showCancelButton: true
+            }).then((action) => {
+                if (action.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: url,
+                        dataType: 'json',
+                        success: function(data) {
+                            Swal.fire('Berhasil', 'Data Berhasil Dihapus', 'success')
+                                .then(function() {
+                                    location.reload();
+                                })
+                        },
+                        error: function(data) {
+                            console.log('Error :' + data);
+                        }
+                    })
+                }
+            })
+        });
+    </script>
+
+    <script>
+        $('#myForm').submit(function(e) {
+            let form = this;
+            e.preventDefault();
+
+            confirmSubmit(form);
+        });
+    </script>
+
+    <script>
+        function confirmSubmit(form, buttonId) {
+            Swal.fire({
+                icon: 'question',
+                text: 'Apakah anda yakin ingin menyimpan data ini ?',
+                showCancelButton: true,
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-primary mr-1',
+                    cancelButton: 'btn btn-secondary margin-cancel-button',
+                },
+                confirmButtonText: 'Simpan',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let button = 'btnSubmit';
+
+                    if (buttonId) {
+                        button = buttonId;
+                    }
+
+                    $('#' + button).attr('disabled', 'disabled');
+                    $('#loader').removeClass('d-none');
+
+                    form.submit();
+                }
+            });
+        }
     </script>
 
     @yield('script')

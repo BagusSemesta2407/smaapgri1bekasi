@@ -52,9 +52,10 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button value="{{ route('admin.announcement.destroy', $item->id) }}"
-                                                            class="btn btn-sm btn-outline-danger delete"> <i
-                                                                class="fas fa-trash"></i>
+                                                        <button class="btn btn-sm btn-danger delete"
+                                                            data-url="{{ route('admin.announcement.destroy', $item->id) }}"
+                                                            title="Delete">
+                                                            <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

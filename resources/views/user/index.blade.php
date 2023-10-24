@@ -112,7 +112,7 @@
                             <div class="p-4">
                                 <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
                                 <h5 class="mb-3">Karya Ilmiah</h5>
-                                <p>Ada 500++ Siswa/i di SMA PGRI 1 BEKASI</p>
+                                <p>Ada {{ $countScientificPaper }} Karya Ilmiah Siswa/i di SMA PGRI 1 BEKASI</p>
                             </div>
                         </a>
                     </div>
@@ -124,7 +124,7 @@
                             <div class="p-4">
                                 <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
                                 <h5 class="mb-3">Ekstrakulikuler</h5>
-                                <p>Ada 17 Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
+                                <p>Ada {{ $countExtraculicullar  }} Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
                             </div>
                         </a>
                     </div>

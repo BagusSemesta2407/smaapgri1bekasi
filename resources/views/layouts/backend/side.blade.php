@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">SMA 1 PGRI BEKASI</a>
+            <a href="/dashboard">SMA 1 PGRI BEKASI</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="/dashboard">St</a>
         </div>
         <ul class="sidebar-menu">
             @role('admin')

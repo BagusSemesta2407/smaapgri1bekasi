@@ -6,6 +6,7 @@ use App\Models\Announcement;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Banner;
+use App\Models\CategoryExtracurricular;
 use App\Models\Gallery;
 use App\Models\Setting;
 use App\Models\Extracurricular;
@@ -31,6 +32,8 @@ class UserController extends Controller
         $scientificPaper = ScientificPaper::get();
         $setting = Setting::first();
         $announcement = Announcement::get()->take(5);
+        $countExtraculicullar=CategoryExtracurricular::count();
+        $countScientificPaper=ScientificPaper::count();
 
         return view('user.index', [
             'banner'            =>  $banner,
@@ -39,7 +42,9 @@ class UserController extends Controller
             'extracurricular'   =>  $extracurricular,
             'scientificPaper'   =>  $scientificPaper,
             'setting'           => $setting,
-            'announcement'      => $announcement
+            'announcement'      => $announcement,
+            'countExtraculicullar'=> $countExtraculicullar,
+            'countScientificPaper'=> $countScientificPaper
         ]);
     }
 
