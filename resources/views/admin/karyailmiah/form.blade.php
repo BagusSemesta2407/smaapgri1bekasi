@@ -1,6 +1,11 @@
 @extends('layouts.backend.base')
 @section('content')
     <!-- Main Content -->
+
+    <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+            rel="stylesheet" />
+    </head>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -79,7 +84,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label for="file karya ilmiah" class="col-sm-3 col-form-label">
                                         File
@@ -99,8 +104,8 @@
                                         Tahun
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="year" class="form-control"
-                                            value="{{ old('year', @$scientific->year) }}" placeholder="Masukkan Tahun">
+                                        <input type="text" name="year" class="form-control" id="datepicker"
+                                            value="{{ old('year', @$scientific->year) }}" placeholder="Masukkan Tahun" autocomplete="off">
 
                                         @if ($errors->has('year'))
                                             <span class="text-danger">{{ $errors->first('year') }}</span>
@@ -133,10 +138,19 @@
 @endsection
 
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+
     <script>
         $(document).ready(function() {
             // Inisialisasi Dropify
             $('.dropify').dropify();
+        });
+    </script>
+    <script>
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
         });
     </script>
 @endsection

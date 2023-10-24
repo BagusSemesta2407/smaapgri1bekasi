@@ -5,7 +5,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('admin.agenda.index') }}" class="btn btn-icon">
+                    <a href="{{ route('admin.announcement.index') }}" class="btn btn-icon">
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                                         {{-- <textarea class="form-control" name="title" >
                                             {{ old('title', @$announcement->title) }}
                                         </textarea> --}}
-                                        <input type="text" name="title" class="form-control" value="{{ old('title', @$announcement->title) }}">
+                                        <input type="text" name="title" placeholder="Masukkan Judul Pengumuman" class="form-control" value="{{ old('title', @$announcement->title) }}">
 
                                         @if ($errors->has('title'))
                                             <span class="text-danger">{{ $errors->first('title') }}</span>
