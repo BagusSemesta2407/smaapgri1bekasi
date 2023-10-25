@@ -353,7 +353,7 @@
                                                 {{ $item->title }}
                                             </h6>
                                             <p>
-                                                {{ $item->uraian }}
+                                                {{ strip_tags($item->uraian) }}
                                             </p>
                                         @empty
                                             <p>Belum Ada Pengumuman</p>
