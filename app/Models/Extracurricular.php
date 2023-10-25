@@ -33,7 +33,7 @@ class Extracurricular extends Model
      */
     public function imageExtracurricular(): HasMany
     {
-        return $this->hasMany(imageExtracurricular::class);
+        return $this->hasMany(ImageExtracurricular::class);
     }
     
 
