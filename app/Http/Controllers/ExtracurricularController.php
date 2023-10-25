@@ -172,7 +172,7 @@ class ExtracurricularController extends Controller
         $extracurricular->delete();
         ImageExtracurricular::where('extracurricular_id', $extracurricular->id)->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 
     /**

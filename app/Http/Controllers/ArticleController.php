@@ -161,7 +161,7 @@ class ArticleController extends Controller
 
         ImageArticle::where('article_id',$article->id)->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 
     /**

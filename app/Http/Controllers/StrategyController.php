@@ -116,6 +116,6 @@ class StrategyController extends Controller
 
         $strategy->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 }

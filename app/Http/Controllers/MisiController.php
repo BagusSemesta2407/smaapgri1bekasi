@@ -120,6 +120,6 @@ class MisiController extends Controller
 
         $misi->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 }

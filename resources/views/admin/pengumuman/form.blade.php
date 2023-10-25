@@ -5,7 +5,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('admin.agenda.index') }}" class="btn btn-icon">
+                    <a href="{{ route('admin.announcement.index') }}" class="btn btn-icon">
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                                         {{-- <textarea class="form-control" name="title" >
                                             {{ old('title', @$announcement->title) }}
                                         </textarea> --}}
-                                        <input type="text" name="title" class="form-control" value="{{ old('title', @$announcement->title) }}">
+                                        <input type="text" name="title" placeholder="Masukkan Judul Pengumuman" class="form-control" value="{{ old('title', @$announcement->title) }}">
 
                                         @if ($errors->has('title'))
                                             <span class="text-danger">{{ $errors->first('title') }}</span>
@@ -65,7 +65,7 @@
                                         Uraian
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" name="uraian" >{{ old('uraian', @$announcement->uraian) }}</textarea>
+                                        <textarea class="summernote-simple" name="uraian" >{{ old('uraian', @$announcement->uraian) }}</textarea>
 
                                         @if ($errors->has('uraian'))
                                             <span class="text-danger">{{ $errors->first('uraian') }}</span>
@@ -77,7 +77,7 @@
                                         File
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$announcement->file_url }}">
+                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$announcement->file_url }}" data-allowed-file-extensions="pdf">
 
                                         @if ($errors->has('file'))
                                             <span class="text-danger">{{ $errors->first('file') }}</span>

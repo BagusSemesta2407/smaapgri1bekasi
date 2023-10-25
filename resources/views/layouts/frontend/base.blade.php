@@ -33,6 +33,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.368/pdf.min.css">
 </head>
 
 <body>
@@ -71,6 +73,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('template/js/main.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.368/pdf.min.js"></script>
 </body>
 
 </html>

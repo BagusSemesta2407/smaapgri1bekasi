@@ -14,7 +14,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Data Extracurricular</h4>
+                                    <h4>Data Ekstrakulikuler</h4>
 
                                     <a href="{{ route('admin.category-extracurricular.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>
@@ -50,7 +50,7 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button value="{{ route('admin.category-extracurricular.destroy', $item->id) }}"
+                                                        <button data-url="{{ route('admin.category-extracurricular.destroy', $item->id) }}"
                                                             class="btn btn-sm btn-outline-danger delete"> <i
                                                                 class="fas fa-trash"></i>
                                                         </button>

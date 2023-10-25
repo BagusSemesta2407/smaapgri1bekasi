@@ -30,7 +30,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kegiatan Ektrakulikuler
+                    Data Kegiatan Ekstrakulikuler
                 </h1>
             </div>
 
@@ -67,7 +67,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">
-                                        Pilih Kategori Ekstrakulikuler <sup class="text-danger">*</sup>
+                                        Pilih Ekstrakulikuler <sup class="text-danger">*</sup>
                                     </label>
 
                                     <div class="col-md-9">

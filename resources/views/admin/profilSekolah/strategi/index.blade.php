@@ -50,7 +50,7 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <button value="{{ route('admin.strategy.destroy', $item->id) }}"
+                                                        <button data-url="{{ route('admin.strategy.destroy', $item->id) }}"
                                                             class="btn btn-sm btn-outline-danger delete"> <i
                                                                 class="fas fa-trash"></i>
                                                         </button>

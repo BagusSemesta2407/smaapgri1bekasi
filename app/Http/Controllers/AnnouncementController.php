@@ -136,7 +136,7 @@ class AnnouncementController extends Controller
         Announcement::deleteFile($id);
         $announcement->delete();
 
-        return response()->json(['status' => 'Data Telah Dihapus']);
+        return response()->json(['success' => 'Data Telah Dihapus']);
     }
 
     public function announcementLandingPage(Request $request)

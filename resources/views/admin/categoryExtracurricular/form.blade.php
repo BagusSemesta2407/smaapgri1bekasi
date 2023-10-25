@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kategori Ekstrakulikuler
+                    Data Ekstrakulikuler
                 </h1>
             </div>
 

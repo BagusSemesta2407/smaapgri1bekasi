@@ -59,7 +59,7 @@
                                             <h5 class="card-title">{{ $item->title }}</h5>
                                         </a>
                                         <p class="card-text text-justify">
-                                            {{ Str::limit($item->uraian, 150) }}
+                                            {!! Str::limit(Html::decode($item->uraian), 150) !!}
                                             <a href="{{ route('detail-pengumuman-landing-page', $item) }}">
                                                 Lihat Selengkapnya ...
                                             </a>
