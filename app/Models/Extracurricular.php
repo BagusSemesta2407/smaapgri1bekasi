@@ -23,7 +23,7 @@ class Extracurricular extends Model
      */
     public function categoryExtracurricular(): BelongsTo
     {
-        return $this->belongsTo(categoryExtracurricular::class);
+        return $this->belongsTo(CategoryExtracurricular::class);
     }
 
     /**
