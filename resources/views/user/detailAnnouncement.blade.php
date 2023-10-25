@@ -29,7 +29,7 @@
                                             {{ $announcement->title }}
                                         </h2>
                                         <div class="text-justify mt-3">
-                                            {{ $announcement->uraian }}
+                                            {{ strip_tags($announcement->uraian) }}
                                         </div>
 
                                         <br>
