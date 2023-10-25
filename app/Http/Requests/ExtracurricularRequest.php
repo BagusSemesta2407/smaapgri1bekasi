@@ -26,7 +26,10 @@ class ExtracurricularRequest extends FormRequest
         $rules = [
             'category_extracurricular_id'   =>  'required',
             'title'                         =>  'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
             'deskripsi'                     =>  'required',
+            'image' => 'required',
         ];
 
         return $rules;
@@ -38,6 +41,9 @@ class ExtracurricularRequest extends FormRequest
             'category_extracurricular_id.required' => 'Kategori Extrakulikuler Wajib Dipilih',
             'title.required'                       => 'Judul Wajib Diisi',
             'deskripsi.required'                   => 'Deskripsi Wajib Diisi',
+            'image.required'    => 'Dokumentasi Kegiatan Wajib Diisi',
+            'startDate.required' => 'Tanggal Awal Wajib Diisi',
+            'endDate.required' => 'Tanggal Akhir Wajib Diisi'
         ];
     }
 }

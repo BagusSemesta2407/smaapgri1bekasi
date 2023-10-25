@@ -182,6 +182,9 @@
                                     </div>
                                     <small>*) Klik kolom yang sudah disediakan untuk menambahkan gambar.</small>
                                 </div>
+                                @if ($errors->has('image'))
+                                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -190,7 +193,10 @@
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-primary btn-icon icon-left" id="btnSubmit">
                                         {{ $aksi }}
-
+                                        <span class="spinner-border ml-2 d-none" id="loader"
+                                            style="width: 1rem; height: 1rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </span>
                                     </button>
                                 </div>
                             </div>
