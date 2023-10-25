@@ -53,7 +53,7 @@
                                         <input type="file" class="dropify @error('image') is-invalid @enderror"
                                             name='image' id="image" data-height='250'
                                             data-default-file="{{ @$banner->image_url }}"
-                                            data-max-file-size="5M">
+                                            data-max-file-size="5M" data-allowed-file-extensions="png jpg">
 
                                         @if ($errors->has('image'))
                                             <span class="text-danger">{{ $errors->first('image') }}</span>

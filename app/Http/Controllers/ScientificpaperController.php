@@ -44,7 +44,7 @@ class ScientificpaperController extends Controller
     {
         $request->validate([
             'title'      => 'required',
-            'file'       => 'required',
+            'file'       => 'required|mimes:pdf',
             'year'       => 'required',
 
         ], [

@@ -77,7 +77,7 @@
                                         File
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$announcement->file_url }}">
+                                        <input type="file" name="file" class="dropify" data-default-file="{{ @$announcement->file_url }}" data-allowed-file-extensions="pdf">
 
                                         @if ($errors->has('file'))
                                             <span class="text-danger">{{ $errors->first('file') }}</span>
