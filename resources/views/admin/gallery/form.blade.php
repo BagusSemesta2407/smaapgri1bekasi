@@ -45,7 +45,6 @@
                             </div>
 
                             <div class="card-body">
-                                {{ $errors }}
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Judul</label>
 
