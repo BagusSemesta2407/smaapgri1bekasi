@@ -43,6 +43,7 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
+        dd($request->all());
         $image=Gallery::saveImage($request);
         Gallery::create([
             'image' => $image,
