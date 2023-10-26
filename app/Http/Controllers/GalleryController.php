@@ -9,6 +9,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class GalleryController extends Controller
 {
@@ -41,9 +42,12 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GalleryRequest $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $validator=Validator::make($request->all(), [
+            "image"         =>      "required|mimes:jpg,png,jpeg",
+        ]);
         $image=Gallery::saveImage($request);
         Gallery::create([
             'image' => $image,
