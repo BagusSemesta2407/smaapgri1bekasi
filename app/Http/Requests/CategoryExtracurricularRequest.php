@@ -37,7 +37,7 @@ class CategoryExtracurricularRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'  => 'Nama Kategori Extrakulikuler Wajib Diisi',
+            'name.required'  => 'Nama Ekstrakulikuler Wajib Diisi',
             // 'image.required' => 'Gambar Extrakulikuler Wajib Diisi',
         ];
     }

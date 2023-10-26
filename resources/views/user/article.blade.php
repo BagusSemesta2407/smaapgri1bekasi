@@ -21,11 +21,11 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Artikel</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Berita</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Beranda</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Artikel</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Berita</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -36,7 +36,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Artikel</h6>
+                <h6 class="section-title bg-white text-center text-primary px-3">Berita</h6>
             </div>
             <form action="#" class="form-horizontal"
                 style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
@@ -44,11 +44,11 @@
 
                     <div class="col-md-2 col-sm-12">
                         <label for="" class="label-control">
-                            Kategori Artikel
+                            Kategori Berita
                         </label>
 
                         <select name="category_article_id" class="form-control select2">
-                            <option value=" " selected>Pilih Kategori Artikel</option>
+                            <option value=" " selected>Pilih Kategori Berita</option>
                             @foreach ($categoryArticle as $item)
                                 <option value="{{ $item->id }}"
                                     {{ request()->category_article_id ? (request()->category_article_id == $item->id ? 'selected' : '') : '' }}>
@@ -104,7 +104,7 @@
                     <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
                 </div>
                 <div class="text-center">
-                    Belum Ada Data Artikel
+                    Belum Ada Data Berita
                 </div>
             @endforelse
             <div class="text-center">

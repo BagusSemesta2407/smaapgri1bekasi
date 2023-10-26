@@ -38,8 +38,8 @@ class ExtracurricularRequest extends FormRequest
     public function messages()
     {
         return [
-            'category_extracurricular_id.required' => 'Kategori Extrakulikuler Wajib Dipilih',
-            'title.required'                       => 'Judul Wajib Diisi',
+            'category_extracurricular_id.required' => 'Ekstrakulikuler Wajib Dipilih',
+            'title.required'                       => 'Nama Kegiatan Ekstrakulikuler Wajib Diisi',
             'deskripsi.required'                   => 'Deskripsi Wajib Diisi',
             'image.required'    => 'Dokumentasi Kegiatan Wajib Diisi',
             'startDate.required' => 'Tanggal Awal Wajib Diisi',

@@ -237,8 +237,8 @@
     {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Artikel</h6>
-                <h1 class="mb-5">Artikel Terbaru</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Berita</h6>
+                <h1 class="mb-5">Berita Terbaru</h1>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @forelse ($article as $item)
@@ -320,7 +320,7 @@
                                                 height="280">
                                         </div>
                                         <div class="text-center">
-                                            Belum Ada Data Artikel
+                                            Belum Ada Data Berita
                                         </div>
                                     @endforelse
                                 </div>

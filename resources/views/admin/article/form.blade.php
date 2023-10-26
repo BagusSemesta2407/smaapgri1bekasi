@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Artikel
+                    Data Berita
                 </h1>
             </div>
 
@@ -41,13 +41,13 @@
                     <div class="col-12 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Kategori Produk</h4>
+                                <h4>Form Berita</h4>
                             </div>
 
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">
-                                        Pilih Kategori Artikel <sup class="text-danger">*</sup>
+                                        Pilih Kategori Berita <sup class="text-danger">*</sup>
                                     </label>
 
                                     <div class="col-md-9">
@@ -55,7 +55,7 @@
                                             <select name="category_article_id"
                                                 class="form-control select2 @error('category_article_id') is-invalid @enderror">
                                                 <option value="" selected="" disabled="">
-                                                    Pilih Kategori Artikel
+                                                    Pilih Kategori Berita
                                                 </option>
 
                                                 @foreach ($categoryArticle as $item)
@@ -78,7 +78,7 @@
 
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                            id="title" name="title" placeholder="Masukan Judul Artikel"
+                                            id="title" name="title" placeholder="Masukan Judul Berita"
                                             value="{{ old('title', @$article->title) }}">
                                         @if ($errors->has('title'))
                                             <span class="text-danger">

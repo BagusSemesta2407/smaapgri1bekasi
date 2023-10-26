@@ -34,9 +34,9 @@ class ArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'category_article_id.required' => 'Kategori Artikel Wajib Dipilih',
-            'title.required' => 'Judul Artikel Wajib Diisi',
-            'deskripsi.required' => 'Deskripsi Artikel Wajib Diisi',
+            'category_article_id.required' => 'Kategori Berita Wajib Dipilih',
+            'title.required' => 'Judul Berita Wajib Diisi',
+            'deskripsi.required' => 'Deskripsi Berita Wajib Diisi',
         ];
     }
 }

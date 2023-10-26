@@ -27,11 +27,11 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Artikel</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Berita</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Beranda</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Artikel</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Berita</a></li>
                         </ol>
                     </nav>
                 </div>

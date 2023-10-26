@@ -22,7 +22,7 @@
                             $aksi = 'Tambah';
                         @endphp
                     @endif
-                    Data Kategori Artikel
+                    Data Kategori Berita
                 </h1>
             </div>
 
@@ -41,7 +41,7 @@
                     <div class="col-12 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Kategori Artikel</h4>
+                                <h4>Form Kategori Berita</h4>
                             </div>
 
                             <div class="card-body">

@@ -25,7 +25,7 @@
                     <a href="{{ route('pengumuman-landing-page') }}"
                         class="dropdown-item {{ request()->is('agenda-pengumuman') ? 'active' : '' }}">Pengumuman</a>
                     <a href="{{ route('article') }}"
-                        class="dropdown-item {{ request()->is('article') ? 'active' : '' }}">Artikel</a>
+                        class="dropdown-item {{ request()->is('article') ? 'active' : '' }}">Berita</a>
                     <a href="{{ route('extracurricular') }}"
                         class="dropdown-item {{ request()->is('extracurricular') ? 'active' : '' }}">Ekstrakulikuler</a>
                     <a href="{{ route('karya-ilmiah-landing-page') }}"

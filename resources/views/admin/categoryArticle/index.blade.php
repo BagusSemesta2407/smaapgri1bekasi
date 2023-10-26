@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kategori Artikel</h1>
+                <h1>Kategori Berita</h1>
 
 
             </div>
@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between w-100">
-                                    <h4>Data Kategori Artikel</h4>
+                                    <h4>Data Kategori Berita</h4>
 
                                     <a href="{{ route('admin.category-article.create') }}" class="btn btn-primary ">
                                         <i class="fa fa-plus"></i>

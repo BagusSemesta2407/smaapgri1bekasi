@@ -46,7 +46,7 @@ class CategoryArticleController extends Controller
         $request->validate([
             'name'              => 'required',
         ], [
-            'name.required'         => 'Kategori Artikel Wajib Diisi',
+            'name.required'         => 'Kategori Berita Wajib Diisi',
         ]);
 
         CategoryArticle::create([
@@ -99,7 +99,7 @@ class CategoryArticleController extends Controller
         $request->validate([
             'name'              => 'required',
         ], [
-            'name.required'         => 'Kategori Artikel Wajib Diisi',
+            'name.required'         => 'Kategori Berita Wajib Diisi',
         ]);
 
         $data=[

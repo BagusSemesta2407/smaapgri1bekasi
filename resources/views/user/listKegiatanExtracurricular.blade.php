@@ -80,7 +80,7 @@
                     <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
                 </div>
                 <div class="text-center">
-                    Belum Ada Data Extrakulikuler
+                    Belum Ada Data Ekstrakulikuler
                 </div>
             @endforelse
             {{-- <div class="text-center">

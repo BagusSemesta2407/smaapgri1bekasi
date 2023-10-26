@@ -37,7 +37,7 @@ class CategoryArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'  => 'Nama Kategori Artikel Wajib Diisi',
+            'name.required'  => 'Nama Kategori Berita Wajib Diisi',
             // 'image.required' => 'Gambar Artikel Wajib Diisi',
         ];
     }
