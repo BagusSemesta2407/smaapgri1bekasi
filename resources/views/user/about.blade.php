@@ -120,7 +120,7 @@
                                     <tbody>
                                         @forelse ($misi as $item)
                                             <tr>
-                                                <td>{{ $loop->iteration }}.</td>
+                                                <td style="width: 30px">{{ $loop->iteration }}.</td>
                                                 <td>{{ $item->name }}</td>
                                             </tr>
                                         @empty
@@ -141,7 +141,7 @@
                                     <tbody>
                                         @forelse ($tujuan as $item)
                                             <tr>
-                                                <td>{{ $loop->iteration }}.</td>
+                                                <td style="width: 30px">{{ $loop->iteration }}.</td>
                                                 <td>{{ $item->name }}</td>
                                             </tr>
                                         @empty
@@ -163,7 +163,7 @@
                                     <tbody>
                                         @forelse ($strategy as $item)
                                             <tr>
-                                                <td>{{ $loop->iteration }}.</td>
+                                                <td style="width: 30px">{{ $loop->iteration }}.</td>
                                                 <td>{{ $item->name }}</td>
                                             </tr>
                                         @empty
