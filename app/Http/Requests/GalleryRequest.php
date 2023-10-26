@@ -24,7 +24,7 @@ class GalleryRequest extends FormRequest
     public function rules()
     {
         if ($this->_method != 'put') {
-            $rules['image'] =   'required|image|mimes:png,jpg,jpeg|max:2048';
+            $rules['image'] =   'required|mimes:png,jpg,jpeg|max:2048';
         }
 
         return $rules;
@@ -34,7 +34,6 @@ class GalleryRequest extends FormRequest
     {
         return [
             'image.required'    =>  'Gambar Wajib Diisi',
-            'image.image'       =>  'File Harus Berupa Gambar',
             'image.mimes'       =>  'Format File Hanya PNG, JPG Dan JPEG',
             'image.max'         =>  'Ukuran Maksimal File 2MB',
         ];
