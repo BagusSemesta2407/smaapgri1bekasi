@@ -41,7 +41,7 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GalleryRequest $request)
+    public function store(Request $request)
     {
         dd($request->all());
         $image=Gallery::saveImage($request);
