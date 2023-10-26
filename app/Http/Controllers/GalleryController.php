@@ -46,8 +46,9 @@ class GalleryController extends Controller
     {
         // dd($request->all());
         $validator=Validator::make($request->all(), [
-            "image"         =>      "required|mimes:jpg,png,jpeg",
+            "image"         =>      "required|mimes:jpg,png,jpeg|max:500000",
         ]);
+
         $image=Gallery::saveImage($request);
         Gallery::create([
             'image' => $image,
