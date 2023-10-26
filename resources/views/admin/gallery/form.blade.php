@@ -59,7 +59,7 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <input type="file" class="dropify @error('image') is-invalid @enderror"
-                                            name='image' id="image" data-height='250'
+                                            name='image' id="image" 
                                             data-default-file="{{ @$gallery->image_url }}"
                                             data-allowed-file-extensions="jpeg jpg png">
 
