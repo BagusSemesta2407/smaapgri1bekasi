@@ -23,10 +23,9 @@ class GalleryRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->_method != 'put') {
-            $rules['image'] =   'required|image';
-        }
-
+        $rules=[
+            'image' => 'required'
+        ];
         return $rules;
     }
 
@@ -34,7 +33,6 @@ class GalleryRequest extends FormRequest
     {
         return [
             'image.required'    =>  'Gambar Wajib Diisi',
-            'image.image'       =>  'File Harus Berupa Gambar',
         ];
     }
 }
