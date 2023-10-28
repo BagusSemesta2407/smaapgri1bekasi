@@ -29,9 +29,11 @@ class ExtracurricularRequest extends FormRequest
             'startDate' => 'required',
             'endDate' => 'required',
             'deskripsi'                     =>  'required',
-            'image' => 'required',
         ];
 
+        if ($this->_method != 'put') {
+            $rules['image'] =   'required';
+        }
         return $rules;
     }
 

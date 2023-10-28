@@ -11,7 +11,7 @@ class ImageExtracurricular extends Model
 {
     use HasFactory;
 
-    protected $guarded =[
+    protected $guarded = [
         'id'
     ];
 
@@ -25,7 +25,7 @@ class ImageExtracurricular extends Model
         return $this->belongsTo(Extracurricular::class);
     }
 
-     /**
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -83,13 +83,14 @@ class ImageExtracurricular extends Model
     public static function deleteImageArray(int $extracurricularId, array $arrayId)
     {
         $imageExtracurricular = ImageExtracurricular::where('extracurricular_id', $extracurricularId)
-        ->whereNotIn('id', $arrayId)->get();
-        if (isset($imageExtracurricular)) {
-            foreach ($imageExtracurricular as $image) {
+            ->whereNotIn('id', $arrayId)->get();
+        foreach ($imageExtracurricular as $image) {
+            if (isset($image)) {
                 $path = 'public/image/extracurricular/' . $image->image;
                 if (Storage::exists($path)) {
                     Storage::delete('public/image/extracurricular/' . $image->image);
                 }
+                $image->delete();
             }
         }
     }

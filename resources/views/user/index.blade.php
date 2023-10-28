@@ -12,11 +12,13 @@
                     display: block;
                 }
             }
+
             .card-img-top {
                 width: 100%;
                 height: 40vw;
                 object-fit: cover;
             }
+
             .img-top {
                 width: 50vw;
                 height: 15vw;
@@ -124,7 +126,7 @@
                             <div class="p-4">
                                 <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
                                 <h5 class="mb-3">Ekstrakulikuler</h5>
-                                <p>Ada {{ $countExtraculicullar  }} Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
+                                <p>Ada {{ $countExtraculicullar }} Ekstrakulikuler di SMA PGRI 1 BEKASI</p>
                             </div>
                         </a>
                     </div>
@@ -140,8 +142,8 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-200 h-200" src="{{ asset('logo-sma.png') }}" alt=""
-                            style="object-fit: cover;">
+                        <img class="img-fluid position-absolute w-200 h-200" src="{{ asset('logo-sma.png') }}"
+                            alt="" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -294,7 +296,8 @@
                                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                             <div class="col-md-12">
                                                 <div class="card card-body">
-                                                    <img class="img-fluid img-top" src="{{ $item->imageArticle->first()->image_url }}">
+                                                    <img class="img-fluid img-top"
+                                                        src="{{ $item->imageArticle->first()->image_url }}">
                                                     <h5 class="card-title mt-2">
                                                         {{ $item['title'] }}
                                                     </h5>
@@ -353,8 +356,19 @@
                                                 {{ $item->title }}
                                             </h6>
                                             <p>
-                                                {{ strip_tags($item->uraian) }}
+                                                {{ Str::limit(strip_tags($item['uraian'], 150)) }}
+                                                {{-- {{ Str::limit($item['deskripsi'], 150) }} --}}
+                                                <a href="{{ route('detail-pengumuman-landing-page', $item) }}">
+                                                    Lihat Selengkapnya ...
+                                                </a>
+
                                             </p>
+                                            <p class="card-text">
+                                                <small class="text-body-secondary">
+                                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
+                                                </small>
+                                            </p>
+                                            <hr>
                                         @empty
                                             <p>Belum Ada Pengumuman</p>
                                         @endforelse

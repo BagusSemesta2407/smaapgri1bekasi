@@ -108,9 +108,11 @@
                                         Deskripsi
                                     </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control @error('deskripsi')
+                                        <textarea
+                                            class="form-control @error('deskripsi')
                                         is-invalid
-                                    @enderror" name="deskripsi" >{{ old('deskripsi', @$article->deskripsi) }}</textarea>
+                                    @enderror"
+                                            name="deskripsi">{{ old('deskripsi', @$article->deskripsi) }}</textarea>
 
                                         @if ($errors->has('deskripsi'))
                                             <span class="text-danger">{{ $errors->first('deskripsi') }}</span>
@@ -120,10 +122,13 @@
                                 <div class="input-field">
                                     <label class="active">Gambar</label>
                                     <div class="input-images-2" style="padding-top: .5rem;">
-                                        
+
                                     </div>
                                     <small>*) Klik kolom yang sudah disediakan untuk menambahkan gambar.</small>
                                 </div>
+                                @if ($errors->has('image'))
+                                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -145,23 +150,23 @@
 @endsection
 
 @section('script')
-<script>
-    let images =@json(@$imageArticle);
-    let imageArray=[];
+    <script>
+        let images = @json(@$imageArticle);
+        let imageArray = [];
 
-    for (image in images) {
-        imageArray.push({
-            id : image,
-            src : images[image]                
-        })
-    }
+        for (image in images) {
+            imageArray.push({
+                id: image,
+                src: images[image]
+            })
+        }
 
-    $('.input-images-2').imageUploader({
-        imagesInputName: 'image',
-        preloadedInputName: 'old',
-        maxSize: 2 * 1024 * 1024,
-        maxFiles: 10,
-        preloaded: imageArray 
-    });
-</script>
+        $('.input-images-2').imageUploader({
+            imagesInputName: 'image',
+            preloadedInputName: 'old',
+            maxSize: 2 * 1024 * 1024,
+            maxFiles: 10,
+            preloaded: imageArray
+        });
+    </script>
 @endsection

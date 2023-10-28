@@ -25,10 +25,10 @@ class SettingRequest extends FormRequest
     {
         $rules =[
             // 'alamat' => 'required',
-            'yt' => 'url',
-            'fb' => 'url',
-            'ig' => 'url',
-            // 'telepon' => 'required'
+            // 'yt' => 'url',
+            // 'fb' => 'url',
+            // 'ig' => 'url',
+            'telepon' => 'numeric'
         ];
 
         return $rules;
@@ -38,9 +38,10 @@ class SettingRequest extends FormRequest
     {
         // 'alamat.required' => 'Alamat Wajib Diisi',
         return [
-            'fb.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
-            'yt.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
-            'ig.url' => 'Wajib Menginputkan Dalam Bentuk LINK'
+            // 'fb.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
+            // 'yt.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
+            // 'ig.url' => 'Wajib Menginputkan Dalam Bentuk LINK',
+            'telepon.numeric' => 'Nomor Telepon Wajib Diinput Angka'
         ];
     }
 }

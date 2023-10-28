@@ -136,10 +136,19 @@ class ExtracurricularController extends Controller
 
         if ($request->old) {
             ImageExtracurricular::deleteImageArray($extracurricular->id, $request->old);
-            ImageExtracurricular::where('extracurricular_id', $extracurricular->id)
-                ->whereNotIn('id', $request->old)->delete();
+            
+            // ImageExtracurricular::where('extracurricular_id', $extracurricular->id)
+            // ->whereNotIn('id', $request->old)->delete();
         }
         if ($request->image) {
+            if ($request->old) {
+                # code...
+                ImageExtracurricular::where('extracurricular_id', $extracurricular->id)
+                ->whereNotIn('id', $request->old)->delete();
+            }else{
+                ImageExtracurricular::where('extracurricular_id', $extracurricular->id)->delete();
+            }
+
             foreach ($request->image as $data) {
                 $filename = ImageExtracurricular::saveImage($data);
                 ImageExtracurricular::create([
@@ -186,7 +195,7 @@ class ExtracurricularController extends Controller
 
         $setting = Setting::first();
 
-        $categoryExtracurricular=CategoryExtracurricular::all();
+        $categoryExtracurricular = CategoryExtracurricular::all();
 
         return view('user.extracurricular', [
             'banner'    =>  $banner,
@@ -197,9 +206,9 @@ class ExtracurricularController extends Controller
 
     public function getCategoryExtracurricular($id)
     {
-        $categoryExtracurricular=CategoryExtracurricular::find($id);
+        $categoryExtracurricular = CategoryExtracurricular::find($id);
 
-        $extracurricular=Extracurricular::where('category_extracurricular_id', $categoryExtracurricular->id)->get();
+        $extracurricular = Extracurricular::where('category_extracurricular_id', $categoryExtracurricular->id)->get();
 
         return view('user.listKegiatanExtracurricular', [
             'extracurricular' => $extracurricular
@@ -209,8 +218,8 @@ class ExtracurricularController extends Controller
     public function detailExtracurricular($id)
     {
         $extracurricular = Extracurricular::find($id);
-        $imageExtracurricular = ImageExtracurricular::where('extracurricular_id',$id)
-        ->get();
+        $imageExtracurricular = ImageExtracurricular::where('extracurricular_id', $id)
+            ->get();
 
         return view('user.detailExtracurricular', [
             'extracurricular' => $extracurricular,

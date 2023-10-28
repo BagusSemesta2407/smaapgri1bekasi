@@ -25,11 +25,12 @@ class CategoryExtracurricularRequest extends FormRequest
     {
         $rules = [
             'name'  =>  'required',
+            // 'image' => 'required'
         ];
 
-        // if ($this->_method != 'put') {
-        //     $rules['image'] =   'required|image';
-        // }
+        if ($this->_method != 'put') {
+            $rules['image'] =   'required';
+        }
 
         return $rules;
     }
@@ -38,7 +39,7 @@ class CategoryExtracurricularRequest extends FormRequest
     {
         return [
             'name.required'  => 'Nama Ekstrakulikuler Wajib Diisi',
-            // 'image.required' => 'Gambar Extrakulikuler Wajib Diisi',
+            'image.required' => 'Gambar Extrakulikuler Wajib Diisi',
         ];
     }
 }

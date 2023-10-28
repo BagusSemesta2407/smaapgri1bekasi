@@ -50,6 +50,9 @@
 
                                     <div class="col-sm-9">
                                         <input type="text" placeholder="Masukkan Judul" name="title" value="{{ old('title', @$gallery->title) }}" class="form-control">
+                                        @if ($errors->has('title'))
+                                                <span class="text-danger">{{ $errors->first('title') }}</span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">

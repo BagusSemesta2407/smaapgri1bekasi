@@ -23,6 +23,10 @@ class GalleryRequest extends FormRequest
      */
     public function rules()
     {
+        $rules =[
+            'title' => 'required',
+        ];
+
         if ($this->_method != 'put') {
             $rules['image'] =   'required|image|mimes:png,jpg,jpeg|max:2048';
         }
@@ -33,6 +37,7 @@ class GalleryRequest extends FormRequest
     public function messages()
     {
         return [
+            'title.required'  => 'Judul Wajib Diisi',
             'image.required'    =>  'Gambar Wajib Diisi',
             'image.image'       =>  'File Harus Berupa Gambar',
             'image.mimes'       =>  'Format File Hanya PNG, JPG Dan JPEG',

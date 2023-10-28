@@ -24,7 +24,7 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         if ($this->_method != 'put') {
-            $rules['image'] =   'required|image';
+            $rules['image'] =   'required|image|max:5120';
         }
 
         return $rules;
@@ -34,6 +34,7 @@ class BannerRequest extends FormRequest
     {
         return [
             'image.required'    =>  'Gambar Wajib Diisi',
+            'image.max' => 'Maksimal Ukuran Gambar 5Mb'
         ];
     }
 }

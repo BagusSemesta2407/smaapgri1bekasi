@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SettingRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class SettingController extends Controller
     {
         $setting = Setting::first();
 
-        return view('user.contact',[
+        return view('user.contact', [
             'setting' => $setting
         ]);
     }
@@ -51,32 +52,48 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SettingRequest $request)
     {
         $setting = Setting::first();
 
-        if ($setting) {
-            Setting::where('id', $setting->id)
-                ->update([
-                    'telepon' => $request->telepon,
-                    'ig' => $request->ig,
-                    'fb' => $request->fb,
-                    'yt' => $request->yt,
-                    'alamat' => $request->alamat,
-                    'about' => $request->about,
-                    'email' => $request->email,
-                ]);
-        } else {
-            Setting::create([
-                'telepon' => $request->telepon,
-                'ig' => $request->ig,
-                'fb' => $request->fb,
-                'yt' => $request->yt,
-                'alamat' => $request->alamat,
-                'about' => $request->about,
-                'email' => $request->email,
-            ]);
-        }
+        // if ($setting) {
+        //     Setting::where('id', $setting->id)
+        //         ->update([
+        //             'telepon' => $request->telepon,
+        //             'ig' => $request->ig,
+        //             'fb' => $request->fb,
+        //             'yt' => $request->yt,
+        //             'alamat' => $request->alamat,
+        //             'about' => $request->about,
+        //             'email' => $request->email,
+        //         ]);
+        // } else {
+        //     Setting::create([
+        //         'telepon' => $request->telepon,
+        //         'ig' => $request->ig,
+        //         'fb' => $request->fb,
+        //         'yt' => $request->yt,
+        //         'alamat' => $request->alamat,
+        //         'about' => $request->about,
+        //         'email' => $request->email,
+        //     ]);
+        // }
+        $data = [
+            'telepon' => $request->telepon,
+            'ig' => $request->ig,
+            'fb' => $request->fb,
+            'yt' => $request->yt,
+            'alamat' => $request->alamat,
+            'about' => $request->about,
+            'email' => $request->email,
+        ];
+
+        Setting::updateOrCreate(
+            [
+                'id' => $setting->id,
+            ],
+            $data
+        );
 
         return redirect()->route('admin.get-setting')->with('success', 'Data Berhasil Diubah');
     }

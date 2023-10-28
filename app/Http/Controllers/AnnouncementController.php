@@ -145,6 +145,7 @@ class AnnouncementController extends Controller
         $search = $request->input('search');
 
         $announcement = Announcement::query()
+            ->latest()
             ->where('title', 'LIKE', "%$search%")
             ->paginate(5);
 

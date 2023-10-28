@@ -95,6 +95,12 @@ class TujuanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'              => 'required',
+        ], [
+            'name.required'         => 'Tujuan Wajib Diisi',
+        ]); 
+        
         $data = [
             'name' => $request->name,
         ];

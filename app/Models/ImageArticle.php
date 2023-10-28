@@ -66,13 +66,14 @@ class ImageArticle extends Model
     public static function deleteImageArray(int $articleId, array $arrayId)
     {
         $imageArticle = ImageArticle::where('article_id', $articleId)
-        ->whereNotIn('id', $arrayId)->get();
-        if (isset($imageArticle)) {
-            foreach ($imageArticle as $image) {
+            ->whereNotIn('id', $arrayId)->get();
+        foreach ($imageArticle as $image) {
+            if (isset($image)) {
                 $path = 'public/image/artikel/' . $image->image;
                 if (Storage::exists($path)) {
                     Storage::delete('public/image/artikel/' . $image->image);
                 }
+                $image->delete();
             }
         }
     }

@@ -28,6 +28,9 @@ class ArticleRequest extends FormRequest
             'title'                 =>  'required',
             'deskripsi'                 =>  'required',
         ];
+        if ($this->_method != 'put') {
+            $rules['image'] =   'required';
+        }
         return $rules;
     }
 
@@ -37,6 +40,7 @@ class ArticleRequest extends FormRequest
             'category_article_id.required' => 'Kategori Berita Wajib Dipilih',
             'title.required' => 'Judul Berita Wajib Diisi',
             'deskripsi.required' => 'Deskripsi Berita Wajib Diisi',
+            'image.required' => 'Gambar Wajib Diisi'
         ];
     }
 }

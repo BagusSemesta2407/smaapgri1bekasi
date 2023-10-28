@@ -271,7 +271,7 @@
                 // Makes the upload
                 setPreview($container, validFiles);
             } else {
-
+                // alert("Please select a valid image file.");
                 // Update input files (it is now empty due to a default browser action)
                 $input.prop('files', dataTransfer.files);
 

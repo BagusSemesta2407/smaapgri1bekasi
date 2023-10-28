@@ -22,8 +22,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article=Article::get();
-        return view('admin.article.index',[
+        $article = Article::get();
+        return view('admin.article.index', [
             'article'   =>  $article,
         ]);
     }
@@ -36,7 +36,7 @@ class ArticleController extends Controller
     public function create()
     {
         $categoryArticle = CategoryArticle::all();
-        return view('admin.article.form',[
+        return view('admin.article.form', [
             'categoryArticle'   =>  $categoryArticle
         ]);
     }
@@ -50,7 +50,7 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         // $image=Article::saveImage($request);
-        $article=Article::create([
+        $article = Article::create([
             'user_id' => auth()->user()->id,
             'category_article_id' => $request->category_article_id,
             'title' =>  $request->title,
@@ -60,7 +60,7 @@ class ArticleController extends Controller
 
         if ($request->image) {
             foreach ($request->image as $data) {
-                $filename=ImageArticle::saveImage($data);
+                $filename = ImageArticle::saveImage($data);
                 ImageArticle::create([
                     'article_id' => $article->id,
                     'image' => $filename
@@ -96,12 +96,12 @@ class ArticleController extends Controller
         } catch (DecryptException $e) {
             abort(404);
         }
-        $article=Article::find($id);
-        $imageArticle=$article->imageArticle->pluck('image_url','id');
-        
-        $categoryArticle=CategoryArticle::oldest('name')->get();
+        $article = Article::find($id);
+        $imageArticle = $article->imageArticle->pluck('image_url', 'id');
 
-        return view('admin.article.form',[
+        $categoryArticle = CategoryArticle::oldest('name')->get();
+
+        return view('admin.article.form', [
             'article'   =>  $article,
             'categoryArticle'   =>  $categoryArticle,
             'imageArticle' => $imageArticle
@@ -118,6 +118,7 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $data = [
+            'category_article_id' => $request->category_article_id,
             'title' =>  $request->title,
             'deskripsi' =>  $request->deskripsi
         ];
@@ -126,13 +127,19 @@ class ArticleController extends Controller
         if ($request->old) {
             ImageArticle::deleteImageArray($article->id, $request->old);
 
-            ImageArticle::where('article_id', $article->id)
-            ->whereNotIn('id', $request->old)->delete();
+            // ImageArticle::where('article_id', $article->id)
+            // ->whereNotIn('id', $request->old)->delete();
         }
 
         if ($request->image) {
+            if ($request->old) {
+                ImageArticle::where('article_id', $article->id)
+                    ->whereNotIn('id', $request->old)->delete();
+            }else{
+                ImageArticle::where('article_id', $article->id)->delete();
+            }
             foreach ($request->image as $data) {
-                $filename=ImageArticle::saveImage($data);
+                $filename = ImageArticle::saveImage($data);
                 ImageArticle::create([
                     'article_id' => $article->id,
                     'image' => $filename,
@@ -141,7 +148,7 @@ class ArticleController extends Controller
         }
 
 
-        return redirect()->route('admin.article.index')->with('success','Data berhasil diubah');
+        return redirect()->route('admin.article.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -152,14 +159,14 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $article=Article::find($id);
+        $article = Article::find($id);
 
         $imageArticle = [];
         ImageArticle::deleteImageArray($article->id, $imageArticle);
 
         $article->delete();
 
-        ImageArticle::where('article_id',$article->id)->delete();
+        ImageArticle::where('article_id', $article->id)->delete();
 
         return response()->json(['success' => 'Data Telah Dihapus']);
     }
@@ -172,40 +179,39 @@ class ArticleController extends Controller
     public function indexUser(Request $request)
     {
         $banner = Banner::get();
-        
-        $setting=Setting::first();
+
+        $setting = Setting::first();
 
         $filter = (object) [
             'category_article_id' => $request->category_article_id,
         ];
 
-        $article=Article::filter($filter)
-        ->latest()
-        ->paginate(5);
+        $article = Article::filter($filter)
+            ->latest()
+            ->paginate(5);
 
-        $categoryArticle=CategoryArticle::whereHas('article')
-        ->get();
+        $categoryArticle = CategoryArticle::whereHas('article')
+            ->get();
 
 
-        return view('user.article',[
+        return view('user.article', [
             'banner'    =>  $banner,
             'article'   =>  $article,
             'categoryArticle' => $categoryArticle,
             'setting' => $setting
         ]);
-        
     }
 
     public function detailArticle($id)
     {
-        $setting=Setting::first();
-        $article=Article::find($id);
-        $imageArticle=ImageArticle::where('article_id', $id)
-        ->get();
+        $setting = Setting::first();
+        $article = Article::find($id);
+        $imageArticle = ImageArticle::where('article_id', $id)
+            ->get();
 
         return view('user.detailArticle', [
-            'article'=> $article,
-            'imageArticle'=> $imageArticle,
+            'article' => $article,
+            'imageArticle' => $imageArticle,
             'setting' => $setting
         ]);
     }

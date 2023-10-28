@@ -17,7 +17,9 @@
                 <a href="#"
                     class="nav-link dropdown-toggle 
                 {{ request()->is('article') ? 'active' : '' }} || 
-                {{ request()->is('agenda-pengumuman') ? 'active' : '' }}"
+                {{ request()->is('agenda-pengumuman') ? 'active' : '' }} ||
+                {{ request()->is('extrakulikuler') ? 'active' : '' }} ||
+                {{ request()->is('karya-ilmiah') ? 'active' : '' }}"
                     data-bs-toggle="dropdown">
                     Informasi
                 </a>
@@ -27,7 +29,7 @@
                     <a href="{{ route('article') }}"
                         class="dropdown-item {{ request()->is('article') ? 'active' : '' }}">Berita</a>
                     <a href="{{ route('extracurricular') }}"
-                        class="dropdown-item {{ request()->is('extracurricular') ? 'active' : '' }}">Ekstrakulikuler</a>
+                        class="dropdown-item {{ request()->is('extrakulikuler') ? 'active' : '' }}">Ekstrakulikuler</a>
                     <a href="{{ route('karya-ilmiah-landing-page') }}"
                         class="dropdown-item {{ request()->is('karya-ilmiah') ? 'active' : '' }}">Karya Ilmiah</a>
                     {{-- <a href="{{ route('404')}}" class="dropdown-item">404 Page</a> --}}

@@ -60,18 +60,18 @@
                     class="nav-item dropdown {{ request()->is('admin/category-article*') || request()->is('admin/article*') ? 'active' : '' }}">
                     <a class="nav-link has-dropdown" data-toggle="dropdown">
                         <i class="fas fa-newspaper"></i>
-                        <span>Artikel</span>
+                        <span>Berita</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="{{ request()->is('admin/category-article*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.category-article.index') }}">
-                                <span>Kategori Artikel</span>
+                                <span>Kategori Berita</span>
                             </a>
                         </li>
 
                         <li class="{{ request()->is('admin/article*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.article.index') }}">
-                                <span>Artikel</span>
+                                <span>Berita</span>
                             </a>
                         </li>
                     </ul>
