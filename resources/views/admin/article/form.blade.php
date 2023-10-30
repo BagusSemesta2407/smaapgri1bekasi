@@ -109,7 +109,7 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <textarea
-                                            class="form-control @error('deskripsi')
+                                            class="form-control summernote-simple @error('deskripsi')
                                         is-invalid
                                     @enderror"
                                             name="deskripsi">{{ old('deskripsi', @$article->deskripsi) }}</textarea>

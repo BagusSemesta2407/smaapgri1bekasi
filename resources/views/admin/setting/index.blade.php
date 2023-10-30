@@ -85,7 +85,7 @@
                                                 class="form-control @error('about') is-invalid @enderror"
                                                 placeholder="Masukkan Tentang" name="about"
                                                 value="{{ old('about', @$setting->about) }}"> --}}
-                                            <textarea id="about" name="about" class="form-control">{{ @$setting->about }}</textarea>
+                                            <textarea id="about" name="about" class="form-control summernote-simple">{{ @$setting->about }}</textarea>
                                                 @error('about')
                                                 <span class="text-danger">{{ $errors->first('about') }}</span>
                                             @enderror
