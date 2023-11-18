@@ -34,6 +34,7 @@
                                                 </th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
+                                                <th>Username</th>
                                                 <th>Role</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -50,6 +51,9 @@
                                                     </td>
                                                     <td class="">
                                                         {{ $item->email }}
+                                                    </td>
+                                                    <td class="">
+                                                        {{ $item->username }}
                                                     </td>
                                                     <td class="">
                                                         @if ($item->getRoleNames()[0] == 'admin')

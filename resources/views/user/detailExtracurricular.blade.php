@@ -61,7 +61,7 @@
                                         <hr>
 
                                         <p style="text-align:justify; text-justify:inter-word;">
-                                            {{ $extracurricular->deskripsi }}</p>
+                                            {{ strip_tags($extracurricular->deskripsi) }}</p>
                                         <h5>Dokumentasi Kegiatan</h5>
                                         <div class="row row-cols-1 row-cols-md-4 g-1"
                                             data-masonry='{"percentPosition": true }'>

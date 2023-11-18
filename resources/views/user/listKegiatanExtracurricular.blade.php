@@ -57,7 +57,8 @@
                                                 <h5 class="card-title">{{ $item->title }}</h5>
                                             </a>
                                             <p class="card-text text-justify">
-                                                {{ Str::limit($item->deskripsi, 150) }}
+                                                {{-- {{ Str::limit($item->deskripsi, 150) }} --}}
+                                                {{ Str::limit(strip_tags($item['deskripsi'], 150)) }}
                                                 <a href="{{ route('detail-extracurricular', $item) }}">
                                                     Lihat Selengkapnya ...
                                                 </a>
