@@ -55,45 +55,28 @@ class SettingController extends Controller
     public function store(SettingRequest $request)
     {
         $setting = Setting::first();
-
-        // if ($setting) {
-        //     Setting::where('id', $setting->id)
-        //         ->update([
-        //             'telepon' => $request->telepon,
-        //             'ig' => $request->ig,
-        //             'fb' => $request->fb,
-        //             'yt' => $request->yt,
-        //             'alamat' => $request->alamat,
-        //             'about' => $request->about,
-        //             'email' => $request->email,
-        //         ]);
-        // } else {
-        //     Setting::create([
-        //         'telepon' => $request->telepon,
-        //         'ig' => $request->ig,
-        //         'fb' => $request->fb,
-        //         'yt' => $request->yt,
-        //         'alamat' => $request->alamat,
-        //         'about' => $request->about,
-        //         'email' => $request->email,
-        //     ]);
-        // }
         $data = [
             'telepon' => $request->telepon,
             'ig' => $request->ig,
             'fb' => $request->fb,
             'yt' => $request->yt,
+            'tipe_pembayaran' => $request->tipe_pembayaran,
+            'nomor_rekening' => $request->nomor_rekening,
             'alamat' => $request->alamat,
             'about' => $request->about,
             'email' => $request->email,
         ];
 
-        Setting::updateOrCreate(
-            [
-                'id' => $setting->id,
-            ],
-            $data
-        );
+        if ($setting) {
+            Setting::updateOrCreate(
+                [
+                    'id' => $setting->id,
+                ],
+                $data
+            );
+        } else {
+            Setting::create($data);
+        }
 
         return redirect()->route('admin.get-setting')->with('success', 'Data Berhasil Diubah');
     }

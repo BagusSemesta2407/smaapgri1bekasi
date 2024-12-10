@@ -11,13 +11,16 @@ use App\Http\Controllers\CategoryExtracurricularController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MisiController;
+use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RegistrasiSiswaController;
 use App\Http\Controllers\ScientificpaperController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StrategyController;
 use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
+use App\Http\Controllers\WaktuPendaftaranController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +54,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/extrakulikuler/{id}', [ExtracurricularController::class, 'detailExtracurricular'])->name('detail-extracurricular');
     Route::get('/karya-ilmiah', [ScientificpaperController::class, 'scientificpaperLandingPage'])->name('karya-ilmiah-landing-page');
     Route::get('/karya-ilmiah/{preview_pdf}', [ScientificpaperController::class, 'previewPdf'])->name('karya-ilmiah-preview-pdf');
+    Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
+    Route::get('/ppdb/{id}/registrasi', [PPDBController::class, 'registrasi'])->name('registrasi');
+    Route::post('/ppdb/{id}/post-registrasi', [PPDBController::class, 'postRegistrasi'])->name('post-registrasi');
 
     Auth::routes();
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
@@ -91,6 +97,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
                 Route::get('visi', [VisiController::class, 'index'])->name('get-visi');
                 Route::post('visi', [VisiController::class, 'store'])->name('post-visi');
 
+                Route::resource('registrasi-siswa', RegistrasiSiswaController::class);
                 Route::get('setting', [SettingController::class, 'index'])->name('get-setting');
                 Route::post('setting', [SettingController::class, 'store'])->name('post-setting');
 
@@ -102,6 +109,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
                 //route extracurricular
                 Route::resource('extracurricular', ExtracurricularController::class);
+
+                //ppdb
+                Route::resource('waktu-pendaftaran', WaktuPendaftaranController::class);
+                Route::get('status-waktu-pendaftaran/{id}', [WaktuPendaftaranController::class, 'status'])->name('status-waktu-pendaftaran');
+
             }
         );
 

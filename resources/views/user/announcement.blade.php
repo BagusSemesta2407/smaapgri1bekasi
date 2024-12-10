@@ -22,7 +22,7 @@
             <h6 class="section-title bg-white text-center text-primary px-3">Pengumuman </h6>
         </div>
         <form action="#" class="form-horizontal"
-            style="padding-bottom: 10px;border-bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
+            style="padding-bottom: 10px;border- bottom: 1px solid #d7d6d6; margin-bottom: 20px;">
             <div class="row align-items-center">
                 <div class="col-md-12 col-sm-12">
                     <label for="" class="label-control">

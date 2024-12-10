@@ -21,7 +21,7 @@ class Gallery extends Model
     protected $appends = ['image_url'];
 
     /**
-     * Save image Owner.
+     * Save image
      *
      * @param  $request
      * @return string
@@ -42,7 +42,7 @@ class Gallery extends Model
     }
 
     /**
-     * Get the image owner url.
+     * Get the image.
      *
      * @return string
      */

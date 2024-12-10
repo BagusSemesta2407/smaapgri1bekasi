@@ -28,6 +28,8 @@
     <link href="{{ asset('template/lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('template/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -71,10 +73,57 @@
     <script src="{{ asset('template/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('template/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
+    {{-- sweet alert --}}
+    <script src="{{ asset('assets/plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $('#myForm').submit(function(e) {
+            let form = this;
+            e.preventDefault();
+
+            confirmSubmit(form);
+        });
+    </script>
+
+    <script>
+        function confirmSubmit(form, buttonId) {
+            Swal.fire({
+                icon: 'question',
+                text: 'Apakah anda yakin ingin menyimpan data ini ?',
+                showCancelButton: true,
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-primary ml-2',
+                    cancelButton: 'btn btn-secondary margin-cancel-button',
+                },
+                confirmButtonText: 'Simpan',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let button = 'btnSubmit';
+
+                    if (buttonId) {
+                        button = buttonId;
+                    }
+
+                    $('#' + button).attr('disabled', 'disabled');
+                    $('#loader').removeClass('d-none');
+
+                    form.submit();
+                }
+            });
+        }
+    </script>
+
     <!-- Template Javascript -->
     <script src="{{ asset('template/js/main.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.368/pdf.min.js"></script>
+
+    @yield('lp-script')
 </body>
 
 </html>

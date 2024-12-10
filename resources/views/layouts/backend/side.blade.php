@@ -97,6 +97,26 @@
                         </li>
                     </ul>
                 </li>
+                <li
+                    class="nav-item dropdown {{ request()->is('admin/waktu-pendaftaran*') || request()->is('admin/extracurricular*') ? 'active' : '' }}">
+                    <a class="nav-link has-dropdown" data-toggle="dropdown">
+                        <i class="fas fa-newspaper"></i>
+                        <span>PPDB</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ request()->is('admin/waktu-pendaftaran*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.waktu-pendaftaran.index') }}">
+                                <span>Waktu Pendaftaran</span>
+                            </a>
+                        </li>
+
+                        <li class="{{ request()->is('admin/registrasi-siswa*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.registrasi-siswa.index') }}">
+                                <span>Pendaftar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 {{-- <li class="{{ request()->is('admin/agenda*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.agenda.index') }}">

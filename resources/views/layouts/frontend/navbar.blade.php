@@ -12,6 +12,11 @@
                 {{ request()->is('/') ? 'active' : '' }}">
                 Beranda
             </a>
+            <a href="{{ route('ppdb') }}"
+                class="nav-item nav-link 
+                {{ request()->is('ppdb') ? 'active' : '' }}">
+                PPDB
+            </a>
 
             <div class="nav-item dropdown">
                 <a href="#"
