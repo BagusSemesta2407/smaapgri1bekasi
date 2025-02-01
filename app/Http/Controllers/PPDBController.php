@@ -54,7 +54,7 @@ class PPDBController extends Controller
 
         // Buat tempat tinggal siswa
         $tempatTinggal = TempatTinggal::create(array_merge($request->all(), ['registrasi_siswa_id' => $registrasiSiswa->id]));
-
+        
         return redirect()->route('ppdb')->with('success', 'Data anda berhasil disimpan!');
     }
 }

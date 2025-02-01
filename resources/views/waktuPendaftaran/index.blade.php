@@ -66,7 +66,7 @@
                                                         <button
                                                             class="btn btn-sm btn-{{ $item->status == 'Aktif' ? 'danger' : 'success' }}  status mr-1"
                                                             data-url="{{ route('admin.status-waktu-pendaftaran', $item->id) }}"
-                                                            data-status={{ $item->status }} title="Aktifkan Waktu Pendaftaran">
+                                                            data-status={{ $item->status }} title="{{ $item->status == 'Aktif' ? 'Non-Aktifkan Waktu Pendaftaran' : 'Aktifkan Waktu Pendaftaran' }}">
                                                             <i class="fas fa-{{ $item->status == 'Aktif' ? 'toggle-off' : 'toggle-on' }}"></i>
                                                         </button>
 
@@ -139,7 +139,7 @@
             let url = $(this).data('url');
             let status = $(this).data('status');
 
-            let title = status == 'Aktif' ? 'Aktifkan Status PPDB ?' : 'Non-Aktifkan Status PPDB?';
+            let title = status == 'Aktif' ? 'Non-Aktifkan Status PPDB ?' : 'Aktifkan Status PPDB ?';
 
             let icon = status == 'Aktif' ? 'error' : 'info';
 

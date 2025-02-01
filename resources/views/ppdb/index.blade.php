@@ -59,7 +59,7 @@
                     <img src="{{ asset('empty.jpg') }}" alt="" width="280" height="280">
                 </div>
                 <div class="text-center">
-                    Belum Ada Data Berita
+                    Belum Ada Jadwal PPDB
                 </div>
             @endforelse
             {{-- <div class="text-center">

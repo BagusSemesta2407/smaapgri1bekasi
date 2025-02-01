@@ -39,6 +39,7 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    @yield('styles')
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -138,6 +139,13 @@
     <script src="{{ asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <!-- JS Libraies -->
     <script src="{{ asset('assets/plugins/izitoast/dist/js/iziToast.min.js') }}"></script>

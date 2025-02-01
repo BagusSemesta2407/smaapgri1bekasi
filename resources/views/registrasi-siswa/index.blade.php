@@ -1,5 +1,33 @@
 @extends('layouts.backend.base')
 
+@section('styles')
+    <style>
+        /* Hanya menargetkan tombol export dan print pada DataTables */
+        .dt-buttons .dt-export-btn {
+            background-color: #007bff !important; /* Warna biru Bootstrap */
+            color: white !important;
+            border-radius: 5px;
+            border: none;
+            padding: 6px 12px;
+            margin-right: 5px;
+            font-size: 12px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Efek hover untuk tombol export dan print */
+        .dt-buttons .dt-export-btn:hover {
+            background-color: #0056b3 !important; /* Biru lebih gelap */
+            color: white !important;
+        }
+
+        /* Mengatur margin bawah untuk tombol agar tidak terlalu berdekatan dengan tabel */
+        .dt-buttons .dt-export-btn {
+            margin-bottom: 5px;
+        }
+    </style>
+@endsection
+
+
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -70,87 +98,28 @@
     </div>
 @endsection
 
-
-
 @section('script')
     <script>
         $(document).ready(function() {
+            if ($.fn.DataTable.isDataTable('#myTable')) {
+                $('#myTable').DataTable().destroy();
+            }
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $(document).on('click', '.delete', function() {
-                let url = $(this).val();
-                console.log(url);
-                swal({
-                        title: "Apakah anda yakin?",
-                        text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: "DELETE",
-                                url: url,
-                                dataType: 'json',
-                                success: function(response) {
-                                    swal(response.status, {
-                                            icon: "success",
-                                        })
-                                        .then((result) => {
-                                            location.reload();
-                                        });
-                                }
-                            });
-                        }
-                    })
+            $('#myTable').DataTable({
+                dom: 'lBfrtip', // 'l' untuk show entries, 'B' untuk tombol export
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        className: 'dt-export-btn'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i> Print',
+                        className: 'dt-export-btn'
+                    }
+                ]
             });
         });
-    </script>
-
-    <script type="text/javascript">
-        $(document).on('click', '.status', function() {
-            let url = $(this).data('url');
-            let status = $(this).data('status');
-
-            let title = status == 'Aktif' ? 'Aktifkan Status PPDB ?' : 'Non-Aktifkan Status PPDB?';
-
-            let icon = status == 'Aktif' ? 'error' : 'info';
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-            Swal.fire({
-                title: title,
-                text: "Status PPDB Akan Diganti",
-                icon: icon,
-                showCancelButton: true
-            }).then((action) => {
-                if (action.isConfirmed) {
-                    $.ajax({
-                        type: 'GET',
-                        url: url,
-                        dataType: 'json',
-                        success: function(data) {
-                            Swal.fire('Berhasi!', 'Status PPDB Berhasil Diubah!', 'success')
-                                .then(
-                                    function() {
-                                        location.reload();
-                                    })
-                        },
-                        error: function(data) {
-                            console.log('Error :' + data);
-                        }
-                    })
-                }
-            });
-        })
     </script>
 @endsection
